@@ -973,7 +973,7 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Inloggning Lyckades!");
             this.anvnamn = tfAnvnamn.getText();
             this.id = id;
-            lblWelcome.setText("Välkommen, " + tfAnvnamn.getText() + "!");      
+            lblWelcome.setText("Välkommen, " + tfAnvnamn.getText() + "!");
             tfAnvnamn.setVisible(false);
             tfLosen.setVisible(false);
             lblAnvnamn.setVisible(false);
@@ -1020,6 +1020,7 @@ public class Meny extends javax.swing.JFrame {
         tfAnvnamn.setVisible(true);
         btnLoggain.setVisible(true);
         btnLoggaUt.setVisible(false);
+        lblWelcome.setText("");
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
