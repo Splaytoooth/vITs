@@ -1543,9 +1543,14 @@ public class Meny extends javax.swing.JFrame {
         ru.setSlutDatum(dpTill.getDate());
         ru.setFranLand(cbLandFran.getSelectedItem().toString());
         ru.setTillLand(cbLandTill.getSelectedItem().toString());
-        ru.sparaIUtkast();
+        String utgifter = hamtaUtgifter();
+        ru.sparaIUtkast(utgifter);
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private String hamtaUtgifter() {
+        
+        return utgifter;
+    }
     /**
      * @param args the command line arguments
      */

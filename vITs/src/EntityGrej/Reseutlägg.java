@@ -78,7 +78,7 @@ public class Reseutlägg implements Serializable {
         this.accepterat = accepterat;
     }
 
-    public void sparaIUtkast() {
+    public void sparaIUtkast(String utgifter) {
         try {
             File file = new File("SparatUtkast" +  System.currentTimeMillis() + ".txt");
             PrintWriter out = new PrintWriter(file);
@@ -86,6 +86,7 @@ public class Reseutlägg implements Serializable {
             
             String reseutlägg = "Reseutlägg: " + getId() + ", " + getStartDatum() + ", " + getSlutDatum() + ", " + getFranLand() + ", " + getTillLand() + ", " + getAccepterat() + ";";
             out.write(reseutlägg);
+            out.write(utgifter);
             out.close();
         } catch (FileNotFoundException hej) {
             System.out.println(hej);
