@@ -100,7 +100,25 @@ public class Meny extends javax.swing.JFrame {
         pAdmin = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
+        pHanteraValutor = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblValutor = new javax.swing.JTable();
+        lblValuta = new javax.swing.JLabel();
+        btnHamtaValutor = new javax.swing.JButton();
+        btnTaBortValuta = new javax.swing.JButton();
+        tfValutaNamn = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        tfVaxelkurs = new javax.swing.JTextField();
+        btnLaggTillValuta = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        pHanteraValutor1 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblLander = new javax.swing.JTable();
+        lblLand = new javax.swing.JLabel();
+        btnHamtaLander = new javax.swing.JButton();
+        btnTaBortLand = new javax.swing.JButton();
+        tfLand = new javax.swing.JTextField();
+        btnLaggTillLand = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         pLaggTillAnvandrare = new javax.swing.JPanel();
         tfAnvandarnamn = new javax.swing.JTextField();
@@ -658,28 +676,166 @@ public class Meny extends javax.swing.JFrame {
 
         pAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblValutor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(tblValutor);
+
+        lblValuta.setText("Valuta");
+
+        btnHamtaValutor.setText("Hämta valutor");
+
+        btnTaBortValuta.setText("Ta bort valuta");
+
+        jLabel17.setText("Växelkurs till SEK");
+
+        btnLaggTillValuta.setText("Lägg till valuta");
+
+        javax.swing.GroupLayout pHanteraValutorLayout = new javax.swing.GroupLayout(pHanteraValutor);
+        pHanteraValutor.setLayout(pHanteraValutorLayout);
+        pHanteraValutorLayout.setHorizontalGroup(
+            pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pHanteraValutorLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHamtaValutor, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pHanteraValutorLayout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblValuta)
+                            .addComponent(tfValutaNamn)
+                            .addComponent(jLabel17)
+                            .addComponent(tfVaxelkurs)
+                            .addComponent(btnTaBortValuta, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(btnLaggTillValuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(287, Short.MAX_VALUE))
+        );
+        pHanteraValutorLayout.setVerticalGroup(
+            pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pHanteraValutorLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(btnHamtaValutor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pHanteraValutorLayout.createSequentialGroup()
+                        .addComponent(btnTaBortValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(lblValuta)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfValutaNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel17)
+                        .addGap(26, 26, 26)
+                        .addComponent(tfVaxelkurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnLaggTillValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44))
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(pHanteraValutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(pHanteraValutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Valuta", jPanel6);
+
+        tblLander.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tblLander);
+
+        lblLand.setText("Land");
+
+        btnHamtaLander.setText("Hämta Länder");
+
+        btnTaBortLand.setText("Ta bort land");
+
+        btnLaggTillLand.setText("Lägg till land");
+
+        javax.swing.GroupLayout pHanteraValutor1Layout = new javax.swing.GroupLayout(pHanteraValutor1);
+        pHanteraValutor1.setLayout(pHanteraValutor1Layout);
+        pHanteraValutor1Layout.setHorizontalGroup(
+            pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pHanteraValutor1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHamtaLander, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pHanteraValutor1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addGroup(pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblLand)
+                            .addComponent(tfLand)
+                            .addComponent(btnTaBortLand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLaggTillLand, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))))
+                .addContainerGap(287, Short.MAX_VALUE))
+        );
+        pHanteraValutor1Layout.setVerticalGroup(
+            pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pHanteraValutor1Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pHanteraValutor1Layout.createSequentialGroup()
+                        .addComponent(btnTaBortLand, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137)
+                        .addComponent(lblLand)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnLaggTillLand, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pHanteraValutor1Layout.createSequentialGroup()
+                        .addComponent(btnHamtaLander, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
+        );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(pHanteraValutor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(pHanteraValutor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Länder", jPanel7);
@@ -1104,12 +1260,18 @@ public class Meny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnHamtaLander;
+    private javax.swing.JButton btnHamtaValutor;
     private javax.swing.JButton btnLaggTillAnvandare;
+    private javax.swing.JButton btnLaggTillLand;
+    private javax.swing.JButton btnLaggTillValuta;
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnLoggain;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSkicka;
     private javax.swing.JButton btnSpara;
+    private javax.swing.JButton btnTaBortLand;
+    private javax.swing.JButton btnTaBortValuta;
     private javax.swing.JComboBox cbKostnadTyp;
     private javax.swing.JComboBox cbLandFran;
     private javax.swing.JComboBox cbLandTill;
@@ -1134,6 +1296,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1155,6 +1318,8 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable2;
     private javax.swing.JToggleButton jToggleButton1;
@@ -1167,12 +1332,16 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JLabel lblEpost1;
     private javax.swing.JLabel lblFornamn;
     private javax.swing.JLabel lblFornamn1;
+    private javax.swing.JLabel lblLand;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblLosenord1;
+    private javax.swing.JLabel lblValuta;
     private javax.swing.JLabel lblVitslogga;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pAdmin;
+    private javax.swing.JPanel pHanteraValutor;
+    private javax.swing.JPanel pHanteraValutor1;
     private javax.swing.JPanel pLaggTillAnvandrare;
     private javax.swing.JPanel pLogin;
     private javax.swing.JPanel pRapporter;
@@ -1181,7 +1350,9 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JPanel pReseutlägg;
     private javax.swing.JPanel pStartsida;
     private javax.swing.JTextArea taMotivering;
+    private javax.swing.JTable tblLander;
     private javax.swing.JTable tblUtgifter;
+    private javax.swing.JTable tblValutor;
     private javax.swing.JTextField tfAnnat;
     private javax.swing.JTextField tfAnvandarnamn;
     private javax.swing.JTextField tfAnvandarnamn1;
@@ -1193,10 +1364,13 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTextField tfFornamn;
     private javax.swing.JTextField tfFornamn1;
     private javax.swing.JTextField tfKostnad;
+    private javax.swing.JTextField tfLand;
     private javax.swing.JPasswordField tfLosen;
     private javax.swing.JTextField tfLosenord;
     private javax.swing.JTextField tfLosenord1;
     private javax.swing.JTextField tfSumma;
+    private javax.swing.JTextField tfValutaNamn;
+    private javax.swing.JTextField tfVaxelkurs;
     private javax.swing.JTabbedPane tpMeny;
     // End of variables declaration//GEN-END:variables
 }
