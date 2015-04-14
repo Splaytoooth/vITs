@@ -43,4 +43,20 @@ public class UpdateClass {
             JOptionPane.showMessageDialog(null, se);
         }
     }
+    
+    public static void insertReseutlägg(EntityGrej.Reseutlägg ru) {
+        try {
+            Connection conn = DatabasTest.newConnection();
+
+            Statement myStmt = conn.createStatement();
+
+            String sql = "insert into Reseutlägg(StartDatum, SlutDatum, FranLand, TillLand, Accepterat) VALUES('" + ru.getStartDatum() + "', '" + ru.getSlutDatum() + "', '" + ru.getFranLand() + "', '" + ru.getTillLand() + "', null)";
+            
+            myStmt.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Ärende skickat!");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 }
