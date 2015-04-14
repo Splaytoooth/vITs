@@ -407,7 +407,7 @@ public class Meny extends javax.swing.JFrame {
 
         jLabel5.setText("Typ av kostnad:");
 
-        cbKostnadTyp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mat", "Boende", "Annat" }));
+        cbKostnadTyp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mat", "Boende", "Resa", "Annat" }));
         cbKostnadTyp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbKostnadTypItemStateChanged(evt);
@@ -1474,6 +1474,7 @@ public class Meny extends javax.swing.JFrame {
             return;
         }
 
+        try{
         EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
         ru.setStartDatum(dpFran.getDate());
         ru.setSlutDatum(dpTill.getDate());
@@ -1489,6 +1490,13 @@ public class Meny extends javax.swing.JFrame {
         }
 
         UpdateClass.insertReseutlägg(ru, Utgifter);
+        tblUtgifter.removeAll();
+        tfSumma.setText("");
+        dpFran.removeAll();
+        dpTill.removeAll();
+        }
+        catch(Exception e){}
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cbValutaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValutaRActionPerformed
