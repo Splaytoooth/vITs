@@ -441,6 +441,11 @@ public class Meny extends javax.swing.JFrame {
         jLabel10.setText("Till datum");
 
         jButton2.setText("Spara");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Skicka");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -827,7 +832,7 @@ public class Meny extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1173, Short.MAX_VALUE)
+            .addComponent(jTabbedPane3)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1515,6 +1520,15 @@ public class Meny extends javax.swing.JFrame {
     private void tf_ansdatumtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ansdatumtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ansdatumtActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
+        ru.setStartDatum(dpFran.getDate());
+        ru.setSlutDatum(dpTill.getDate());
+        ru.setFranLand(cbLandFran.getSelectedItem().toString());
+        ru.setTillLand(cbLandTill.getSelectedItem().toString());
+        ru.sparaIUtkast();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
