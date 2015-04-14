@@ -44,7 +44,7 @@ public class UpdateClass {
         }
     }
     
-    public static void insertReseutlägg(EntityGrej.Reseutlägg ru) {
+    public static void insertReseutlägg(EntityGrej.Reseutlägg ru, EntityGrej.Utgifter[] utgifter) {
         try {
             Connection conn = DatabasTest.newConnection();
 
