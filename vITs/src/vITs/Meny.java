@@ -1,10 +1,8 @@
-
 package vITs;
 
 import javax.swing.JOptionPane;
 import java.io.*;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -13,10 +11,10 @@ import javax.swing.table.DefaultTableModel;
 public class Meny extends javax.swing.JFrame {
 
     private String id;
-    private String anvnamn; 
+    private String anvnamn;
     private boolean chef;
     DefaultTableModel sc;
-    
+
     /**
      * Creates new form Meny
      */
@@ -1388,7 +1386,7 @@ public class Meny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSkickaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkickaMouseClicked
-        
+
     }//GEN-LAST:event_btnSkickaMouseClicked
 
     private void tfLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLosenActionPerformed
@@ -1398,7 +1396,7 @@ public class Meny extends javax.swing.JFrame {
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
         Inlogg loggin = new Inlogg();
         String id = loggin.login(tfAnvnamn.getText(), tfLosen.getText());
-        if(id != null){
+        if (id != null) {
             this.chef = loggin.chef(id);
             JOptionPane.showMessageDialog(null, "Inloggning Lyckades!");
             this.anvnamn = tfAnvnamn.getText();
@@ -1410,19 +1408,18 @@ public class Meny extends javax.swing.JFrame {
             lblLosen.setVisible(false);
             btnLoggain.setVisible(false);
             btnLoggaUt.setVisible(true);
-        }
-        else
+        } else {
             JOptionPane.showMessageDialog(null, "Fel lösenord och/eller användarman!");
+        }
     }//GEN-LAST:event_btnLoggainActionPerformed
 
     private void btnSkickaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaActionPerformed
-        if(this.id == null){
+        if (this.id == null) {
             JOptionPane.showMessageDialog(null, "Var god logga innan du skickar in ditt ärende!");
             return;
         }
         EntityGrej.Reseförskott rf = new EntityGrej.Reseförskott(0, taMotivering.getText(), Integer.parseInt(tfSumma.getText()), false, Integer.parseInt(id));
-        
-        
+
         //Reseforskott rf = new Reseforskott(taMotivering.getText(), Integer.parseInt(tfSumma.getText()), cbValuta.getSelectedItem().toString() );
         UpdateClass.insertReseforskott(rf);
         taMotivering.setText("");
@@ -1430,19 +1427,19 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSkickaActionPerformed
 
     private void tpMenyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tpMenyMouseClicked
-       
+
     }//GEN-LAST:event_tpMenyMouseClicked
 
     private void tpMenyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMenyStateChanged
-        if(tpMeny.getSelectedIndex() == 4 && chef == false){
+        if (tpMeny.getSelectedIndex() == 4 && chef == false) {
             tpMeny.setSelectedIndex(0);
             JOptionPane.showMessageDialog(null, "Du saknar behörighet för den här fliken!");
         }
     }//GEN-LAST:event_tpMenyStateChanged
 
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        this.id=null;
-        this.chef=false;
+        this.id = null;
+        this.chef = false;
         this.anvnamn = null;
         lblLosen.setVisible(true);
         lblAnvnamn.setVisible(true);
@@ -1454,7 +1451,7 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-       pRedigeraAnvandare.setVisible(true);
+        pRedigeraAnvandare.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void cbKostnadTypItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbKostnadTypItemStateChanged
@@ -1467,12 +1464,26 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_cbKostnadTypItemStateChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (this.id == null) {
+            JOptionPane.showMessageDialog(null, "Var god logga innan du skickar in ditt ärende!");
+            return;
+        }
+
         EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
         ru.setStartDatum(dpFran.getDate());
         ru.setSlutDatum(dpTill.getDate());
         ru.setFranLand(cbLandFran.getSelectedItem().toString());
         ru.setTillLand(cbLandTill.getSelectedItem().toString());
-        UpdateClass.insertReseutlägg(ru);
+
+        EntityGrej.Utgifter[] Utgifter = new EntityGrej.Utgifter[tblUtgifter.getRowCount()];
+        for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
+            EntityGrej.Utgifter utg = new EntityGrej.Utgifter();
+            utg.setTyp(sc.getValueAt(i, 0).toString());
+            utg.setSumma(Integer.parseInt(sc.getValueAt(i, 1).toString()));
+            Utgifter[i] = utg;
+        }
+
+        UpdateClass.insertReseutlägg(ru, Utgifter);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cbValutaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValutaRActionPerformed
