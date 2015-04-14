@@ -64,6 +64,7 @@ public class UpdateClass {
             
             for(EntityGrej.Utgifter utg : utgifter) {
                 sql = "insert into Utgifter(ReseUtlaggsID, Typ, Summa) VALUES(" + id + ", '" + utg.getTyp() + "', '" + utg.getSumma() + "')";
+                myStmt.executeUpdate(sql);
             }
 
             JOptionPane.showMessageDialog(null, "Ärende skickat!");
