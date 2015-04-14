@@ -19,7 +19,7 @@ public class Meny extends javax.swing.JFrame {
     public Meny() {
         initComponents();
         this.btnLoggaUt.setVisible(false);
-        
+        pRedigeraAnvandare.setVisible(false);
         this.setTitle("vITs Utbildning");
     }
 
@@ -93,9 +93,39 @@ public class Meny extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         pAdmin = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        pLaggTillAnvandrare = new javax.swing.JPanel();
+        tfAnvandarnamn = new javax.swing.JTextField();
+        lblAnvandarnamn = new javax.swing.JLabel();
+        tfLosenord = new javax.swing.JTextField();
+        lblLosenord = new javax.swing.JLabel();
+        tfFornamn = new javax.swing.JTextField();
+        lblFornamn = new javax.swing.JLabel();
+        tfEfternamn = new javax.swing.JTextField();
+        lblEfternamn = new javax.swing.JLabel();
+        tfEmail = new javax.swing.JTextField();
+        lblEpost = new javax.swing.JLabel();
+        btnLaggTillAnvandare = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        pRedigeraAnvandare = new javax.swing.JPanel();
+        tfAnvandarnamn1 = new javax.swing.JTextField();
+        lblAnvandarnamn1 = new javax.swing.JLabel();
+        tfLosenord1 = new javax.swing.JTextField();
+        lblLosenord1 = new javax.swing.JLabel();
+        tfFornamn1 = new javax.swing.JTextField();
+        lblFornamn1 = new javax.swing.JLabel();
+        tfEfternamn1 = new javax.swing.JTextField();
+        lblEfternamn1 = new javax.swing.JLabel();
+        tfEmail1 = new javax.swing.JTextField();
+        lblEpost1 = new javax.swing.JLabel();
+        btnSpara = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -212,7 +242,7 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(pLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
 
         tpMeny.addTab("Startsida", pStartsida);
@@ -577,7 +607,7 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(90, 90, 90)
                 .addComponent(jToggleButton1)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pRapporterLayout = new javax.swing.GroupLayout(pRapporter);
@@ -601,28 +631,15 @@ public class Meny extends javax.swing.JFrame {
 
         pAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1148, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Hantera användare", jPanel5);
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1148, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Valuta", jPanel6);
@@ -631,14 +648,241 @@ public class Meny extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1148, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Länder", jPanel7);
+
+        lblAnvandarnamn.setText("Användarnamn");
+
+        lblLosenord.setText("Lösenord");
+
+        lblFornamn.setText("Förnamn");
+
+        lblEfternamn.setText("Efternamn");
+
+        lblEpost.setText("E-post");
+
+        btnLaggTillAnvandare.setText("Lägg till användare");
+
+        javax.swing.GroupLayout pLaggTillAnvandrareLayout = new javax.swing.GroupLayout(pLaggTillAnvandrare);
+        pLaggTillAnvandrare.setLayout(pLaggTillAnvandrareLayout);
+        pLaggTillAnvandrareLayout.setHorizontalGroup(
+            pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                        .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAnvandarnamn))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLosenord)))
+                            .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                                .addComponent(tfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                        .addComponent(lblFornamn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEfternamn)
+                        .addGap(114, 114, 114))
+                    .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                        .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btnLaggTillAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblEpost)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 36, Short.MAX_VALUE))))
+        );
+        pLaggTillAnvandrareLayout.setVerticalGroup(
+            pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pLaggTillAnvandrareLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAnvandarnamn)
+                    .addComponent(lblLosenord))
+                .addGap(18, 18, 18)
+                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFornamn)
+                    .addComponent(lblEfternamn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pLaggTillAnvandrareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfFornamn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(lblEpost)
+                .addGap(18, 18, 18)
+                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(btnLaggTillAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(pLaggTillAnvandrare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(pLaggTillAnvandrare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Lägg till användare ", jPanel8);
+
+        jButton1.setText("Ta bort användare");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable2);
+
+        jButton4.setText("Redigera användare");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        lblAnvandarnamn1.setText("Användarnamn");
+
+        lblLosenord1.setText("Lösenord");
+
+        lblFornamn1.setText("Förnamn");
+
+        lblEfternamn1.setText("Efternamn");
+
+        lblEpost1.setText("E-post");
+
+        btnSpara.setText("Spara");
+
+        javax.swing.GroupLayout pRedigeraAnvandareLayout = new javax.swing.GroupLayout(pRedigeraAnvandare);
+        pRedigeraAnvandare.setLayout(pRedigeraAnvandareLayout);
+        pRedigeraAnvandareLayout.setHorizontalGroup(
+            pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                        .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfAnvandarnamn1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAnvandarnamn1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfLosenord1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLosenord1)))
+                            .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                                .addComponent(tfFornamn1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfEfternamn1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                        .addComponent(lblFornamn1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEfternamn1)
+                        .addGap(114, 114, 114))
+                    .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                        .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEpost1)
+                            .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 208, Short.MAX_VALUE))))
+            .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pRedigeraAnvandareLayout.setVerticalGroup(
+            pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pRedigeraAnvandareLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAnvandarnamn1)
+                    .addComponent(lblLosenord1))
+                .addGap(18, 18, 18)
+                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfAnvandarnamn1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfLosenord1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFornamn1)
+                    .addComponent(lblEfternamn1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pRedigeraAnvandareLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfFornamn1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEfternamn1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(lblEpost1)
+                .addGap(18, 18, 18)
+                .addComponent(tfEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pRedigeraAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(pRedigeraAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
+
+        jTabbedPane1.addTab("Hantera användare", jPanel5);
 
         javax.swing.GroupLayout pAdminLayout = new javax.swing.GroupLayout(pAdmin);
         pAdmin.setLayout(pAdminLayout);
@@ -658,6 +902,19 @@ public class Meny extends javax.swing.JFrame {
         );
 
         tpMeny.addTab("Admin", pAdmin);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1173, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 761, Short.MAX_VALUE)
+        );
+
+        tpMeny.addTab("Ärenden", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -752,6 +1009,10 @@ public class Meny extends javax.swing.JFrame {
        reseutlägg.sparaIUtkast();
     }//GEN-LAST:event_btnSparaSomUtkastMouseClicked
 
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+       pRedigeraAnvandare.setVisible(true);
+    }//GEN-LAST:event_jButton4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -788,15 +1049,19 @@ public class Meny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggTillAnvandare;
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnLoggain;
     private javax.swing.JButton btnSkicka;
+    private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnSparaSomUtkast;
     private javax.swing.JComboBox cbKostnadTyp;
     private javax.swing.JComboBox cbValuta;
     private javax.swing.JButton jBtbRegReseförskott;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
@@ -824,32 +1089,58 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblAnvandarnamn;
+    private javax.swing.JLabel lblAnvandarnamn1;
     private javax.swing.JLabel lblAnvnamn;
+    private javax.swing.JLabel lblEfternamn;
+    private javax.swing.JLabel lblEfternamn1;
+    private javax.swing.JLabel lblEpost;
+    private javax.swing.JLabel lblEpost1;
+    private javax.swing.JLabel lblFornamn;
+    private javax.swing.JLabel lblFornamn1;
     private javax.swing.JLabel lblLosen;
+    private javax.swing.JLabel lblLosenord;
+    private javax.swing.JLabel lblLosenord1;
     private javax.swing.JLabel lblVitslogga;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel pAdmin;
+    private javax.swing.JPanel pLaggTillAnvandrare;
     private javax.swing.JPanel pLogin;
     private javax.swing.JPanel pRapporter;
+    private javax.swing.JPanel pRedigeraAnvandare;
     private javax.swing.JPanel pReseforskott;
     private javax.swing.JPanel pReseutlägg;
     private javax.swing.JPanel pStartsida;
     private javax.swing.JTextArea taMotivering;
+    private javax.swing.JTextField tfAnvandarnamn;
+    private javax.swing.JTextField tfAnvandarnamn1;
     private javax.swing.JTextField tfAnvnamn;
+    private javax.swing.JTextField tfEfternamn;
+    private javax.swing.JTextField tfEfternamn1;
+    private javax.swing.JTextField tfEmail;
+    private javax.swing.JTextField tfEmail1;
+    private javax.swing.JTextField tfFornamn;
+    private javax.swing.JTextField tfFornamn1;
     private javax.swing.JPasswordField tfLosen;
+    private javax.swing.JTextField tfLosenord;
+    private javax.swing.JTextField tfLosenord1;
     private javax.swing.JTextField tfSumma;
     private javax.swing.JTabbedPane tpMeny;
     // End of variables declaration//GEN-END:variables
