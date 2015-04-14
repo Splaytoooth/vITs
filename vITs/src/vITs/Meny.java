@@ -1548,9 +1548,20 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private String hamtaUtgifter() {
-        
+        String utgifter = "";
+        for(int y = 0; y < tblUtgifter.getRowCount(); y++)
+        {
+            for(int x=0; x < tblUtgifter.getColumnCount() ; x++)
+            {
+                String utgift = tblUtgifter.getValueAt(y, x).toString();
+                utgifter += " " + utgift;
+            }
+            utgifter += "\n";
+        }
+        System.out.println(utgifter);
         return utgifter;
     }
+    
     /**
      * @param args the command line arguments
      */
