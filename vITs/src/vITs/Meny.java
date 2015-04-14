@@ -3,6 +3,8 @@ package vITs;
 
 import javax.swing.JOptionPane;
 import java.io.*;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -13,6 +15,8 @@ public class Meny extends javax.swing.JFrame {
     private String id;
     private String anvnamn; 
     private boolean chef;
+    DefaultTableModel sc;
+    
     /**
      * Creates new form Meny
      */
@@ -21,6 +25,7 @@ public class Meny extends javax.swing.JFrame {
         this.btnLoggaUt.setVisible(false);
         pRedigeraAnvandare.setVisible(false);
         this.setTitle("vITs Utbildning");
+        sc = (DefaultTableModel) tblUtgifter.getModel();
     }
 
     /**
