@@ -20,7 +20,7 @@ public class UpdateClass {
 
             Statement myStmt = connection.createStatement();
 
-               // String sql = "Insert into Reseforskott values ('" + rf.getText() + "','" + rf.getSumma() + "';'" + rf.getValuta() + "')";
+            // String sql = "Insert into Reseforskott values ('" + rf.getText() + "','" + rf.getSumma() + "';'" + rf.getValuta() + "')";
             //myStmt.executeUpdate(sql);
         } catch (SQLException se) {
             se.printStackTrace();
@@ -48,18 +48,22 @@ public class UpdateClass {
             Connection conn = DatabasTest.newConnection();
 
             Statement myStmt = conn.createStatement();
-            
-            String sql= "Select TOP 1 0;"
-            
 
-            String sql = "insert into Reseutlägg(ID, StartDatum, SlutDatum, FranLand, TillLand, Accepterat) VALUES('" + ru.getStartDatum() + "', '" + ru.getSlutDatum() + "', '" + ru.getFranLand() + "', '" + ru.getTillLand() + "', null)";
+            String sql = "Select ID from Reseutlägg\n"
+                    + "ORDER BY ID desc\n"
+                    + "LIMIT 1";
+            
+            ResultSet rs = myStmt.executeQuery(sql);
+            rs.next();
+            int id = Integer.parseInt(rs.getString(1)) + 1;
+
+            sql = "insert into Reseutlägg(ID, StartDatum, SlutDatum, FranLand, TillLand, Accepterat) VALUES(" + id + ", '" + ru.getStartDatum() + "', '" + ru.getSlutDatum() + "', '" + ru.getFranLand() + "', '" + ru.getTillLand() + "', null)";
 
             myStmt.executeUpdate(sql);
 
-            sql = "Select id from Reseutlägg where"
             
-            for each(EntityGrej.Utgifter  in utgifter) {
-                sql = "insert into Utgifter(ReseUtlaggsID, Typ, Summa) VALUES('" + ru.getId() + "'")"
+            for(EntityGrej.Utgifter utg : utgifter) {
+                sql = "insert into Utgifter(ReseUtlaggsID, Typ, Summa) VALUES(" + id + ", '" + utg.getTyp() + "', '" + utg.getSumma() + "')";
             }
 
             JOptionPane.showMessageDialog(null, "Ärende skickat!");
