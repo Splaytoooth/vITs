@@ -1,4 +1,3 @@
-
 package EntityGrej;
 
 import java.io.Serializable;
@@ -17,6 +16,7 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.io.*;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -34,6 +34,7 @@ import java.io.*;
     @NamedQuery(name = "Reseutl\u00e4gg.findByTillLand", query = "SELECT r FROM Reseutl\u00e4gg r WHERE r.tillLand = :tillLand"),
     @NamedQuery(name = "Reseutl\u00e4gg.findByAccepterat", query = "SELECT r FROM Reseutl\u00e4gg r WHERE r.accepterat = :accepterat")})
 public class Reseutlägg implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -42,11 +43,11 @@ public class Reseutlägg implements Serializable {
     @Basic(optional = false)
     @Column(name = "StartDatum")
     @Temporal(TemporalType.DATE)
-    private Date startDatum;
+    private String startDatum;
     @Basic(optional = false)
     @Column(name = "SlutDatum")
     @Temporal(TemporalType.DATE)
-    private Date slutDatum;
+    private String slutDatum;
     @Basic(optional = false)
     @Column(name = "FranLand")
     private String franLand;
@@ -59,6 +60,8 @@ public class Reseutlägg implements Serializable {
     @OneToMany(mappedBy = "reseutl\u00e4ggsID")
     private Collection<Reseförskott> reseförskottCollection;
 
+    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+
     public Reseutlägg() {
     }
 
@@ -68,31 +71,26 @@ public class Reseutlägg implements Serializable {
 
     public Reseutlägg(Integer id, Date startDatum, Date slutDatum, String franLand, String tillLand, boolean accepterat) {
         this.id = id;
-        this.startDatum = startDatum;
-        this.slutDatum = slutDatum;
+        this.startDatum = f.format(startDatum);;
+        this.slutDatum = f.format(slutDatum);;
         this.franLand = franLand;
         this.tillLand = tillLand;
         this.accepterat = accepterat;
     }
-    
-    public void sparaIUtkast()
-    {   
-        try
-        {
+
+    public void sparaIUtkast() {
+        try {
             File file = new File("Hejhej.txt");
             PrintWriter out = new PrintWriter(file);
-            
+
             //String reseutlägg = ""
-            
             out.write("dsads");
             out.close();
-        }
-        catch(FileNotFoundException hej)
-        {
-           System.out.println(hej);
+        } catch (FileNotFoundException hej) {
+            System.out.println(hej);
         }
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -101,20 +99,20 @@ public class Reseutlägg implements Serializable {
         this.id = id;
     }
 
-    public Date getStartDatum() {
+    public String getStartDatum() {
         return startDatum;
     }
 
     public void setStartDatum(Date startDatum) {
-        this.startDatum = startDatum;
+        this.startDatum = f.format(startDatum);
     }
 
-    public Date getSlutDatum() {
+    public String getSlutDatum() {
         return slutDatum;
     }
 
     public void setSlutDatum(Date slutDatum) {
-        this.slutDatum = slutDatum;
+        this.slutDatum = f.format(slutDatum);
     }
 
     public String getFranLand() {
@@ -175,9 +173,4 @@ public class Reseutlägg implements Serializable {
         return "EntityGrej.Reseutl\u00e4gg[ id=" + id + " ]";
     }
 
-   
-    
-   
-        
-    
 }
