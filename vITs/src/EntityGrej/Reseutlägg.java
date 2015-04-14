@@ -85,8 +85,7 @@ public class Reseutlägg implements Serializable {
 
             
             String reseutlägg = "Reseutlägg: " + getId() + ", " + getStartDatum() + ", " + getSlutDatum() + ", " + getFranLand() + ", " + getTillLand() + ", " + getAccepterat() + ";";
-            out.write(reseutlägg);
-            out.write(utgifter);
+            out.write(reseutlägg + "\n" + utgifter);
             out.close();
         } catch (FileNotFoundException hej) {
             System.out.println(hej);
