@@ -80,11 +80,12 @@ public class Reseutlägg implements Serializable {
 
     public void sparaIUtkast() {
         try {
-            File file = new File("Hejhej.txt");
+            File file = new File("SparatUtkast" +  System.currentTimeMillis() + ".txt");
             PrintWriter out = new PrintWriter(file);
 
-            //String reseutlägg = ""
-            out.write("dsads");
+            
+            String reseutlägg = "Reseutlägg: " + getId() + ", " + getStartDatum() + ", " + getSlutDatum() + ", " + getFranLand() + ", " + getTillLand() + ", " + getAccepterat() + ";";
+            out.write(reseutlägg);
             out.close();
         } catch (FileNotFoundException hej) {
             System.out.println(hej);
