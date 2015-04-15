@@ -31,6 +31,7 @@ public class Meny extends javax.swing.JFrame {
     }
 
     private void getValutor() {
+        scValutor.setRowCount(0);
         ResultSet valutor = Valutor.HamtaValutor();
 
         try {
