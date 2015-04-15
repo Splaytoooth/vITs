@@ -1,7 +1,0 @@
-Reseutlägg: null, 2015-04-23, 2015-04-25, Norge, Sverige, false;
- Mat 1234 Sek
-
- Boende 4231 Sek
-
- Resa 5123 Sek
-

@@ -1558,7 +1558,6 @@ public class Meny extends javax.swing.JFrame {
             }
             utgifter += "\n";
         }
-        System.out.println(utgifter);
         return utgifter;
     }
     
