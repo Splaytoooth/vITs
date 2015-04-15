@@ -1,7 +1,7 @@
 package vITs;
 
 import javax.swing.JOptionPane;
-import java.io.*;
+import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -9,11 +9,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Matus
  */
 public class Meny extends javax.swing.JFrame {
-
+    
     private String id;
     private String anvnamn;
     private boolean chef;
     DefaultTableModel sc;
+    DefaultTableModel scValutor;
 
     /**
      * Creates new form Meny
@@ -26,6 +27,7 @@ public class Meny extends javax.swing.JFrame {
         sc = (DefaultTableModel) tblUtgifter.getModel();
         btnSkickaR.setVisible(false);
         btnRedigera.setVisible(false);
+        scValutor = (DefaultTableModel) tblValutor.getModel();
     }
 
     /**
@@ -956,7 +958,6 @@ public class Meny extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pHanteraValutorLayout.createSequentialGroup()
-                    .addGap(73, 73, 73)
                     .addComponent(lblValuta)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(tfValutaNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -966,7 +967,7 @@ public class Meny extends javax.swing.JFrame {
                     .addComponent(tfVaxelkurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(btnLaggTillValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(141, 141, 141)
+                    .addGap(214, 214, 214)
                     .addComponent(btnTaBortValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(112, Short.MAX_VALUE))
@@ -1499,7 +1500,7 @@ public class Meny extends javax.swing.JFrame {
             tpMeny.setSelectedIndex(0);
             JOptionPane.showMessageDialog(null, "Du saknar behörighet för den här fliken!");
         }
-
+        
         if (tpMeny.getSelectedIndex() == 5 && this.id == null) {
             tpMeny.setSelectedIndex(0);
             JOptionPane.showMessageDialog(null, "Var god logga in!");
@@ -1537,14 +1538,14 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Var god logga innan du skickar in ditt ärende!");
             return;
         }
-
+        
         try {
             EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
             ru.setStartDatum(dpFran.getDate());
             ru.setSlutDatum(dpTill.getDate());
             ru.setFranLand(cbLandFran.getSelectedItem().toString());
             ru.setTillLand(cbLandTill.getSelectedItem().toString());
-
+            
             EntityGrej.Utgifter[] Utgifter = new EntityGrej.Utgifter[tblUtgifter.getRowCount()];
             for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
                 EntityGrej.Utgifter utg = new EntityGrej.Utgifter();
@@ -1552,7 +1553,7 @@ public class Meny extends javax.swing.JFrame {
                 utg.setSumma(Integer.parseInt(sc.getValueAt(i, 1).toString()));
                 Utgifter[i] = utg;
             }
-
+            
             UpdateClass.insertReseutlägg(ru, Utgifter);
             sc.setRowCount(0);
             tfKostnad.setText("");
@@ -1573,7 +1574,7 @@ public class Meny extends javax.swing.JFrame {
         if (kostnadsTyp.equals("Annat")) {
             kostnadsTyp = tfAnnat.getText();
         }
-
+        
         sc.addRow(new Object[]{
             kostnadsTyp,
             tfKostnad.getText(),
@@ -1643,16 +1644,21 @@ public class Meny extends javax.swing.JFrame {
 
     private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
         if (tpMeny2.getSelectedIndex() == 0) {
-            Valutor.HamtaValutor();
-            JOptionPane.showMessageDialog(null, "Du saknar behörighet för den här fliken!");
-        }
-
-        if (tpMeny.getSelectedIndex() == 5 && this.id == null) {
-            tpMeny.setSelectedIndex(0);
-            JOptionPane.showMessageDialog(null, "Var god logga in!");
+            ResultSet valutor = Valutor.HamtaValutor();
+            
+            try {
+                while (valutor.next()) {
+                    scValutor.addRow(
+                            new Object[]{
+                                valutor.getString(1), valutor.getString(2)
+                            });
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_tpMeny2StateChanged
-
+    
     private String hamtaUtgifter() {
         String utgifter = "";
         for (int y = 0; y < tblUtgifter.getRowCount(); y++) {
