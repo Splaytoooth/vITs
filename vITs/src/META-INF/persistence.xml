@@ -3,7 +3,6 @@
   <persistence-unit name="vITsPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>javaapplication6.Konsulter</class>
-    <class>EntityGrej.Valutor</class>
     <class>EntityGrej.Reseförskott</class>
     <class>EntityGrej.Reseutlägg</class>
     <class>EntityGrej.Lander</class>
