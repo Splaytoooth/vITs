@@ -121,7 +121,7 @@ public class Meny extends javax.swing.JFrame {
         jScrollPane12 = new javax.swing.JScrollPane();
         jL_ansreslista = new javax.swing.JList();
         pAdmin = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tpMeny2 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         pHanteraValutor = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -901,9 +901,9 @@ public class Meny extends javax.swing.JFrame {
 
     pAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
-    jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+    tpMeny2.addChangeListener(new javax.swing.event.ChangeListener() {
         public void stateChanged(javax.swing.event.ChangeEvent evt) {
-            jTabbedPane1StateChanged(evt);
+            tpMeny2StateChanged(evt);
         }
     });
 
@@ -989,7 +989,7 @@ public class Meny extends javax.swing.JFrame {
             .addContainerGap(100, Short.MAX_VALUE))
     );
 
-    jTabbedPane1.addTab("Valuta", jPanel6);
+    tpMeny2.addTab("Valuta", jPanel6);
 
     tblLander.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -1068,7 +1068,7 @@ public class Meny extends javax.swing.JFrame {
             .addContainerGap(100, Short.MAX_VALUE))
     );
 
-    jTabbedPane1.addTab("Länder", jPanel7);
+    tpMeny2.addTab("Länder", jPanel7);
 
     lblAnvandarnamn.setText("Användarnamn");
 
@@ -1163,7 +1163,7 @@ public class Meny extends javax.swing.JFrame {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jTabbedPane1.addTab("Lägg till användare ", jPanel8);
+    tpMeny2.addTab("Lägg till användare ", jPanel8);
 
     jButton1.setText("Ta bort användare");
 
@@ -1295,7 +1295,7 @@ public class Meny extends javax.swing.JFrame {
             .addGap(27, 27, 27))
     );
 
-    jTabbedPane1.addTab("Hantera användare", jPanel5);
+    tpMeny2.addTab("Hantera användare", jPanel5);
 
     javax.swing.GroupLayout pAdminLayout = new javax.swing.GroupLayout(pAdmin);
     pAdmin.setLayout(pAdminLayout);
@@ -1303,12 +1303,12 @@ public class Meny extends javax.swing.JFrame {
         pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(pAdminLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPane1)
+            .addComponent(tpMeny2)
             .addContainerGap())
     );
     pAdminLayout.setVerticalGroup(
         pAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jTabbedPane1)
+        .addComponent(tpMeny2)
     );
 
     tpMeny.addTab("Admin", pAdmin);
@@ -1641,9 +1641,17 @@ public class Meny extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRedigeraActionPerformed
 
-    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTabbedPane1StateChanged
+    private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
+        if (tpMeny2.getSelectedIndex() == 0) {
+            Valutor.HamtaValutor();
+            JOptionPane.showMessageDialog(null, "Du saknar behörighet för den här fliken!");
+        }
+
+        if (tpMeny.getSelectedIndex() == 5 && this.id == null) {
+            tpMeny.setSelectedIndex(0);
+            JOptionPane.showMessageDialog(null, "Var god logga in!");
+        }
+    }//GEN-LAST:event_tpMeny2StateChanged
 
     private String hamtaUtgifter() {
         String utgifter = "";
@@ -1766,7 +1774,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable2;
@@ -1842,5 +1849,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTextField tf_cheffdatumf;
     private javax.swing.JTextField tf_cheffdatumt;
     private javax.swing.JTabbedPane tpMeny;
+    private javax.swing.JTabbedPane tpMeny2;
     // End of variables declaration//GEN-END:variables
 }
