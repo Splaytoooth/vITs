@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Matus
+ * @author Nils-Inge
  */
 @Entity
 @Table(name = "Valutor")
@@ -34,7 +34,7 @@ public class Valutor implements Serializable {
     private String valuta;
     @Basic(optional = false)
     @Column(name = "Kronor")
-    private int kronor;
+    private double kronor;
 
     public Valutor() {
     }
@@ -43,7 +43,7 @@ public class Valutor implements Serializable {
         this.valuta = valuta;
     }
 
-    public Valutor(String valuta, int kronor) {
+    public Valutor(String valuta, double kronor) {
         this.valuta = valuta;
         this.kronor = kronor;
     }
@@ -56,11 +56,11 @@ public class Valutor implements Serializable {
         this.valuta = valuta;
     }
 
-    public int getKronor() {
+    public double getKronor() {
         return kronor;
     }
 
-    public void setKronor(int kronor) {
+    public void setKronor(double kronor) {
         this.kronor = kronor;
     }
 
