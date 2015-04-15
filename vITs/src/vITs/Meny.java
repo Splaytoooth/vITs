@@ -177,9 +177,11 @@ public class Meny extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         tabKostnader = new javax.swing.JTable();
         jLabel18 = new javax.swing.JLabel();
+        btnVisaArenden2 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        btnVisaArenden = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -1329,6 +1331,10 @@ public class Meny extends javax.swing.JFrame {
     jPanel9.add(pVisaDetaljeradRapport);
     pVisaDetaljeradRapport.setBounds(540, 50, 547, 526);
 
+    btnVisaArenden2.setText("Visa ärenden");
+    jPanel9.add(btnVisaArenden2);
+    btnVisaArenden2.setBounds(60, 30, 100, 23);
+
     jTabbedPane2.addTab("Chef ärenden", jPanel9);
 
     jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -1344,21 +1350,27 @@ public class Meny extends javax.swing.JFrame {
     ));
     jScrollPane9.setViewportView(jTable3);
 
+    btnVisaArenden.setText("Visa ärenden");
+
     javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
     jPanel10.setLayout(jPanel10Layout);
     jPanel10Layout.setHorizontalGroup(
         jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel10Layout.createSequentialGroup()
             .addGap(44, 44, 44)
-            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnVisaArenden, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(662, Short.MAX_VALUE))
     );
     jPanel10Layout.setVerticalGroup(
         jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel10Layout.createSequentialGroup()
-            .addGap(35, 35, 35)
+            .addGap(22, 22, 22)
+            .addComponent(btnVisaArenden)
+            .addGap(18, 18, 18)
             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(238, Short.MAX_VALUE))
+            .addContainerGap(210, Short.MAX_VALUE))
     );
 
     jTabbedPane2.addTab("Egna ärenden", jPanel10);
@@ -1611,6 +1623,8 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnSpara;
     private javax.swing.JButton btnTaBortLand;
     private javax.swing.JButton btnTaBortValuta;
+    private javax.swing.JButton btnVisaArenden;
+    private javax.swing.JButton btnVisaArenden2;
     private javax.swing.JComboBox cbKostnadTyp;
     private javax.swing.JComboBox cbLandFran;
     private javax.swing.JComboBox cbLandTill;
