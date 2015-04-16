@@ -22,7 +22,7 @@ public class Traktamente {
     String franLand;
     String tillLand;
 
-    public void Traktamente(String franLand, String tillLand) {
+    public Traktamente(String franLand, String tillLand) {
         Connection conn = DatabasTest.newConnection();
         try {
             Statement myStmt = conn.createStatement();
