@@ -945,7 +945,12 @@ public class Meny extends javax.swing.JFrame {
 
     lblValuta.setText("Valuta");
 
-    btnTaBortValuta.setText("Ta markerad valuta");
+    btnTaBortValuta.setText("Ta bort markerad valuta");
+    btnTaBortValuta.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnTaBortValutaActionPerformed(evt);
+        }
+    });
 
     jLabel17.setText("Växelkurs till SEK");
 
@@ -964,14 +969,15 @@ public class Meny extends javax.swing.JFrame {
             .addGap(33, 33, 33)
             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(48, 48, 48)
-            .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(lblValuta)
-                .addComponent(tfValutaNamn)
-                .addComponent(jLabel17)
-                .addComponent(tfVaxelkurs)
-                .addComponent(btnTaBortValuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLaggTillValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(291, Short.MAX_VALUE))
+            .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblValuta)
+                    .addComponent(tfValutaNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(jLabel17)
+                    .addComponent(tfVaxelkurs)
+                    .addComponent(btnLaggTillValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnTaBortValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(270, Short.MAX_VALUE))
     );
     pHanteraValutorLayout.setVerticalGroup(
         pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1001,7 +1007,7 @@ public class Meny extends javax.swing.JFrame {
         .addGroup(jPanel6Layout.createSequentialGroup()
             .addGap(58, 58, 58)
             .addComponent(pHanteraValutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(120, Short.MAX_VALUE))
+            .addContainerGap(117, Short.MAX_VALUE))
     );
     jPanel6Layout.setVerticalGroup(
         jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1677,6 +1683,12 @@ public class Meny extends javax.swing.JFrame {
         Valutor.nyValuta(tfValutaNamn.getText(), Double.parseDouble(tfVaxelkurs.getText()));
         getValutor();
     }//GEN-LAST:event_btnLaggTillValutaActionPerformed
+
+    private void btnTaBortValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortValutaActionPerformed
+        int valdRad = tblValutor.getSelectedRow();
+        String valutaNamn = scValutor.getValueAt(valdRad, 1).toString();
+        
+    }//GEN-LAST:event_btnTaBortValutaActionPerformed
 
     private String hamtaUtgifter() {
         String utgifter = "";

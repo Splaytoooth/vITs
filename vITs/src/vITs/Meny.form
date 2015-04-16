@@ -1279,7 +1279,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Component id="pHanteraValutor" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="120" max="32767" attributes="0"/>
+                              <EmptySpace pref="117" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1303,15 +1303,17 @@
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="lblValuta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfValutaNamn" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfVaxelkurs" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnTaBortValuta" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnLaggTillValuta" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblValuta" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfValutaNamn" alignment="0" pref="149" max="32767" attributes="0"/>
+                                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfVaxelkurs" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnLaggTillValuta" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnTaBortValuta" min="-2" pref="170" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="291" max="32767" attributes="0"/>
+                                  <EmptySpace pref="270" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1367,8 +1369,11 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="btnTaBortValuta">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Ta markerad valuta"/>
+                            <Property name="text" type="java.lang.String" value="Ta bort markerad valuta"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortValutaActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="tfValutaNamn">
                         </Component>
