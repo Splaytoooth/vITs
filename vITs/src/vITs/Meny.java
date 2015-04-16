@@ -950,6 +950,11 @@ public class Meny extends javax.swing.JFrame {
     jLabel17.setText("Växelkurs till SEK");
 
     btnLaggTillValuta.setText("Lägg till valuta");
+    btnLaggTillValuta.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnLaggTillValutaActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout pHanteraValutorLayout = new javax.swing.GroupLayout(pHanteraValutor);
     pHanteraValutor.setLayout(pHanteraValutorLayout);
@@ -1667,6 +1672,11 @@ public class Meny extends javax.swing.JFrame {
             getValutor();
         }
     }//GEN-LAST:event_tpMeny2StateChanged
+
+    private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
+        Valutor.nyValuta(tfValutaNamn.getText(), Double.parseDouble(tfVaxelkurs.getText()));
+        getValutor();
+    }//GEN-LAST:event_btnLaggTillValutaActionPerformed
 
     private String hamtaUtgifter() {
         String utgifter = "";

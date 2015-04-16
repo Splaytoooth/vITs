@@ -1383,6 +1383,9 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="L&#xe4;gg till valuta"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaggTillValutaActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
