@@ -1537,7 +1537,9 @@ public class Meny extends javax.swing.JFrame {
         ResultSet valutor = Valutor.HamtaValutor();
 
         try {
+            cbValutaR.removeAllItems();
             while (valutor.next()) {
+                cbValutaR.addItem(valutor.getString(1));
                 scValutor.addRow(
                         new Object[]{
                             valutor.getString(1), valutor.getString(2)
@@ -1548,12 +1550,16 @@ public class Meny extends javax.swing.JFrame {
     }
 
     private void raknaTraktamente() {
-        if (!traktamente.franLand.equals(cbLandFran) && !traktamente.tillLand.equals(cbLandTill)) {
+        try {
+            if (!traktamente.franLand.equals(cbLandFran.getSelectedItem().toString()) && !traktamente.tillLand.equals(cbLandTill.getSelectedItem().toString())) {
+                traktamente = new Traktamente(cbLandFran.getSelectedItem().toString(), cbLandTill.getSelectedItem().toString());
+            }
+        } catch (Exception e) {
             traktamente = new Traktamente(cbLandFran.getSelectedItem().toString(), cbLandTill.getSelectedItem().toString());
         }
-        
+
         String utgiftTyp = null;
-        for(int i=0; i<tblUtgifter.getRowCount(); i++){
+        for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
             utgiftTyp = sc.getValueAt(i, 1).toString();
             sc.addRow(
                     new Object[]{
@@ -1624,6 +1630,10 @@ public class Meny extends javax.swing.JFrame {
         }
 
         if (tpMeny.getSelectedIndex() == 4 && chef == true) {
+            getValutor();
+        }
+
+        if (tpMeny.getSelectedIndex() == 2) {
             getValutor();
         }
     }//GEN-LAST:event_tpMenyStateChanged
