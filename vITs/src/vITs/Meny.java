@@ -77,7 +77,7 @@ public class Meny extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnSparaUtkast = new javax.swing.JButton();
         btnSkickaR = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         btnRegReseförskott = new javax.swing.JButton();
@@ -451,10 +451,10 @@ public class Meny extends javax.swing.JFrame {
 
     jLabel10.setText("Till datum");
 
-    jButton2.setText("Spara Lokalt");
-    jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+    btnSparaUtkast.setText("Spara Lokalt");
+    btnSparaUtkast.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jButton2MouseClicked(evt);
+            btnSparaUtkastMouseClicked(evt);
         }
     });
 
@@ -519,7 +519,7 @@ public class Meny extends javax.swing.JFrame {
                     .addGap(150, 150, 150)
                     .addComponent(btnRegReseförskott)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(49, 49, 49)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -637,7 +637,7 @@ public class Meny extends javax.swing.JFrame {
                                 .addComponent(btnRedigera, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(27, 27, 27)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSkickaR, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGap(70, 70, 70))
     );
@@ -1591,6 +1591,10 @@ public class Meny extends javax.swing.JFrame {
             dpFran.setDate(null);
             dpTill.setDate(null);
             tfAnnat.setText("");
+            
+            String enChefMail = DatabasTest.getChefMail(Integer.parseInt(id));
+            Epost.Epost nyEpost = new Epost.Epost();
+            nyEpost.skickaEpostChef(enChefMail);
         } catch (Exception e) {
         }
 
@@ -1626,7 +1630,7 @@ public class Meny extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ansdatumtActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnSparaUtkastMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaUtkastMouseClicked
         EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
         ru.setStartDatum(dpFran.getDate());
         ru.setSlutDatum(dpTill.getDate());
@@ -1634,7 +1638,7 @@ public class Meny extends javax.swing.JFrame {
         ru.setTillLand(cbLandTill.getSelectedItem().toString());
         String utgifter = hamtaUtgifter();
         ru.sparaIUtkast(utgifter);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnSparaUtkastMouseClicked
 
     private void btnGranskaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranskaActionPerformed
         btnSkickaR.setVisible(true);
@@ -1753,6 +1757,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnSkicka;
     private javax.swing.JButton btnSkickaR;
     private javax.swing.JButton btnSpara;
+    private javax.swing.JButton btnSparaUtkast;
     private javax.swing.JButton btnTaBortLand;
     private javax.swing.JButton btnTaBortValuta;
     private javax.swing.JButton btnVisaArenden;
@@ -1768,7 +1773,6 @@ public class Meny extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dpFran;
     private com.toedter.calendar.JDateChooser dpTill;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JList jL_ansreslista;
     private javax.swing.JList jL_cheffreslista1;
