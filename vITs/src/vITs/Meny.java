@@ -30,21 +30,6 @@ public class Meny extends javax.swing.JFrame {
         scValutor = (DefaultTableModel) tblValutor.getModel();
     }
 
-    private void getValutor() {
-        scValutor.setRowCount(0);
-        ResultSet valutor = Valutor.HamtaValutor();
-
-        try {
-            while (valutor.next()) {
-                scValutor.addRow(
-                        new Object[]{
-                            valutor.getString(1), valutor.getString(2)
-                        });
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1477,6 +1462,21 @@ public class Meny extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void getValutor() {
+        scValutor.setRowCount(0);
+        ResultSet valutor = Valutor.HamtaValutor();
+        
+        try{
+            while (valutor.next()) {
+                scValutor.addRow(
+                new Object[] {
+                valutor.getString(1), valutor.getString(2)
+                });
+            }
+        }
+        catch(Exception e){}
+    }
+    
     private void btnSkickaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkickaMouseClicked
 
     }//GEN-LAST:event_btnSkickaMouseClicked
@@ -1534,7 +1534,7 @@ public class Meny extends javax.swing.JFrame {
         }
         
         if (tpMeny.getSelectedIndex() == 4 && chef == true) {
-            getValutor();
+           getValutor();
         }
     }//GEN-LAST:event_tpMenyStateChanged
 
@@ -1675,13 +1675,13 @@ public class Meny extends javax.swing.JFrame {
 
     private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
         if (tpMeny2.getSelectedIndex() == 0) {
-            getValutor();
+           
         }
     }//GEN-LAST:event_tpMeny2StateChanged
 
     private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
         Valutor.nyValuta(tfValutaNamn.getText(), Double.parseDouble(tfVaxelkurs.getText()));
-        getValutor();
+    
     }//GEN-LAST:event_btnLaggTillValutaActionPerformed
 
     private void btnTaBortValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortValutaActionPerformed
