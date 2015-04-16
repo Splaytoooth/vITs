@@ -19,7 +19,7 @@ public class Epost {
        
    }
    
-   public void skickaEpostChef(String chefMail) {
+   public void skickaEpostChef(String chefMail,String ärende) {
        final String username = "hamshovits123@gmail.com";
 		final String password = "vitslosen";
  
@@ -44,7 +44,7 @@ public class Epost {
 				InternetAddress.parse(chefMail));
 			message.setSubject("Nytt ärende!");
 			message.setText("Hej på dig chefen,"
-				+ "\n\n du har en ny utbetalning att bekräfta!");
+				+ "\n du har ett nytt " + ärende + " att bekräfta!");
  
 			Transport.send(message);
  
