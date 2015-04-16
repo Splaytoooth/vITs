@@ -424,7 +424,7 @@
                                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="btnRegReseförskott" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jButton2" min="-2" pref="163" max="-2" attributes="0"/>
+                                  <Component id="btnSparaUtkast" min="-2" pref="163" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -578,7 +578,7 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jButton2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="btnSparaUtkast" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                       <Component id="btnSkickaR" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -685,12 +685,12 @@
                     <Property name="text" type="java.lang.String" value="Till datum"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnSparaUtkast">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Spara Lokalt"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSparaUtkastMouseClicked"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSkickaR">

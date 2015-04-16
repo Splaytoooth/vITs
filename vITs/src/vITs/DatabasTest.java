@@ -42,5 +42,43 @@ public class DatabasTest {
             return null;
         }
     }
+    
+    public static String getChefMail(int ID) {
+        int ettChefID = 0;
+        System.out.print("select ChefID from Konsulter where ID =" + ID);
+        try {
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+
+            ResultSet myRs = myStmt.executeQuery("select ChefID from Konsulter where ID =" + ID);
+
+            myRs.next();
+            ettChefID = myRs.getInt("ChefID");
+            
+        } catch (SQLException e) {
+            System.out.print("Det blev fel");
+            e.printStackTrace();
+        }
+        
+        String enChefMail = "";
+        System.out.print("select Email from Konsulter where ChefID=" + ettChefID);
+        try { 
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+
+            ResultSet myRs = myStmt.executeQuery("select Email from Konsulter where ID=" + ettChefID);
+            
+            myRs.next();
+            enChefMail = myRs.getString("Email");
+            
+        } catch (SQLException e) {
+            System.out.print("Det blev fel");
+            e.printStackTrace();
+        }
+         
+        return enChefMail; 
+    }
 
 }

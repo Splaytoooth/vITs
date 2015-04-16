@@ -8,7 +8,6 @@ package Epost;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.activation.*;
 
 /**
  *
@@ -16,9 +15,12 @@ import javax.activation.*;
  */
 public class Epost {
     
-   public static void main(String[] args) {
- 
-		final String username = "hamshovits123@gmail.com";
+   public Epost() {
+       
+   }
+   
+   public void skickaEpostChef(String chefMail,String ärende) {
+       final String username = "hamshovits123@gmail.com";
 		final String password = "vitslosen";
  
 		Properties props = new Properties();
@@ -39,10 +41,10 @@ public class Epost {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("hamshovits123@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("matus.mail33@gmail.com"));
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler,"
-				+ "\n\n No spam to my email, please!");
+				InternetAddress.parse(chefMail));
+			message.setSubject("Nytt ärende!");
+			message.setText("Hej på dig chefen,"
+				+ "\n du har ett nytt " + ärende + " att bekräfta!");
  
 			Transport.send(message);
  
@@ -51,5 +53,6 @@ public class Epost {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-	}
+       
+   }
 }
