@@ -1516,6 +1516,10 @@ public class Meny extends javax.swing.JFrame {
         UpdateClass.insertReseforskott(rf);
         taMotivering.setText("");
         tfSumma.setText("");
+        
+        String enChefMail = DatabasTest.getChefMail(Integer.parseInt(id));
+        Epost.Epost nyEpost = new Epost.Epost();
+        nyEpost.skickaEpostChef(enChefMail, "reseförskott");
     }//GEN-LAST:event_btnSkickaActionPerformed
 
     private void tpMenyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tpMenyMouseClicked
@@ -1594,7 +1598,7 @@ public class Meny extends javax.swing.JFrame {
             
             String enChefMail = DatabasTest.getChefMail(Integer.parseInt(id));
             Epost.Epost nyEpost = new Epost.Epost();
-            nyEpost.skickaEpostChef(enChefMail);
+            nyEpost.skickaEpostChef(enChefMail, "reseutlägg");
         } catch (Exception e) {
         }
 
