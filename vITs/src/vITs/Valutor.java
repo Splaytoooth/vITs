@@ -42,4 +42,15 @@ public class Valutor {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    public static void removeValuta(String namn) {
+        Connection conn = DatabasTest.newConnection();
+        try {
+            Statement myStmt = conn.createStatement();
+            
+            String sql = "Delete from Valutor where ";
+        }
+        
+        catch(Exception e) {}
+    }
 }
