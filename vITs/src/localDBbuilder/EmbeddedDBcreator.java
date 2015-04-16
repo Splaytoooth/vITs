@@ -50,10 +50,10 @@ public class EmbeddedDBcreator {
             // Sätter in värden för länder
             String insertStringLand1 = "INSERT INTO Land_local VALUES ('Sverige', 220) ";
             String insertStringLand2 = "INSERT INTO Land_local VALUES ('Livland', 278) ";
-            String insertStringLand3 = "INSERT INTO Land_local VALUES ('Livland', 278) ";
+            String insertStringLand3 = "INSERT INTO Land_local VALUES ('Litauen', 347) ";
             
             
-            myStmt.executeUpdate(insertString);
+           // myStmt.executeUpdate(insertString);
             
             } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
