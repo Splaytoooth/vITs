@@ -28,4 +28,18 @@ public class Valutor {
             return null;
         }
     }
+    
+    public static void nyValuta(String namn, double kurs) {
+        Connection conn = DatabasTest.newConnection();
+        try {
+            Statement myStmt = conn.createStatement();
+
+            String sql = "Insert into Valutor values('" + namn + "', " + kurs + ")";
+
+            myStmt.executeQuery(sql);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
 }
