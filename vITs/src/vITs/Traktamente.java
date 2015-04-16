@@ -21,6 +21,7 @@ public class Traktamente {
     Double tillLandNormalBelopp;
     String franLand;
     String tillLand;
+    EntityGrej.Valutor[] valutor;
 
     public Traktamente(String franLand, String tillLand) {
         Connection conn = DatabasTest.newConnection();
@@ -47,12 +48,26 @@ public class Traktamente {
             myRs = myStmt.executeQuery("select Maxbelopp from Lander where Land = '" + tillLand + "'");
             myRs.next();
             tillLandNormalBelopp = Double.parseDouble(myRs.getString(1));
-            
+
             myRs = myStmt.executeQuery("select Maxbelopp from Lander where Land = '" + franLand + "'");
             myRs.next();
             franLandNormalBelopp = Double.parseDouble(myRs.getString(1));
+
+            myRs = myStmt.executeQuery("select * from Valutor");
+            EntityGrej.Valutor aktValuta = new EntityGrej.Valutor();
+            int rowcount = 0;
+            if (myRs.last()) {
+                rowcount = myRs.getRow();
+                myRs.beforeFirst(); // not rs.first() because the rs.next() below will move on, missing the first element
+            }
             
-            
+                valutor = new EntityGrej.Valutor[rowcount];
+            while (myRs.next()) {
+                aktValuta.setValuta(myRs.getString(1));
+                aktValuta.setKronor(Double.parseDouble(myRs.getString(2)));
+                valutor[myRs.getRow()] = aktValuta;
+            }
+
             this.franLand = franLand;
             this.tillLand = tillLand;
 
