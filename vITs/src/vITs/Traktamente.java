@@ -17,6 +17,7 @@ public class Traktamente {
     EntityGrej.TraktamenteBil bil;
     EntityGrej.TraktamenteMat mat;
     Double normalBelopp;
+    String land;
 
     public void Traktamente(String land) {
         Connection conn = DatabasTest.newConnection();
@@ -46,6 +47,7 @@ public class Traktamente {
             myRs = myStmt.executeQuery("select Maxbelopp from Lander where Land = '" + land + "'");
             myRs.next();
             normalBelopp = Double.parseDouble(myRs.getString(1));
+            this.land = land;
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
