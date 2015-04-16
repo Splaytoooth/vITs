@@ -15,11 +15,14 @@ import javax.swing.JOptionPane;
 public class Traktamente {
 
     EntityGrej.TraktamenteBil bil;
-    EntityGrej.TraktamenteMat mat;
-    Double normalBelopp;
-    String land;
+    EntityGrej.TraktamenteMatSverige matSverige;
+    EntityGrej.TraktamenteMatSverige matUtomlands;
+    Double franLandNormalBelopp;
+    Double tillLandNormalBelopp;
+    String franLand;
+    String tillLand;
 
-    public void Traktamente(String land) {
+    public void Traktamente(String franLand, String tillLand) {
         Connection conn = DatabasTest.newConnection();
         try {
             Statement myStmt = conn.createStatement();
@@ -30,25 +33,29 @@ public class Traktamente {
                 bil.setAvdrag(Double.parseDouble(myRs.getString(2)));
             }
 
-            if (land.equals("Sverige")) {
-                myRs = myStmt.executeQuery("select * from TraktamenteMatSverige");
-                while (myRs.next()) {
-                    mat.setTyp(myRs.getString(1));
-                    mat.setAvdragsProcent(Integer.parseInt(myRs.getString(2)));
-                }
-            } else {
-                myRs = myStmt.executeQuery("select * from TraktamenteMatUtomlands");
-                while (myRs.next()) {
-                    mat.setTyp(myRs.getString(1));
-                    mat.setAvdragsProcent(Integer.parseInt(myRs.getString(2)));
-                }
+            myRs = myStmt.executeQuery("select * from TraktamenteMatSverige");
+            while (myRs.next()) {
+                matSverige.setTyp(myRs.getString(1));
+                matSverige.setAvdragsProcent(Integer.parseInt(myRs.getString(2)));
             }
-            
-            myRs = myStmt.executeQuery("select Maxbelopp from Lander where Land = '" + land + "'");
+            myRs = myStmt.executeQuery("select * from TraktamenteMatUtomlands");
+            while (myRs.next()) {
+                matUtomlands.setTyp(myRs.getString(1));
+                matUtomlands.setAvdragsProcent(Integer.parseInt(myRs.getString(2)));
+            }
+
+            myRs = myStmt.executeQuery("select Maxbelopp from Lander where Land = '" + tillLand + "'");
             myRs.next();
-            normalBelopp = Double.parseDouble(myRs.getString(1));
-            this.land = land;
+            tillLandNormalBelopp = Double.parseDouble(myRs.getString(1));
             
+            myRs = myStmt.executeQuery("select Maxbelopp from Lander where Land = '" + franLand + "'");
+            myRs.next();
+            franLandNormalBelopp = Double.parseDouble(myRs.getString(1));
+            
+            
+            this.franLand = franLand;
+            this.tillLand = tillLand;
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
