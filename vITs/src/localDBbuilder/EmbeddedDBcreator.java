@@ -27,12 +27,16 @@ public class EmbeddedDBcreator {
         }
    
      }
-   
+     
+     /*  valutaLandTableCreator() skapar en ny inbäddad lokal databas
+     /   bestående av två tabeller: valuta och lander.
+     /
+     */
      public static void valutaLandTableCreator ()
      {
          try {
-            String createValuta = "CREATE TABLE VALUTA_local (Valuta VARCHAR(50) NOT NULL, Kronor DOUBLE( ))";
-            String createLand   = "CREATE TABLE LAND_local   (Land VARCHAR(50) NOT NULL, Maxbelopp DOUBLE())";
+            String createValuta = "CREATE TABLE VALUTA_local (Valuta VARCHAR(50) NOT NULL, Kronor DOUBLE)";
+            String createLand   = "CREATE TABLE LAND_local   (Land VARCHAR(50) NOT NULL, Maxbelopp DOUBLE)";
             
             Connection connection = DriverManager.getConnection("jdbc:derby:localReseDB;create=true");
             Statement myStmt = connection.createStatement();
@@ -51,9 +55,27 @@ public class EmbeddedDBcreator {
             String insertStringLand1 = "INSERT INTO Land_local VALUES ('Sverige', 220) ";
             String insertStringLand2 = "INSERT INTO Land_local VALUES ('Livland', 278) ";
             String insertStringLand3 = "INSERT INTO Land_local VALUES ('Litauen', 347) ";
+            String insertStringLand4 = "INSERT INTO Land_local VALUES ('Estland', 363) ";
+            String insertStringLand5 = "INSERT INTO Land_local VALUES ('Lettland', 419) ";
+            String insertStringLand6 = "INSERT INTO Land_local VALUES ('USA', 552) ";
+            String insertStringLand7 = "INSERT INTO Land_local VALUES ('Island', 611) ";
+            String insertStringLand8 = "INSERT INTO Land_local VALUES ('Finland', 625) ";
+            String insertStringLand9 = "INSERT INTO Land_local VALUES ('Storbrittanien', 680) ";
+            String insertStringLand10 = "INSERT INTO Land_local VALUES ('Danmark', 873) ";
+            String insertStringLand11 = "INSERT INTO Land_local VALUES ('Norge', 937) ";
             
+            myStmt.executeUpdate(insertStringLand1);
+            myStmt.executeUpdate(insertStringLand2);
+            myStmt.executeUpdate(insertStringLand3);
+            myStmt.executeUpdate(insertStringLand4);
+            myStmt.executeUpdate(insertStringLand5);
+            myStmt.executeUpdate(insertStringLand6);
+            myStmt.executeUpdate(insertStringLand7);
+            myStmt.executeUpdate(insertStringLand8);
+            myStmt.executeUpdate(insertStringLand9);
+            myStmt.executeUpdate(insertStringLand10);
+            myStmt.executeUpdate(insertStringLand11);
             
-           // myStmt.executeUpdate(insertString);
             
             } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
