@@ -38,7 +38,7 @@ public class EmbeddedDBcreator {
             String createValuta = "CREATE TABLE VALUTA_local (Valuta VARCHAR(50) NOT NULL, Kronor DOUBLE)";
             String createLand   = "CREATE TABLE LAND_local   (Land VARCHAR(50) NOT NULL, Maxbelopp DOUBLE)";
             
-            Connection connection = DriverManager.getConnection("jdbc:derby:localReseDB;create=true");
+            Connection connection = DriverManager.getConnection("jdbc:derby:localReseDBPerm;create=true");
             Statement myStmt = connection.createStatement();
             System.out.println("Db established");
             myStmt.executeUpdate(createValuta);
