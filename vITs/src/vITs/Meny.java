@@ -1787,13 +1787,14 @@ public class Meny extends javax.swing.JFrame {
 
     private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
         Valutor.nyValuta(tfValutaNamn.getText(), Double.parseDouble(tfVaxelkurs.getText()));
-
+        getValutor();
     }//GEN-LAST:event_btnLaggTillValutaActionPerformed
 
     private void btnTaBortValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortValutaActionPerformed
         int valdRad = tblValutor.getSelectedRow();
-        String valutaNamn = scValutor.getValueAt(valdRad, 1).toString();
-
+        String valutaNamn = scValutor.getValueAt(valdRad, 0).toString();
+        Valutor.removeValuta(valutaNamn);
+        getValutor();
     }//GEN-LAST:event_btnTaBortValutaActionPerformed
 
     private String hamtaUtgifter() {
