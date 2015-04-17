@@ -45,11 +45,13 @@ public class EmbeddedDBcreator {
             myStmt.executeUpdate(createLand);
  
             // Sätter in värden för valuta
-            String insertStringVal1 = "INSERT INTO VALUTA_local VALUES ('EURO', 9.36) ";
+            String insertStringVal1 = "INSERT INTO VALUTA_local VALUES ('Euro', 9.36) ";
             String insertStringVal2 = "INSERT INTO VALUTA_local VALUES ('USD', 8.79) ";
+            String insertStringVal3 = "INSERT INTO VALUTA_local VALUES ('Sek', 1) ";
             
             myStmt.executeUpdate(insertStringVal1);
             myStmt.executeUpdate(insertStringVal2);
+            myStmt.executeUpdate(insertStringVal3);
             
             // Sätter in värden för länder
             String insertStringLand1 = "INSERT INTO Land_local VALUES ('Sverige', 220) ";
