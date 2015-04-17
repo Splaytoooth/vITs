@@ -80,5 +80,23 @@ public class DatabasTest {
          
         return enChefMail; 
     }
+    
+    public static void getReseforskott()
+    {
+        try{
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+            
+            ResultSet myRs = myStmt.executeQuery("select * from Reseutlägg");
+            
+            while(myRs.next()){
+                
+            }
+        }
+        catch(SQLException e){
+        System.out.println(e);
+        }
+    }
 
 }
