@@ -8,6 +8,7 @@
     <class>EntityGrej.Lander</class>
     <class>EntityGrej.Konsulter</class>
     <class>EntityGrej.Utgifter</class>
+    <class>EntityGrej.Valutor</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://resadb.cnjxqasdqhys.us-west-2.rds.amazonaws.com:3306/resaDB?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="resaDB"/>
