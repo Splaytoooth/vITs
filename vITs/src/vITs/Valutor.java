@@ -36,7 +36,7 @@ public class Valutor {
 
             String sql = "Insert into Valutor values('" + namn + "', " + kurs + ")";
 
-            myStmt.executeQuery(sql);
+            myStmt.executeUpdate(sql);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -48,7 +48,9 @@ public class Valutor {
         try {
             Statement myStmt = conn.createStatement();
             
-            String sql = "Delete from Valutor where ";
+            String sql = "Delete from Valutor where Valuta = '" + namn + "'";
+            
+            myStmt.executeUpdate(sql);
         }
         
         catch(Exception e) {}
