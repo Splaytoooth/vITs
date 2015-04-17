@@ -1559,13 +1559,37 @@ public class Meny extends javax.swing.JFrame {
         }
 
         String utgiftTyp = null;
-        for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
-            utgiftTyp = sc.getValueAt(i, 1).toString();
+        int kostnad;
+        int antalRader = tblUtgifter.getRowCount();
+        String rad3 = null;
+        String rad4 = null;
+        String rad5 = null;
+        String rad6 = null;
+        for (int i = 0; i < antalRader; i++) {
+            utgiftTyp = sc.getValueAt(i, 0).toString();
+            kostnad = Integer.parseInt(sc.getValueAt(i, 1).toString()) * 2;
+            try {
+                rad3 = sc.getValueAt(i, 2).toString();
+            } catch (Exception e) {
+            }
+            try {
+                rad4 = sc.getValueAt(i, 3).toString();
+            } catch (Exception e) {
+            }
+            try {
+                rad5 = sc.getValueAt(i, 4).toString();
+            } catch (Exception e) {
+            }
+            try {
+                rad6 = sc.getValueAt(i, 5).toString();
+            } catch (Exception e) {
+            }
             sc.addRow(
                     new Object[]{
-                        utgiftTyp, null, null, null, null, null
+                        utgiftTyp, kostnad, rad3, rad4, rad5, rad6
                     }
             );
+            sc.removeRow(i);
         }
     }
 
