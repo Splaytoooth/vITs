@@ -16,6 +16,7 @@ public class Meny extends javax.swing.JFrame {
     DefaultTableModel sc;
     DefaultTableModel scValutor;
     Traktamente traktamente;
+    private String hej;
 
     /**
      * Creates new form Meny
