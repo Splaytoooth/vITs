@@ -1727,7 +1727,7 @@ public class Meny extends javax.swing.JFrame {
             tfKostnadExMoms.setEnabled(false);
             tfKostnadInklMoms.setEnabled(false);
             dpFran1.setEnabled(false);
-            cbAntDagar.setEnabled(false);
+            cbAntDagar.setEnabled(true);
             cbValutaR.setEnabled(false);
             tfMil.setEnabled(false);
             jButton2.setEnabled(false);
