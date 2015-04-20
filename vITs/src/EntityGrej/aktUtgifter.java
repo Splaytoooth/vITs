@@ -75,8 +75,6 @@ public class aktUtgifter {
                     intAnnat++;
                 }
             }
-            
-            
 
             Map<String, List<UtgiftExpTabell>> sortBjud = new HashMap<String, List<UtgiftExpTabell>>();
             for (UtgiftExpTabell aktObj : rawUtgifter) {
@@ -101,7 +99,7 @@ public class aktUtgifter {
             }
 
             UtgiftExpTabell utgStartDag = new UtgiftExpTabell(null, null, null, null, null, null, null);
-            utgStartDag.Typ = "Första dagen i " + traktamente.franLand;
+            utgStartDag.Typ = "Första dagen fortfarande i " + traktamente.franLand;
             utgStartDag.KostnadInklMoms = traktamente.franLandNormalBelopp * valutaKonv;
             utgStartDag.KostnadExklMoms = traktamente.franLandNormalBelopp * valutaKonv;
             beraknadeUtgifter.add(utgStartDag);
@@ -145,7 +143,7 @@ public class aktUtgifter {
                     }
                     utgTyp = utgTyp.substring(0, utgTyp.length() - 2);
                     utgTyp += " den " + aktLista.get(0).Datum;
-                    if (forstDag == true && traktamente.franLand.equals("Sverige")) {
+                    if (forstDag == true) {
                         utgTyp += ", första resdagen fortfarande i " + traktamente.franLand;
                     }
                     utgift.KostnadExklMoms = traktamente.franLandNormalBelopp * valutaKonv * procent * -1;
@@ -153,8 +151,22 @@ public class aktUtgifter {
                     this.beraknadeUtgifter.add(utgift);
                 }
             }
-            
-            
+
+            for (UtgiftExpTabell utg : bil) {
+                if (utg.Typ.equals("Egen bil")) {
+                    utg.KostnadExklMoms = utg.Mil * traktamente.bil[0].getAvdrag();
+                    utg.Typ = utg.Mil + "mil med egen bil";
+                }
+                else if (utg.Typ.equals("Tjänstemedel annat drivmedel")) {
+                    utg.KostnadExklMoms = utg.Mil * traktamente.bil[1].getAvdrag();
+                    utg.Typ = utg.Mil + "mil med tjänstemedel";
+                }
+                else if (utg.Typ.equals("Tjänstebil med diesel")) {
+                    utg.KostnadExklMoms = utg.Mil * traktamente.bil[2].getAvdrag();
+                    utg.Typ = utg.Mil + "mil med tjänstemedel driven på diesel";
+                }
+                this.beraknadeUtgifter.add(utg);
+            }
 
         }
     }
