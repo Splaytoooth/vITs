@@ -14,11 +14,11 @@ public class UtgiftExpTabell {
     public String Typ;
     public Double KostnadExklMoms;
     public Double KostnadInklMoms;
-    public String Mil;
+    public Double Mil;
     public String Datum;
     public String nDagar;
     public String KvittoUrl;
-    public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, String mil, String datum, String nDagar, String kvittoUrl) 
+    public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, Double mil, String datum, String nDagar, String kvittoUrl) 
     {
         this.Typ = typ;
         this.KostnadInklMoms = kostnadInk;
