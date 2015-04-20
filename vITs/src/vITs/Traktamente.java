@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Traktamente {
 
-    public EntityGrej.TraktamenteBil bil;
+    public EntityGrej.TraktamenteBil[] bil;
     public EntityGrej.TraktamenteMatSverige[] matSverige = new EntityGrej.TraktamenteMatSverige[3];
     public EntityGrej.TraktamenteMatUtomlands[] matUtomlands = new EntityGrej.TraktamenteMatUtomlands[3];
     public Double franLandNormalBelopp;
@@ -28,14 +28,18 @@ public class Traktamente {
         try {
             Statement myStmt = conn.createStatement();
 
+            int i = 0;
             ResultSet myRs = myStmt.executeQuery("select * from TraktamenteBil");
             while (myRs.next()) {
-                bil.setTyp(myRs.getString(1));
-                bil.setAvdrag(Double.parseDouble(myRs.getString(2)));
+                EntityGrej.TraktamenteBil traktBil = new EntityGrej.TraktamenteBil();
+                traktBil.setTyp(myRs.getString(1));
+                traktBil.setAvdrag(Double.parseDouble(myRs.getString(2)));
+                bil[i] = traktBil;
+                i++;
             }
 
+            i = 0;
             myRs = myStmt.executeQuery("select * from TraktamenteMatSverige");
-            int i = 0;
             while (myRs.next()) {
                 EntityGrej.TraktamenteMatSverige traktSv = new EntityGrej.TraktamenteMatSverige();
                 traktSv.setTyp(myRs.getString(1));
