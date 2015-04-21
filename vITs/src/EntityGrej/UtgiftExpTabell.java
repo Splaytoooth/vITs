@@ -5,6 +5,8 @@
  */
 package EntityGrej;
 
+import java.util.Date;
+
 /**
  *
  * @author 93stealb
@@ -16,11 +18,11 @@ public class UtgiftExpTabell {
     public Double KostnadInklMoms;
     public Double Mil;
     public Double valutaKonv;
-    public String Datum;
+    public Date Datum;
     public String nDagar;
     public String KvittoUrl;
-    public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, Double mil, String datum, String nDagar, String kvittoUrl) 
-    {
+
+    public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, Double valutaKonv, Double mil, Date datum, String nDagar, String kvittoUrl) {
         this.Typ = typ;
         this.KostnadInklMoms = kostnadInk;
         this.KostnadExklMoms = kostnadEx;
@@ -28,5 +30,9 @@ public class UtgiftExpTabell {
         this.Datum = datum;
         this.nDagar = nDagar;
         this.KvittoUrl = kvittoUrl;
+        this.valutaKonv = valutaKonv;
+    }
+
+    public UtgiftExpTabell() {
     }
 }
