@@ -159,13 +159,16 @@ public class aktUtgifter {
             for (UtgiftExpTabell utg : bil) {
                 if (utg.Typ.equals("Egen bil")) {
                     utg.KostnadExklMoms = utg.Mil * traktamente.bil[0].getAvdrag();
+                    utg.KostnadInklMoms = utg.KostnadExklMoms;
                     utg.Typ = utg.Mil + "mil med egen bil";
                 } else if (utg.Typ.equals("Tjänstemedel annat drivmedel")) {
                     utg.KostnadExklMoms = utg.Mil * traktamente.bil[1].getAvdrag();
                     utg.Typ = utg.Mil + "mil med tjänstemedel";
+                    utg.KostnadInklMoms = utg.KostnadExklMoms;
                 } else if (utg.Typ.equals("Tjänstebil med diesel")) {
                     utg.KostnadExklMoms = utg.Mil * traktamente.bil[2].getAvdrag();
                     utg.Typ = utg.Mil + "mil med tjänstemedel driven på diesel";
+                    utg.KostnadInklMoms = utg.KostnadExklMoms;
                 }
                 this.beraknadeUtgifter.add(utg);
             }
@@ -173,10 +176,13 @@ public class aktUtgifter {
             for (UtgiftExpTabell utg : boende) {
                 if (utg.Typ.equals("Boende med kvitto")) {
                     utg.Typ = utg.nDagar + "dagar på hotell med sparat kvitto";
+                    utg.KostnadInklMoms *= this.valutaKonv;
+                    utg.KostnadExklMoms *=  this.valutaKonv;
                     this.beraknadeUtgifter.add(utg);
                 } else if (utg.Typ.equals(("Boende utan kvitto"))) {
                     utg.Typ = utg.nDagar + "dagar på hotell utan kvitto";
-                    utg.KostnadExklMoms = Integer.parseInt(utg.nDagar) * traktamente.tillLandNormalBelopp * this.valutaKonv;
+                    utg.KostnadExklMoms = Integer.parseInt(utg.nDagar) * traktamente.tillLandNormalBelopp;
+                    utg.KostnadInklMoms = utg.KostnadExklMoms;
                     this.beraknadeUtgifter.add(utg);
                 }
             }
