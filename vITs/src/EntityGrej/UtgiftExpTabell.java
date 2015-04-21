@@ -15,6 +15,7 @@ public class UtgiftExpTabell {
     public Double KostnadExklMoms;
     public Double KostnadInklMoms;
     public Double Mil;
+    public Double valutaKonv;
     public String Datum;
     public String nDagar;
     public String KvittoUrl;
