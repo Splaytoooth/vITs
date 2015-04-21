@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -193,6 +194,7 @@ public class aktUtgifter {
                 utg.KostnadInklMoms *= valutaKonv;
             }
 
+            JOptionPane.showMessageDialog(null, this.beraknadeUtgifter);
         }
     }
 }
