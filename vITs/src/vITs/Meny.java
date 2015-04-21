@@ -1872,7 +1872,7 @@ public class Meny extends javax.swing.JFrame {
 
             Calendar cDate = (Calendar) cal1.clone();
             long daysBetween = 0;
-            while (cDate.before(cal2))  {
+            while (cDate.before(cal2)) {
                 cDate.add(Calendar.DAY_OF_MONTH, 1);
                 daysBetween++;
             }
