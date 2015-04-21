@@ -30,6 +30,9 @@ public class Traktamente {
 
             int i = 0;
             ResultSet myRs = myStmt.executeQuery("select * from TraktamenteBil");
+            myRs.last();
+            bil = new EntityGrej.TraktamenteBil[myRs.getRow()];
+            myRs.beforeFirst();
             while (myRs.next()) {
                 EntityGrej.TraktamenteBil traktBil = new EntityGrej.TraktamenteBil();
                 traktBil.setTyp(myRs.getString(1));
@@ -73,12 +76,11 @@ public class Traktamente {
                 rowcount = myRs.getRow();
                 myRs.beforeFirst();
             }
-
             valutor = new EntityGrej.Valutor[rowcount];
             while (myRs.next()) {
                 aktValuta.setValuta(myRs.getString(1));
                 aktValuta.setKronor(Double.parseDouble(myRs.getString(2)));
-                valutor[myRs.getRow()] = aktValuta;
+                valutor[myRs.getRow()-1] = new EntityGrej.Valutor(myRs.getString(1), Double.parseDouble(myRs.getString(2)));
             }
 
             this.franLand = franLand;
@@ -87,5 +89,13 @@ public class Traktamente {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+
+    public double getKonv(String valuta) {
+        for(EntityGrej.Valutor val : this.valutor){
+            if(val.getValuta().equals(valuta))
+                return val.getKronor();
+        }
+        return 1000000;
     }
 }
