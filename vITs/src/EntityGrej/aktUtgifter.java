@@ -24,18 +24,16 @@ public class aktUtgifter {
 
     private UtgiftExpTabell[] rawUtgifter;
     private List beraknadeUtgifter;
-    private double valutaKonv;
     private double normalBelopp;
     private vITs.Traktamente traktamente;
     private String startDatum;
     private int dagar;
 
-    private void newAktUtgifter(UtgiftExpTabell[] utgifter, double valutaKonv, double normalBelopp, vITs.Traktamente trakt, String startDatum, int dagar) {
-        if (this.rawUtgifter == utgifter && this.valutaKonv == valutaKonv && this.normalBelopp == normalBelopp && startDatum.equals(this.startDatum) && dagar == this.dagar) {
+    private void newAktUtgifter(UtgiftExpTabell[] utgifter, double normalBelopp, vITs.Traktamente trakt, String startDatum, int dagar) {
+        if (this.rawUtgifter == utgifter && this.normalBelopp == normalBelopp && startDatum.equals(this.startDatum) && dagar == this.dagar) {
             return;
         } else {
             rawUtgifter = utgifter;
-            this.valutaKonv = valutaKonv;
             this.normalBelopp = normalBelopp;
             this.traktamente = trakt;
             beraknadeUtgifter = new ArrayList();
@@ -105,14 +103,14 @@ public class aktUtgifter {
 
             UtgiftExpTabell utgStartDag = new UtgiftExpTabell(null, null, null, null, null, null, null);
             utgStartDag.Typ = "Första dagen fortfarande i " + traktamente.franLand;
-            utgStartDag.KostnadInklMoms = traktamente.franLandNormalBelopp * valutaKonv;
-            utgStartDag.KostnadExklMoms = traktamente.franLandNormalBelopp * valutaKonv;
+            utgStartDag.KostnadInklMoms = traktamente.franLandNormalBelopp;
+            utgStartDag.KostnadExklMoms = traktamente.franLandNormalBelopp;
             beraknadeUtgifter.add(utgStartDag);
 
             UtgiftExpTabell utgRestDagar = new UtgiftExpTabell(null, null, null, null, null, null, null);
             utgRestDagar.Typ = dagar + "dagar i " + traktamente.tillLand;
-            utgRestDagar.KostnadExklMoms = traktamente.tillLandNormalBelopp * dagar * valutaKonv;
-            utgRestDagar.KostnadInklMoms = traktamente.tillLandNormalBelopp * dagar * valutaKonv;
+            utgRestDagar.KostnadExklMoms = traktamente.tillLandNormalBelopp * dagar;
+            utgRestDagar.KostnadInklMoms = traktamente.tillLandNormalBelopp * dagar;
 
             for (Entry<String, List<UtgiftExpTabell>> entry : sortBjud.entrySet()) {
                 String key = entry.getKey();
@@ -151,7 +149,7 @@ public class aktUtgifter {
                     if (forstDag == true) {
                         utgTyp += ", första resdagen fortfarande i " + traktamente.franLand;
                     }
-                    utgift.KostnadExklMoms = traktamente.franLandNormalBelopp * valutaKonv * procent * -1;
+                    utgift.KostnadExklMoms = traktamente.franLandNormalBelopp * procent * -1;
                     utgift.KostnadInklMoms = utgift.KostnadExklMoms;
                     this.beraknadeUtgifter.add(utgift);
                 }
@@ -177,8 +175,8 @@ public class aktUtgifter {
             for (UtgiftExpTabell utg : boende) {
                 if (utg.Typ.equals("Boende med kvitto")) {
                     utg.Typ = utg.nDagar + "dagar på hotell med sparat kvitto";
-                    utg.KostnadInklMoms *= this.valutaKonv;
-                    utg.KostnadExklMoms *=  this.valutaKonv;
+                    utg.KostnadInklMoms *= utg.valutaKonv;
+                    utg.KostnadExklMoms *=  utg.valutaKonv;
                     this.beraknadeUtgifter.add(utg);
                 } else if (utg.Typ.equals(("Boende utan kvitto"))) {
                     utg.Typ = utg.nDagar + "dagar på hotell utan kvitto";
@@ -190,8 +188,8 @@ public class aktUtgifter {
 
             for (UtgiftExpTabell utg : Annat) {
                 utg.Typ = "Egen utgift '" + utg.Typ + "'";
-                utg.KostnadExklMoms *=  valutaKonv;
-                utg.KostnadInklMoms *= valutaKonv;
+                utg.KostnadExklMoms *=  utg.valutaKonv;
+                utg.KostnadInklMoms *= utg.valutaKonv;
             }
 
             JOptionPane.showMessageDialog(null, this.beraknadeUtgifter);
