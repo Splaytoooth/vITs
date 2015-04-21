@@ -80,5 +80,21 @@ public class DatabasTest {
          
         return enChefMail; 
     }
+    
+    public static ResultSet getTable(String query)
+    {
+        ResultSet myRs = null;
+        try{
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+            
+            myRs = myStmt.executeQuery(query);
+        }
+        catch(SQLException e){
+        System.out.println(e);
+        }
+        return myRs;
+    }
 
 }
