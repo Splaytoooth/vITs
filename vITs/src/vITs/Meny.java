@@ -1945,7 +1945,7 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaReseforskottMouseClicked
 
     private void btnVisaReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseutlaggMouseClicked
-        fillReseutlaggTable("select * from Reseutlägg", tblReseutlagg);
+        fillReseutlaggTable("select * from Reseutlägg where KonsultID = " + id, tblReseutlagg);
     }//GEN-LAST:event_btnVisaReseutlaggMouseClicked
 
     public void fillReseforskottTable(String query, JTable table){
