@@ -1497,7 +1497,7 @@ public class Meny extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1538,6 +1538,11 @@ public class Meny extends javax.swing.JFrame {
         jScrollPane15.setViewportView(tblVisaUtgifterChef);
 
         btnVisaUtgifterChef.setText("Visa utgifter");
+        btnVisaUtgifterChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVisaUtgifterChefMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1696,6 +1701,11 @@ public class Meny extends javax.swing.JFrame {
         jScrollPane14.setViewportView(tblVisaUtgifter);
 
         btnVisaUtgifter.setText("Visa utgifter");
+        btnVisaUtgifter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVisaUtgifterMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -2120,12 +2130,20 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaReseutlaggMouseClicked
 
     private void btnVisaReseforskottChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseforskottChefMouseClicked
-        fillReseforskottTable("", tblVisaReseforskottChef);
+        fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
     }//GEN-LAST:event_btnVisaReseforskottChefMouseClicked
 
     private void btnVisaReseutlaggChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseutlaggChefMouseClicked
-        fillReseutlaggTable("", tblVisaReseutlaggChef);
+        fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
     }//GEN-LAST:event_btnVisaReseutlaggChefMouseClicked
+
+    private void btnVisaUtgifterChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterChefMouseClicked
+        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = ", tblVisaUtgifterChef);
+    }//GEN-LAST:event_btnVisaUtgifterChefMouseClicked
+
+    private void btnVisaUtgifterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterMouseClicked
+        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = ", tblVisaUtgifter);
+    }//GEN-LAST:event_btnVisaUtgifterMouseClicked
 
     public void fillReseforskottTable(String query, JTable table){
         try{
@@ -2170,11 +2188,41 @@ public class Meny extends javax.swing.JFrame {
         {
               
                 String varde = myRs.getString("ID");
+                String varde0 = myRs.getString("KonsultID");
                 String varde1 = myRs.getString("StartDatum");
                 String varde2 = myRs.getString("SlutDatum");
 		String varde3 = myRs.getString("FranLand");
 		String varde4 = myRs.getString("TillLand");
 		String varde5 = myRs.getString("Accepterat");
+                
+                DefaultTableModel sk = (DefaultTableModel) table.getModel();
+                sk.addRow(new Object[]{
+                varde, varde0, varde1, varde2, varde3, varde4, varde5}
+                );
+        }
+
+        myRs.close();
+    }
+        
+        catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void fillUtgifter(String query, JTable table) {
+        try{
+        ResultSet myRs = DatabasTest.getTable(query);
+
+        while(table.getRowCount() > 0) {
+            ((DefaultTableModel) table.getModel()).removeRow(0);
+        }
+        while(myRs.next()) {  
+                String varde = myRs.getString("ID");
+		String varde1 = myRs.getString("ReseUtläggsID");
+		String varde2 = myRs.getString("Typ");
+		String varde3 = myRs.getString("Summa ink moms");
+		String varde4 = myRs.getString("Summa exl moms");
+		String varde5 = myRs.getString("Kvitto url");
                 
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
