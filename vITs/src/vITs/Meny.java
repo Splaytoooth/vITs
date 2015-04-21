@@ -194,21 +194,33 @@ public class Meny extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jPanel15 = new javax.swing.JPanel();
+        btnVisaReseforskottChef = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tabRapporter = new javax.swing.JTable();
-        btnBekrafta = new javax.swing.JButton();
-        pVisaDetaljeradRapport = new javax.swing.JPanel();
+        tblVisaReseforskottChef = new javax.swing.JTable();
+        btnBekraftaReseforskott = new javax.swing.JButton();
+        jPanel16 = new javax.swing.JPanel();
+        btnVisaReseutlaggChef = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
-        tabKostnader = new javax.swing.JTable();
-        jLabel18 = new javax.swing.JLabel();
-        btnVisaArenden2 = new javax.swing.JButton();
+        tblVisaReseutlaggChef = new javax.swing.JTable();
+        btnBekraftaReseutlagg = new javax.swing.JButton();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        tblVisaUtgifterChef = new javax.swing.JTable();
+        btnVisaUtgifterChef = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel13 = new javax.swing.JPanel();
+        btnVisaReseforskott = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         tblReseforskott = new javax.swing.JTable();
-        btnVisaReseforskott = new javax.swing.JButton();
+        jPanel14 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         tblReseutlagg = new javax.swing.JTable();
         btnVisaReseutlagg = new javax.swing.JButton();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tblVisaUtgifter = new javax.swing.JTable();
+        btnVisaUtgifter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -811,7 +823,7 @@ public class Meny extends javax.swing.JFrame {
                                     .addComponent(lb_chefftypperiod, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(38, 38, 38)
                                     .addComponent(cb_chefftypperiod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37))
         );
@@ -919,7 +931,7 @@ public class Meny extends javax.swing.JFrame {
                                         .addComponent(tf_ansdatumt)
                                         .addComponent(lb_ansdatumt)
                                         .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37))
         );
@@ -1070,7 +1082,7 @@ public class Meny extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(pHanteraValutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1149,7 +1161,7 @@ public class Meny extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(pHanteraValutor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1406,72 +1418,177 @@ public class Meny extends javax.swing.JFrame {
 
         jPanel9.setLayout(null);
 
-        tabRapporter.setModel(new javax.swing.table.DefaultTableModel(
+        btnVisaReseforskottChef.setText("Visa reseförskott ");
+        btnVisaReseforskottChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVisaReseforskottChefMouseClicked(evt);
+            }
+        });
+
+        tblVisaReseforskottChef.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Motivering", "Summa", "Konsult ID", "Reseutläggs ID", "Accepterat"
             }
-        ));
-        jScrollPane7.setViewportView(tabRapporter);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        jPanel9.add(jScrollPane7);
-        jScrollPane7.setBounds(63, 60, 452, 402);
-
-        btnBekrafta.setText("Bekräfta rapport");
-        jPanel9.add(btnBekrafta);
-        btnBekrafta.setBounds(60, 480, 120, 35);
-
-        tabKostnader.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
-        ));
-        jScrollPane8.setViewportView(tabKostnader);
 
-        jLabel18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tblVisaReseforskottChef);
 
-        javax.swing.GroupLayout pVisaDetaljeradRapportLayout = new javax.swing.GroupLayout(pVisaDetaljeradRapport);
-        pVisaDetaljeradRapport.setLayout(pVisaDetaljeradRapportLayout);
-        pVisaDetaljeradRapportLayout.setHorizontalGroup(
-            pVisaDetaljeradRapportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pVisaDetaljeradRapportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pVisaDetaljeradRapportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pVisaDetaljeradRapportLayout.createSequentialGroup()
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
-                .addContainerGap())
+        btnBekraftaReseforskott.setText("Bekräfta reseförskott");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBekraftaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisaReseforskottChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(713, Short.MAX_VALUE))
         );
-        pVisaDetaljeradRapportLayout.setVerticalGroup(
-            pVisaDetaljeradRapportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pVisaDetaljeradRapportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btnVisaReseforskottChef)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addComponent(btnBekraftaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
-        jPanel9.add(pVisaDetaljeradRapport);
-        pVisaDetaljeradRapport.setBounds(540, 50, 547, 526);
+        jTabbedPane4.addTab("Reseförskott", jPanel15);
 
-        btnVisaArenden2.setText("Visa ärenden");
-        jPanel9.add(btnVisaArenden2);
-        btnVisaArenden2.setBounds(60, 30, 100, 23);
+        btnVisaReseutlaggChef.setText("Visa reseutlägg");
+        btnVisaReseutlaggChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVisaReseutlaggChefMouseClicked(evt);
+            }
+        });
+
+        tblVisaReseutlaggChef.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Konsult ID", "Start Datum", "Slut Datum", "Från Land", "Till Land", "Accepterat"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblVisaReseutlaggChef);
+
+        btnBekraftaReseutlagg.setText("Bekräfta reseutlägg");
+
+        tblVisaUtgifterChef.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Reseutläggs ID", "Typ", "Summa inkl moms", "Summa exkl moms", "Kvitto url"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane15.setViewportView(tblVisaUtgifterChef);
+
+        btnVisaUtgifterChef.setText("Visa utgifter");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(btnVisaReseutlaggChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVisaUtgifterChef, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(504, 504, 504))))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVisaReseutlaggChef)
+                    .addComponent(btnVisaUtgifterChef))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+
+        jTabbedPane4.addTab("Reseutlägg", jPanel16);
+
+        jPanel9.add(jTabbedPane4);
+        jTabbedPane4.setBounds(0, 0, 1250, 700);
 
         jTabbedPane2.addTab("Chef ärenden", jPanel9);
+
+        btnVisaReseforskott.setText("Visa reseförskott");
+        btnVisaReseforskott.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVisaReseforskottMouseClicked(evt);
+            }
+        });
 
         tblReseforskott.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1498,26 +1615,42 @@ public class Meny extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(tblReseforskott);
 
-        btnVisaReseforskott.setText("Visa reseförskott");
-        btnVisaReseforskott.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVisaReseforskottMouseClicked(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVisaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(681, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(btnVisaReseforskott)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(180, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Reseförskott", jPanel13);
 
         tblReseutlagg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Start Datum", "Slut Datum", "Från Land", "Till Land", "Accepterat"
+                "ID", "Konsult ID", "Start Datum", "Slut Datum", "Från Land", "Till Land", "Accepterat"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1537,33 +1670,73 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
+        tblVisaUtgifter.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Reseutläggs ID", "Typ", "Summa inkl moms", "Summa exkl moms", "Kvitto url"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane14.setViewportView(tblVisaUtgifter);
+
+        btnVisaUtgifter.setText("Visa utgifter");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVisaUtgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVisaReseutlagg)
+                    .addComponent(btnVisaUtgifter))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(185, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Reseutlägg", jPanel14);
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVisaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisaReseforskott)
-                    .addComponent(btnVisaReseutlagg))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(210, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
 
         jTabbedPane2.addTab("Egna ärenden", jPanel10);
@@ -1572,9 +1745,7 @@ public class Meny extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
+            .addComponent(jTabbedPane2)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1948,6 +2119,14 @@ public class Meny extends javax.swing.JFrame {
         fillReseutlaggTable("select * from Reseutlägg where KonsultID = " + id, tblReseutlagg);
     }//GEN-LAST:event_btnVisaReseutlaggMouseClicked
 
+    private void btnVisaReseforskottChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseforskottChefMouseClicked
+        fillReseforskottTable("", tblVisaReseforskottChef);
+    }//GEN-LAST:event_btnVisaReseforskottChefMouseClicked
+
+    private void btnVisaReseutlaggChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseutlaggChefMouseClicked
+        fillReseutlaggTable("", tblVisaReseutlaggChef);
+    }//GEN-LAST:event_btnVisaReseutlaggChefMouseClicked
+
     public void fillReseforskottTable(String query, JTable table){
         try{
         ResultSet myRs = DatabasTest.getTable(query);
@@ -2060,7 +2239,8 @@ public class Meny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnBekrafta;
+    private javax.swing.JButton btnBekraftaReseforskott;
+    private javax.swing.JButton btnBekraftaReseutlagg;
     private javax.swing.JButton btnGranska;
     private javax.swing.JButton btnHamtaLander;
     private javax.swing.JButton btnLaggTillAnvandare;
@@ -2077,9 +2257,12 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnSparaUtkast;
     private javax.swing.JButton btnTaBortLand;
     private javax.swing.JButton btnTaBortValuta;
-    private javax.swing.JButton btnVisaArenden2;
     private javax.swing.JButton btnVisaReseforskott;
+    private javax.swing.JButton btnVisaReseforskottChef;
     private javax.swing.JButton btnVisaReseutlagg;
+    private javax.swing.JButton btnVisaReseutlaggChef;
+    private javax.swing.JButton btnVisaUtgifter;
+    private javax.swing.JButton btnVisaUtgifterChef;
     private javax.swing.JComboBox cbAntDagar;
     private javax.swing.JComboBox cbKostnadTyp;
     private javax.swing.JComboBox cbLandFran;
@@ -2105,7 +2288,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2118,6 +2300,10 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2131,6 +2317,8 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2139,8 +2327,10 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTable jTable2;
     private javax.swing.JButton jb_anshämta;
     private javax.swing.JButton jb_cheffhämta;
@@ -2184,15 +2374,16 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JPanel pReseforskott;
     private javax.swing.JPanel pReseutlägg;
     private javax.swing.JPanel pStartsida;
-    private javax.swing.JPanel pVisaDetaljeradRapport;
     private javax.swing.JTextArea taMotivering;
-    private javax.swing.JTable tabKostnader;
-    private javax.swing.JTable tabRapporter;
     private javax.swing.JTable tblLander;
     private javax.swing.JTable tblReseforskott;
     private javax.swing.JTable tblReseutlagg;
     private javax.swing.JTable tblUtgifter;
     private javax.swing.JTable tblValutor;
+    private javax.swing.JTable tblVisaReseforskottChef;
+    private javax.swing.JTable tblVisaReseutlaggChef;
+    private javax.swing.JTable tblVisaUtgifter;
+    private javax.swing.JTable tblVisaUtgifterChef;
     private javax.swing.JTextField tfAnnat;
     private javax.swing.JTextField tfAnvandarnamn;
     private javax.swing.JTextField tfAnvandarnamn1;
