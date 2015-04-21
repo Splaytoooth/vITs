@@ -43,26 +43,27 @@ public class aktUtgifter {
             int intBjuden = 0;
             int intBil = 0;
             int intAnnat = 0;
-
-            UtgiftExpTabell[] bjuden;
-            UtgiftExpTabell[] bil;
-            UtgiftExpTabell[] Annat;
+            int intBoende = 0;
 
             for (UtgiftExpTabell aktObj : rawUtgifter) {
                 if (aktObj.Typ.equals("Bjuden på frukost") || aktObj.Typ.equals("Bjuden på lunch") || aktObj.Typ.equals("Bjuden på middag")) {
                     intBjuden++;
                 } else if (aktObj.equals("Egen bil") || aktObj.equals("Tjänstebil med diesel") || aktObj.equals("Tjänstemedel annat drivmedel")) {
                     intBil++;
+                } else if (aktObj.equals("Boende med kvitto") || aktObj.equals("Boende utan kvitto")) {
+                    intBoende++;
                 } else {
                     intAnnat++;
                 }
             }
-            bil = new UtgiftExpTabell[intBil];
-            Annat = new UtgiftExpTabell[intAnnat];
-            bjuden = new UtgiftExpTabell[intBjuden];
+            UtgiftExpTabell[] bil = new UtgiftExpTabell[intBil];
+            UtgiftExpTabell[] Annat = new UtgiftExpTabell[intAnnat];
+            UtgiftExpTabell[] bjuden = new UtgiftExpTabell[intBjuden];
+            UtgiftExpTabell[] boende = new UtgiftExpTabell[intBoende];
             intBil = 0;
             intAnnat = 0;
             intBjuden = 0;
+            intBoende = 0;
             for (UtgiftExpTabell aktObj : rawUtgifter) {
                 if (aktObj.Typ.equals("Bjuden på frukost") || aktObj.Typ.equals("Bjuden på lunch") || aktObj.Typ.equals("Bjuden på middag")) {
                     bjuden[intBjuden] = aktObj;
@@ -70,6 +71,9 @@ public class aktUtgifter {
                 } else if (aktObj.equals("Egen bil") || aktObj.equals("Tjänstebil med diesel") || aktObj.equals("Tjänstemedel annat drivmedel")) {
                     bil[intBil] = aktObj;
                     intBil++;
+                } else if (aktObj.equals("Boende med kvitto") || aktObj.equals("Boende utan kvitto")) {
+                    boende[intBoende] = aktObj;
+                    intBoende++;
                 } else {
                     Annat[intAnnat] = aktObj;
                     intAnnat++;
@@ -156,16 +160,31 @@ public class aktUtgifter {
                 if (utg.Typ.equals("Egen bil")) {
                     utg.KostnadExklMoms = utg.Mil * traktamente.bil[0].getAvdrag();
                     utg.Typ = utg.Mil + "mil med egen bil";
-                }
-                else if (utg.Typ.equals("Tjänstemedel annat drivmedel")) {
+                } else if (utg.Typ.equals("Tjänstemedel annat drivmedel")) {
                     utg.KostnadExklMoms = utg.Mil * traktamente.bil[1].getAvdrag();
                     utg.Typ = utg.Mil + "mil med tjänstemedel";
-                }
-                else if (utg.Typ.equals("Tjänstebil med diesel")) {
+                } else if (utg.Typ.equals("Tjänstebil med diesel")) {
                     utg.KostnadExklMoms = utg.Mil * traktamente.bil[2].getAvdrag();
                     utg.Typ = utg.Mil + "mil med tjänstemedel driven på diesel";
                 }
                 this.beraknadeUtgifter.add(utg);
+            }
+
+            for (UtgiftExpTabell utg : boende) {
+                if (utg.Typ.equals("Boende med kvitto")) {
+                    utg.Typ = utg.nDagar + "dagar på hotell med sparat kvitto";
+                    this.beraknadeUtgifter.add(utg);
+                } else if (utg.Typ.equals(("Boende utan kvitto"))) {
+                    utg.Typ = utg.nDagar + "dagar på hotell utan kvitto";
+                    utg.KostnadExklMoms = Integer.parseInt(utg.nDagar) * traktamente.tillLandNormalBelopp * this.valutaKonv;
+                    this.beraknadeUtgifter.add(utg);
+                }
+            }
+
+            for (UtgiftExpTabell utg : Annat) {
+                utg.Typ = "Egen utgift '" + utg.Typ + "'";
+                utg.KostnadExklMoms *=  valutaKonv;
+                utg.KostnadInklMoms *= valutaKonv;
             }
 
         }
