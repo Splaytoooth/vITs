@@ -23,20 +23,21 @@ import javax.swing.JOptionPane;
 public class aktUtgifter {
 
     private UtgiftExpTabell[] rawUtgifter;
-    private List beraknadeUtgifter;
-    private double normalBelopp;
+    private ArrayList<UtgiftExpTabell> beraknadeUtgifter = new ArrayList<UtgiftExpTabell>();
     private vITs.Traktamente traktamente;
     private String startDatum;
     private int dagar;
 
-    private void newAktUtgifter(UtgiftExpTabell[] utgifter, double normalBelopp, vITs.Traktamente trakt, String startDatum, int dagar) {
-        if (this.rawUtgifter == utgifter && this.normalBelopp == normalBelopp && startDatum.equals(this.startDatum) && dagar == this.dagar) {
+    public ArrayList<UtgiftExpTabell> beraknadeUtgifter() {
+        return beraknadeUtgifter;
+    }
+
+    public void newAktUtgifter(UtgiftExpTabell[] utgifter, vITs.Traktamente trakt, String startDatum, int dagar) {
+        if (this.rawUtgifter == utgifter && startDatum.equals(this.startDatum) && dagar == this.dagar) {
             return;
         } else {
             rawUtgifter = utgifter;
-            this.normalBelopp = normalBelopp;
             this.traktamente = trakt;
-            beraknadeUtgifter = new ArrayList();
             this.dagar = dagar;
 
             int intBjuden = 0;
@@ -86,6 +87,7 @@ public class aktUtgifter {
                     List<UtgiftExpTabell> bjudLista = new ArrayList<UtgiftExpTabell>();
                     UtgiftExpTabell[] bjudenDag = new UtgiftExpTabell[3];
                     for (UtgiftExpTabell aktObj2 : rawUtgifter) {
+                        try{
                         if (aktObj.Datum.equals(aktObj2.Datum)) {
                             if (aktObj2.Typ.equals("Bjuden på frukost")) {
                                 aktObj2.Typ = "frukost";
@@ -96,18 +98,19 @@ public class aktUtgifter {
                             }
                             bjudLista.add(aktObj2);
                         }
-                        sortBjud.put(aktObj.Datum, bjudLista);
+                        sortBjud.put(aktObj.Datum.toString(), bjudLista);
+                        }catch(Exception e){}
                     }
                 }
             }
 
-            UtgiftExpTabell utgStartDag = new UtgiftExpTabell(null, null, null, null, null, null, null);
+            UtgiftExpTabell utgStartDag = new UtgiftExpTabell();
             utgStartDag.Typ = "Första dagen fortfarande i " + traktamente.franLand;
             utgStartDag.KostnadInklMoms = traktamente.franLandNormalBelopp;
             utgStartDag.KostnadExklMoms = traktamente.franLandNormalBelopp;
             beraknadeUtgifter.add(utgStartDag);
 
-            UtgiftExpTabell utgRestDagar = new UtgiftExpTabell(null, null, null, null, null, null, null);
+            UtgiftExpTabell utgRestDagar = new UtgiftExpTabell();
             utgRestDagar.Typ = dagar + "dagar i " + traktamente.tillLand;
             utgRestDagar.KostnadExklMoms = traktamente.tillLandNormalBelopp * dagar;
             utgRestDagar.KostnadInklMoms = traktamente.tillLandNormalBelopp * dagar;
@@ -115,7 +118,7 @@ public class aktUtgifter {
             for (Entry<String, List<UtgiftExpTabell>> entry : sortBjud.entrySet()) {
                 String key = entry.getKey();
                 List<UtgiftExpTabell> aktLista = entry.getValue();
-                UtgiftExpTabell nyUtg = new UtgiftExpTabell(null, null, null, null, null, null, null);
+                UtgiftExpTabell nyUtg = new UtgiftExpTabell();
                 nyUtg.Datum = aktLista.get(0).Datum;
                 boolean forstDag = false;
                 if (aktLista.get(0).Datum.equals(startDatum)) {
@@ -176,7 +179,7 @@ public class aktUtgifter {
                 if (utg.Typ.equals("Boende med kvitto")) {
                     utg.Typ = utg.nDagar + "dagar på hotell med sparat kvitto";
                     utg.KostnadInklMoms *= utg.valutaKonv;
-                    utg.KostnadExklMoms *=  utg.valutaKonv;
+                    utg.KostnadExklMoms *= utg.valutaKonv;
                     this.beraknadeUtgifter.add(utg);
                 } else if (utg.Typ.equals(("Boende utan kvitto"))) {
                     utg.Typ = utg.nDagar + "dagar på hotell utan kvitto";
@@ -188,8 +191,8 @@ public class aktUtgifter {
 
             for (UtgiftExpTabell utg : Annat) {
                 utg.Typ = "Egen utgift '" + utg.Typ + "'";
-                utg.KostnadExklMoms *=  utg.valutaKonv;
-                utg.KostnadInklMoms *= utg.valutaKonv;
+                utg.KostnadExklMoms = utg.KostnadExklMoms * utg.valutaKonv;
+                utg.KostnadInklMoms = utg.KostnadInklMoms * utg.valutaKonv;
             }
 
             JOptionPane.showMessageDialog(null, this.beraknadeUtgifter);
