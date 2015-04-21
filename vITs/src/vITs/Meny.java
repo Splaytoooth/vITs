@@ -2138,11 +2138,11 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaReseutlaggChefMouseClicked
 
     private void btnVisaUtgifterChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterChefMouseClicked
-        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaUtgifterChef), tblVisaUtgifterChef);
+        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaReseutlaggChef), tblVisaUtgifterChef);
     }//GEN-LAST:event_btnVisaUtgifterChefMouseClicked
 
     private void btnVisaUtgifterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterMouseClicked
-        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaUtgifter), tblVisaUtgifter);
+        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblReseutlagg), tblVisaUtgifter);
     }//GEN-LAST:event_btnVisaUtgifterMouseClicked
 
     public String getIdFromTable(JTable table) {
@@ -2225,11 +2225,11 @@ public class Meny extends javax.swing.JFrame {
         }
         while(myRs.next()) {  
                 String varde = myRs.getString("ID");
-		String varde1 = myRs.getString("ReseUtläggsID");
+		String varde1 = myRs.getString("ReseUtlaggsID");
 		String varde2 = myRs.getString("Typ");
 		String varde3 = myRs.getString("Summa ink moms");
 		String varde4 = myRs.getString("Summa exl moms");
-		String varde5 = myRs.getString("Kvitto url");
+		String varde5 = myRs.getString("KvittoUrl");
                 
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
