@@ -2138,13 +2138,20 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaReseutlaggChefMouseClicked
 
     private void btnVisaUtgifterChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterChefMouseClicked
-        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = ", tblVisaUtgifterChef);
+        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaUtgifterChef), tblVisaUtgifterChef);
     }//GEN-LAST:event_btnVisaUtgifterChefMouseClicked
 
     private void btnVisaUtgifterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterMouseClicked
-        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = ", tblVisaUtgifter);
+        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaUtgifter), tblVisaUtgifter);
     }//GEN-LAST:event_btnVisaUtgifterMouseClicked
 
+    public String getIdFromTable(JTable table) {
+        int selectedRowIndex = table.getSelectedRow();
+        int selectedColumnIndex = table.getSelectedColumn();
+        String ettId = (String)table.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
+        return ettId;
+    }
+    
     public void fillReseforskottTable(String query, JTable table){
         try{
         ResultSet myRs = DatabasTest.getTable(query);
