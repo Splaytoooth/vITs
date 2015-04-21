@@ -3,6 +3,11 @@ package vITs;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +23,8 @@ public class Meny extends javax.swing.JFrame {
     DefaultTableModel sc;
     DefaultTableModel scValutor;
     Traktamente traktamente;
+    EntityGrej.aktUtgifter berUtgifter = new EntityGrej.aktUtgifter();
+    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Creates new form Meny
@@ -464,11 +471,11 @@ public class Meny extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Typ", "Kostnad exkl moms", "Kostnad inkl moms", "Mil", "Datum", "Antal dagar", "Kvitto"
+                "Typ", "Kostnad exkl moms", "Kostnad inkl moms", "Valuta", "Mil", "Datum", "Antal dagar", "Kvitto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -601,9 +608,6 @@ public class Meny extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jButton2)
-                                    .addGap(93, 93, 93))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -636,7 +640,10 @@ public class Meny extends javax.swing.JFrame {
                                             .addComponent(jLabel13)
                                             .addGap(36, 36, 36)))
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(47, 47, 47)
+                                            .addComponent(jButton2))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(cbValutaR, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(35, 35, 35)
@@ -685,11 +692,10 @@ public class Meny extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(13, 13, 13))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                            .addComponent(jLabel13)
+                            .addComponent(jButton2))
+                        .addGap(11, 11, 11))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -725,7 +731,7 @@ public class Meny extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))))
+                                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)))))
                 .addGap(70, 70, 70))
         );
 
@@ -737,10 +743,7 @@ public class Meny extends javax.swing.JFrame {
         );
         pReseutläggLayout.setVerticalGroup(
             pReseutläggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pReseutläggLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tpMeny.addTab("Reseutlägg", pReseutlägg);
@@ -1795,6 +1798,93 @@ public class Meny extends javax.swing.JFrame {
         }
     }
 
+    private void beraknaTrakt() {
+        int i = 0;
+        EntityGrej.UtgiftExpTabell[] expTabell = new EntityGrej.UtgiftExpTabell[sc.getRowCount()];
+        while (i < sc.getRowCount()) {
+
+            Double kolumn2 = null;
+            try {
+                kolumn2 = Double.parseDouble(sc.getValueAt(i, 1).toString());
+            } catch (Exception e) {
+            }
+
+            Double kolumn3 = null;
+            try {
+                kolumn3 = Double.parseDouble(sc.getValueAt(i, 2).toString());
+            } catch (Exception e) {
+            }
+
+            Double kolumn4 = null;
+            try {
+                kolumn4 = traktamente.getKonv(sc.getValueAt(i, 3).toString());
+            } catch (Exception e) {
+            }
+
+            Double kolumn5 = null;
+            try {
+                kolumn5 = Double.parseDouble(sc.getValueAt(i, 4).toString());
+            } catch (Exception e) {
+            }
+
+            Date datum = null;
+            try {
+                datum = f.parse(sc.getValueAt(i, 5).toString());
+            } catch (Exception e) {
+            }
+
+            String kolumn7 = null;
+            try {
+                kolumn7 = sc.getValueAt(i, 6).toString();
+            } catch (Exception e) {
+            }
+
+            String kolumn8 = null;
+            try {
+                kolumn8 = sc.getValueAt(i, 7).toString();
+            } catch (Exception e) {
+            }
+
+            EntityGrej.UtgiftExpTabell aktExp = new EntityGrej.UtgiftExpTabell(
+                    sc.getValueAt(i, 0).toString(),
+                    kolumn2,
+                    kolumn3,
+                    kolumn4,
+                    kolumn5,
+                    datum,
+                    kolumn7,
+                    kolumn8
+            );
+            expTabell[i] = aktExp;
+            i++;
+        }
+        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        try {
+            String ettDatum = formatter.format(dpFran.getDate());
+            Date date = (Date) formatter.parse(ettDatum);
+            Calendar cal1 = Calendar.getInstance();
+            cal1.setTime(date);
+
+            String ettDatum2 = formatter.format(dpTill.getDate());
+            Date date2 = (Date) formatter.parse(ettDatum2);
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(date2);
+
+            Calendar cDate = (Calendar) cal1.clone();
+            long daysBetween = 0;
+            while (cDate.before(cal2))  {
+                cDate.add(Calendar.DAY_OF_MONTH, 1);
+                daysBetween++;
+            }
+            int dagar = (int) daysBetween;
+
+            berUtgifter.newAktUtgifter(expTabell, traktamente, f.format(dpFran.getDate()), dagar);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+
     private void raknaTraktamente() {
         try {
             if (!traktamente.franLand.equals(cbLandFran.getSelectedItem().toString()) && !traktamente.tillLand.equals(cbLandTill.getSelectedItem().toString())) {
@@ -1804,39 +1894,6 @@ public class Meny extends javax.swing.JFrame {
             traktamente = new Traktamente(cbLandFran.getSelectedItem().toString(), cbLandTill.getSelectedItem().toString());
         }
 
-        String utgiftTyp = null;
-        int kostnad;
-        int antalRader = tblUtgifter.getRowCount();
-        String rad3 = null;
-        String rad4 = null;
-        String rad5 = null;
-        String rad6 = null;
-        for (int i = 0; i < antalRader; i++) {
-            utgiftTyp = sc.getValueAt(i, 0).toString();
-            kostnad = Integer.parseInt(sc.getValueAt(i, 1).toString()) * 2;
-            try {
-                rad3 = sc.getValueAt(i, 2).toString();
-            } catch (Exception e) {
-            }
-            try {
-                rad4 = sc.getValueAt(i, 3).toString();
-            } catch (Exception e) {
-            }
-            try {
-                rad5 = sc.getValueAt(i, 4).toString();
-            } catch (Exception e) {
-            }
-            try {
-                rad6 = sc.getValueAt(i, 5).toString();
-            } catch (Exception e) {
-            }
-            sc.addRow(
-                    new Object[]{
-                        utgiftTyp, kostnad, rad3, rad4, rad5, rad6
-                    }
-            );
-            sc.removeRow(i);
-        }
     }
 
     private void btnSkickaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkickaMouseClicked
@@ -2034,10 +2091,44 @@ public class Meny extends javax.swing.JFrame {
             kostnadsTyp = tfAnnat.getText();
         }
 
+        String kolumn2 = null;
+        if (tfKostnadExMoms.isEnabled()) {
+            kolumn2 = tfKostnadExMoms.getText();
+        }
+        String kolumn3 = null;
+        if (tfKostnadInklMoms.isEnabled()) {
+            kolumn3 = tfKostnadInklMoms.getText();
+        }
+        String kolumn4 = null;
+        if (cbValutaR.isEnabled()) {
+            kolumn4 = cbValutaR.getSelectedItem().toString();
+        }
+        String kolumn5 = null;
+        if (tfMil.isEnabled()) {
+            kolumn5 = tfMil.getText();
+        }
+        String kolumn6 = null;
+        if (dpFran1.isEnabled()) {
+            kolumn6 = f.format(dpFran1.getDate());
+        }
+        String kolumn7 = null;
+        if (cbAntDagar.isEnabled()) {
+            kolumn7 = cbAntDagar.getSelectedItem().toString();
+        }
+        String kolumn8 = null;
+        if (this.jButton2.isEnabled()) {
+            kolumn8 = "hej";
+        }
+
         sc.addRow(new Object[]{
             kostnadsTyp,
-            tfKostnadExMoms.getText(),
-            cbValutaR.getSelectedItem().toString()
+            kolumn2,
+            kolumn3,
+            kolumn4,
+            kolumn5,
+            kolumn6,
+            kolumn7,
+            kolumn8
         });
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -2065,6 +2156,11 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSparaUtkastMouseClicked
 
     private void btnGranskaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranskaActionPerformed
+        if (dpFran.getDate() == null && dpTill.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Var god fyll i ett datum för start- och slut- datum för resan");
+            return;
+        }
+
         btnSkickaR.setVisible(true);
         btnGranska.setVisible(false);
         btnRedigera.setVisible(true);
@@ -2081,6 +2177,16 @@ public class Meny extends javax.swing.JFrame {
         btnRegReseförskott.setVisible(false);
 
         raknaTraktamente();
+        beraknaTrakt();
+
+        sc.setRowCount(0);
+        ArrayList<EntityGrej.UtgiftExpTabell> utgifterna = this.berUtgifter.beraknadeUtgifter();
+        for (EntityGrej.UtgiftExpTabell utgift : utgifterna) {
+            sc.addRow(new Object[]{
+                utgift.Typ, utgift.KostnadExklMoms, utgift.KostnadInklMoms, utgift.KvittoUrl
+            });
+
+        }
 
     }//GEN-LAST:event_btnGranskaActionPerformed
 
@@ -2122,7 +2228,7 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaBortValutaActionPerformed
 
     private void btnVisaReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseforskottMouseClicked
-        fillReseforskottTable("select * from Reseförskott where KonsultID = "+ id, tblReseforskott);
+        fillReseforskottTable("select * from Reseförskott where KonsultID = " + id, tblReseforskott);
     }//GEN-LAST:event_btnVisaReseforskottMouseClicked
 
     private void btnVisaReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseutlaggMouseClicked
@@ -2148,103 +2254,93 @@ public class Meny extends javax.swing.JFrame {
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         int selectedColumnIndex = table.getSelectedColumn();
-        String ettId = (String)table.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
+        String ettId = (String) table.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
         return ettId;
     }
-    
-    public void fillReseforskottTable(String query, JTable table){
-        try{
-        ResultSet myRs = DatabasTest.getTable(query);
 
-        while(table.getRowCount() > 0) 
-        {
-            ((DefaultTableModel) table.getModel()).removeRow(0);
-        }
-        while(myRs.next())
-        {  
+    public void fillReseforskottTable(String query, JTable table) {
+        try {
+            ResultSet myRs = DatabasTest.getTable(query);
+
+            while (table.getRowCount() > 0) {
+                ((DefaultTableModel) table.getModel()).removeRow(0);
+            }
+            while (myRs.next()) {
                 String varde = myRs.getString("ID");
-		String varde1 = myRs.getString("Motivering");
-		String varde2 = myRs.getString("Summa");
-		String varde3 = myRs.getString("KonsultID");
-		String varde4 = myRs.getString("ReseutläggsID");
-		String varde5 = myRs.getString("Accepterat");
-                
+                String varde1 = myRs.getString("Motivering");
+                String varde2 = myRs.getString("Summa");
+                String varde3 = myRs.getString("KonsultID");
+                String varde4 = myRs.getString("ReseutläggsID");
+                String varde5 = myRs.getString("Accepterat");
+
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
-                varde, varde1, varde2, varde3, varde4, varde5}
+                    varde, varde1, varde2, varde3, varde4, varde5}
                 );
-        }
+            }
 
-        myRs.close();
-    }
-        
-        catch(SQLException e){
+            myRs.close();
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
-    public void fillReseutlaggTable(String query, JTable table){
-        try{
-        ResultSet myRs = DatabasTest.getTable(query);
 
-        while(table.getRowCount() > 0) 
-        {
-            ((DefaultTableModel) table.getModel()).removeRow(0);
-        }
-        while(myRs.next())
-        {
-              
+    public void fillReseutlaggTable(String query, JTable table) {
+        try {
+            ResultSet myRs = DatabasTest.getTable(query);
+
+            while (table.getRowCount() > 0) {
+                ((DefaultTableModel) table.getModel()).removeRow(0);
+            }
+            while (myRs.next()) {
+
                 String varde = myRs.getString("ID");
                 String varde0 = myRs.getString("KonsultID");
                 String varde1 = myRs.getString("StartDatum");
                 String varde2 = myRs.getString("SlutDatum");
-		String varde3 = myRs.getString("FranLand");
-		String varde4 = myRs.getString("TillLand");
-		String varde5 = myRs.getString("Accepterat");
-                
+                String varde3 = myRs.getString("FranLand");
+                String varde4 = myRs.getString("TillLand");
+                String varde5 = myRs.getString("Accepterat");
+
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
-                varde, varde0, varde1, varde2, varde3, varde4, varde5}
+                    varde, varde0, varde1, varde2, varde3, varde4, varde5}
                 );
-        }
+            }
 
-        myRs.close();
-    }
-        
-        catch(SQLException e){
+            myRs.close();
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
+
     public void fillUtgifter(String query, JTable table) {
-        try{
-        ResultSet myRs = DatabasTest.getTable(query);
+        try {
+            ResultSet myRs = DatabasTest.getTable(query);
 
-        while(table.getRowCount() > 0) {
-            ((DefaultTableModel) table.getModel()).removeRow(0);
-        }
-        while(myRs.next()) {  
+            while (table.getRowCount() > 0) {
+                ((DefaultTableModel) table.getModel()).removeRow(0);
+            }
+            while (myRs.next()) {
                 String varde = myRs.getString("ID");
-		String varde1 = myRs.getString("ReseUtläggsID");
-		String varde2 = myRs.getString("Typ");
-		String varde3 = myRs.getString("Summa ink moms");
-		String varde4 = myRs.getString("Summa exl moms");
-		String varde5 = myRs.getString("Kvitto url");
-                
+                String varde1 = myRs.getString("ReseUtläggsID");
+                String varde2 = myRs.getString("Typ");
+                String varde3 = myRs.getString("Summa ink moms");
+                String varde4 = myRs.getString("Summa exl moms");
+                String varde5 = myRs.getString("Kvitto url");
+
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
-                varde, varde1, varde2, varde3, varde4, varde5}
+                    varde, varde1, varde2, varde3, varde4, varde5}
                 );
-        }
+            }
 
-        myRs.close();
-    }
-        
-        catch(SQLException e){
+            myRs.close();
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    
+
     private String hamtaUtgifter() {
         String utgifter = "";
         for (int y = 0; y < tblUtgifter.getRowCount(); y++) {
