@@ -80,7 +80,7 @@ public class Traktamente {
             while (myRs.next()) {
                 aktValuta.setValuta(myRs.getString(1));
                 aktValuta.setKronor(Double.parseDouble(myRs.getString(2)));
-                valutor[myRs.getRow()-1] = new EntityGrej.Valutor(myRs.getString(1), Double.parseDouble(myRs.getString(2)));
+                valutor[myRs.getRow() - 1] = new EntityGrej.Valutor(myRs.getString(1), Double.parseDouble(myRs.getString(2)));
             }
 
             this.franLand = franLand;
@@ -92,9 +92,10 @@ public class Traktamente {
     }
 
     public double getKonv(String valuta) {
-        for(EntityGrej.Valutor val : this.valutor){
-            if(val.getValuta().equals(valuta))
+        for (EntityGrej.Valutor val : this.valutor) {
+            if (val.getValuta().equals(valuta)) {
                 return val.getKronor();
+            }
         }
         return 1000000;
     }
