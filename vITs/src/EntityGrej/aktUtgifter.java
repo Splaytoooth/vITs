@@ -5,9 +5,11 @@
  */
 package EntityGrej;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +29,7 @@ public class aktUtgifter {
     private vITs.Traktamente traktamente;
     private String startDatum;
     private int dagar;
+    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
     public ArrayList<UtgiftExpTabell> beraknadeUtgifter() {
         return beraknadeUtgifter;
@@ -79,27 +82,41 @@ public class aktUtgifter {
         }
 
         Map<String, List<UtgiftExpTabell>> sortBjud = new HashMap<String, List<UtgiftExpTabell>>();
-        for (UtgiftExpTabell aktObj : rawUtgifter) {
+        for (UtgiftExpTabell aktObj : bjuden) {
             if (aktObj.Typ.equals("frukost") || aktObj.Typ.equals("middag") || aktObj.Typ.equals("lunch")) {
             } else {
                 List<UtgiftExpTabell> bjudLista = new ArrayList<UtgiftExpTabell>();
                 UtgiftExpTabell[] bjudenDag = new UtgiftExpTabell[3];
-                for (UtgiftExpTabell aktObj2 : rawUtgifter) {
+
+                if (aktObj.Typ.equals("Bjuden på frukost")) {
+                    aktObj.Typ = "frukost";
+                    bjudLista.add(aktObj);
+                } else if (aktObj.Typ.equals("Bjuden på lunch")) {
+                    aktObj.Typ = "lunch";
+                    bjudLista.add(aktObj);
+                } else if (aktObj.Typ.equals("Bjuden på middag")) {
+                    aktObj.Typ = "middag";
+                    bjudLista.add(aktObj);
+                }
+
+                for (UtgiftExpTabell aktObj2 : bjuden) {
                     try {
-                        if (aktObj.Datum.equals(aktObj2.Datum)) {
+                        if (aktObj2.Datum.toString().equals(aktObj.Datum.toString())) {
                             if (aktObj2.Typ.equals("Bjuden på frukost")) {
                                 aktObj2.Typ = "frukost";
-                            } else if (aktObj.Typ.equals("Bjuden på lunch")) {
+                                bjudLista.add(aktObj2);
+                            } else if (aktObj2.Typ.equals("Bjuden på lunch")) {
                                 aktObj2.Typ = "lunch";
-                            } else if (aktObj.Typ.equals("Bjuden på middag")) {
+                                bjudLista.add(aktObj2);
+                            } else if (aktObj2.Typ.equals("Bjuden på middag")) {
                                 aktObj2.Typ = "middag";
+                                bjudLista.add(aktObj2);
                             }
-                            bjudLista.add(aktObj2);
                         }
-                        sortBjud.put(aktObj.Datum.toString(), bjudLista);
                     } catch (Exception e) {
                     }
                 }
+                sortBjud.put(aktObj.Datum.toString(), bjudLista);
             }
         }
 
@@ -116,47 +133,51 @@ public class aktUtgifter {
         beraknadeUtgifter.add(utgRestDagar);
 
         for (Entry<String, List<UtgiftExpTabell>> entry : sortBjud.entrySet()) {
-            String key = entry.getKey();
             List<UtgiftExpTabell> aktLista = entry.getValue();
             UtgiftExpTabell nyUtg = new UtgiftExpTabell();
             nyUtg.Datum = aktLista.get(0).Datum;
-            boolean forstDag = false;
-            if (aktLista.get(0).Datum.equals(startDatum)) {
-                forstDag = true;
-            }
             double procent = 0;
             String utgTyp = "Bjuden på ";
+            Date date = null;
             for (UtgiftExpTabell utgift : aktLista) {
-                utgTyp += utgift.Typ + ", ";
                 if (utgift.Typ.equals("frukost")) {
-                    if (forstDag == true && traktamente.franLand.equals("Sverige")) {
+                    if (f.format(utgift.Datum).equals(startDatum) && traktamente.franLand.equals("Sverige")) {
                         procent += traktamente.matSverige[0].getAvdragsProcent();
+                        utgTyp += "frukost, ";
                     } else {
                         procent += traktamente.matUtomlands[0].getAvdragsProcent();
+                        utgTyp += "frukost, ";
                     }
                 } else if (utgift.Typ.equals("lunch")) {
-                    if (forstDag == true && traktamente.franLand.equals("Sverige")) {
+                    if (f.format(utgift.Datum).equals(startDatum) && traktamente.franLand.equals("Sverige")) {
                         procent += traktamente.matSverige[1].getAvdragsProcent();
+                        utgTyp += "lunch, ";
                     } else {
                         procent += traktamente.matUtomlands[1].getAvdragsProcent();
+                        utgTyp += "lunch, ";
                     }
                 } else if (utgift.Typ.equals("middag")) {
-                    if (forstDag == true && traktamente.franLand.equals("Sverige")) {
+                    if (f.format(utgift.Datum).equals(startDatum) && traktamente.franLand.equals("Sverige")) {
                         procent += traktamente.matSverige[2].getAvdragsProcent();
+                        utgTyp += "middag, ";
                     } else {
                         procent += traktamente.matUtomlands[2].getAvdragsProcent();
+                        utgTyp += "middag, ";
                     }
                 }
-                utgTyp = utgTyp.substring(0, utgTyp.length() - 2);
-                utgTyp += " den " + aktLista.get(0).Datum;
-                if (forstDag == true) {
-                    utgTyp += ", första resdagen fortfarande i " + traktamente.franLand;
-                }
-                utgift.KostnadExklMoms = traktamente.franLandNormalBelopp * procent * -0.01;
-                utgift.KostnadInklMoms = utgift.KostnadExklMoms;
-                utgift.Typ = utgTyp;
-                this.beraknadeUtgifter.add(utgift);
+                date = utgift.Datum; 
             }
+                utgTyp = utgTyp.substring(0, utgTyp.length() - 2);
+                utgTyp += " den " + f.format(aktLista.get(0).Datum);
+                nyUtg.KostnadExklMoms = traktamente.tillLandNormalBelopp * procent * -0.01;
+                if (f.format(date).equals(startDatum)) {
+                    utgTyp += ", första resdagen fortfarande i " + traktamente.franLand;
+                    nyUtg.KostnadExklMoms = traktamente.franLandNormalBelopp * procent * -0.01;
+                }
+                nyUtg.KostnadInklMoms = nyUtg.KostnadExklMoms;
+                nyUtg.Typ = utgTyp;
+                this.beraknadeUtgifter.add(nyUtg);
+            
         }
 
         for (UtgiftExpTabell utg : bil) {

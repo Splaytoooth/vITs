@@ -5,6 +5,7 @@
  */
 package EntityGrej;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,6 +22,7 @@ public class UtgiftExpTabell {
     public Date Datum;
     public String nDagar;
     public String KvittoUrl;
+    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
     public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, Double valutaKonv, Double mil, Date datum, String nDagar, String kvittoUrl) {
         this.Typ = typ;
