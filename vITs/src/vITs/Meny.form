@@ -2095,7 +2095,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnBekraftaReseforskott" min="-2" pref="143" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="btnBekraftaReseforskott" min="-2" pref="143" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                              <Component id="btnTaBortBekraftelseReseforskott" min="-2" pref="153" max="-2" attributes="0"/>
+                                          </Group>
                                           <Component id="jScrollPane7" min="-2" pref="500" max="-2" attributes="0"/>
                                           <Component id="btnVisaReseforskottChef" min="-2" pref="140" max="-2" attributes="0"/>
                                       </Group>
@@ -2111,8 +2115,11 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnBekraftaReseforskott" min="-2" pref="35" max="-2" attributes="0"/>
-                                      <EmptySpace pref="129" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="btnBekraftaReseforskott" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="btnTaBortBekraftelseReseforskott" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="127" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2156,6 +2163,17 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Bekr&#xe4;fta resef&#xf6;rskott"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBekraftaReseforskottMouseClicked"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btnTaBortBekraftelseReseforskott">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Ta bort bekr&#xe4;ftelse"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTaBortBekraftelseReseforskottMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -2176,6 +2194,8 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="btnBekraftaReseutlagg" min="-2" pref="142" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                              <Component id="btnTaBortBekraftelseReseutlagg" min="-2" pref="151" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -2208,7 +2228,10 @@
                                           <Component id="jScrollPane15" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnBekraftaReseutlagg" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="btnTaBortBekraftelseReseutlagg" max="32767" attributes="0"/>
+                                          <Component id="btnBekraftaReseutlagg" pref="34" max="32767" attributes="0"/>
+                                      </Group>
                                       <EmptySpace pref="124" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2293,6 +2316,9 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Bekr&#xe4;fta reseutl&#xe4;gg"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBekraftaReseutlaggMouseClicked"/>
+                              </Events>
                             </Component>
                             <Container class="javax.swing.JScrollPane" name="jScrollPane15">
                               <AuxValues>
@@ -2360,6 +2386,14 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVisaUtgifterChefMouseClicked"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btnTaBortBekraftelseReseutlagg">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Ta bort bekr&#xe4;ftelse"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTaBortBekraftelseReseutlaggMouseClicked"/>
                               </Events>
                             </Component>
                           </SubComponents>

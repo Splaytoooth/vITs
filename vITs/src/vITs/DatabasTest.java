@@ -81,6 +81,11 @@ public class DatabasTest {
         return enChefMail; 
     }
     
+    public static String getMail(int Id) {
+        
+        return "mail";
+    }
+    
     public static ResultSet getTable(String query)
     {
         ResultSet myRs = null;
