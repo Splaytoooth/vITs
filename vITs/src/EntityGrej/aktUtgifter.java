@@ -66,10 +66,10 @@ public class aktUtgifter {
             if (aktObj.Typ.equals("Bjuden på frukost") || aktObj.Typ.equals("Bjuden på lunch") || aktObj.Typ.equals("Bjuden på middag")) {
                 bjuden[intBjuden] = aktObj;
                 intBjuden++;
-            } else if (aktObj.equals("Egen bil") || aktObj.equals("Tjänstebil med diesel") || aktObj.equals("Tjänstemedel annat drivmedel")) {
+            } else if (aktObj.Typ.equals("Egen bil") || aktObj.Typ.equals("Tjänstebil med diesel") || aktObj.Typ.equals("Tjänstemedel annat drivmedel")) {
                 bil[intBil] = aktObj;
                 intBil++;
-            } else if (aktObj.equals("Boende med kvitto") || aktObj.equals("Boende utan kvitto")) {
+            } else if (aktObj.Typ.equals("Boende med kvitto") || aktObj.Typ.equals("Boende utan kvitto")) {
                 boende[intBoende] = aktObj;
                 intBoende++;
             } else {
