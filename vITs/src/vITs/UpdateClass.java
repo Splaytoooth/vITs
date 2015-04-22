@@ -73,4 +73,34 @@ public class UpdateClass {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    public static void accepteraUtbetalning(String Id, String table) {
+        try {
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+           
+            String sql = "update " + table + " set Accepterat = 1 where ID = " + Id;
+
+            myStmt.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Ärende accepterat!");
+        } catch (SQLException se) {
+            JOptionPane.showMessageDialog(null, se);
+        }
+    }
+    
+    public static void accepteraInteUtbetalning(String Id, String table) {
+        try {
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+           
+            String sql = "update " + table + " set Accepterat = 0 where ID = " + Id;
+
+            myStmt.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Ärendet ej accepterat!");
+        } catch (SQLException se) {
+            JOptionPane.showMessageDialog(null, se);
+        }
+    }
 }
