@@ -36,12 +36,12 @@ public class aktUtgifter {
         return beraknadeUtgifter;
     }
 
-    public void newAktUtgifter(UtgiftExpTabell[] utgifter, vITs.Traktamente trakt, String startDatum, int dagar) {
+    public void newAktUtgifter(UtgiftExpTabell[][] utgifter, vITs.Traktamente trakt, String startDatum, int dagar) {
         beraknadeUtgifter.clear();
-        rawUtgifter = utgifter;
+        rawUtgifter = utgifter[0];
         this.traktamente = trakt;
         this.dagar = dagar;
-        System.arraycopy(rawUtgifter, 0, sparaGamlaUtgifter, 0, rawUtgifter.length);
+        sparaGamlaUtgifter = utgifter[1];
 
         int intBjuden = 0;
         int intBil = 0;
