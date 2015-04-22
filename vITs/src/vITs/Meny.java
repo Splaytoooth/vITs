@@ -2394,7 +2394,7 @@ public class Meny extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-    
+
     private String hamtaUtgifter() {
         String utgifter = "";
         for (int y = 0; y < tblUtgifter.getRowCount(); y++) {
