@@ -82,8 +82,22 @@ public class DatabasTest {
     }
     
     public static String getMail(int Id) {
-        
-        return "mail";
+        String enMail = "";
+        try { 
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+
+            ResultSet myRs = myStmt.executeQuery("select Email from Konsulter where ID=" + Id);
+            
+            myRs.next();
+            enMail = myRs.getString("Email");
+        } catch (SQLException e) {
+            System.out.print("Det blev fel");
+            e.printStackTrace();
+        }
+         
+        return enMail;
     }
     
     public static ResultSet getTable(String query)
@@ -100,6 +114,24 @@ public class DatabasTest {
         System.out.println(e);
         }
         return myRs;
+    }
+    
+    public static String getKonsultIdFromArende(String arandeId, String arande) {
+        String ettId = ""; 
+        try { 
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+
+            ResultSet myRs = myStmt.executeQuery("select KonsultID from " + arande + " where ID = " + arandeId);
+            
+            myRs.next();
+            ettId= myRs.getString("KonsultID");
+        } catch (SQLException e) {
+            System.out.print("Det blev fel");
+            e.printStackTrace();
+        }
+        return ettId;
     }
 
 }

@@ -2288,13 +2288,18 @@ public class Meny extends javax.swing.JFrame {
 
     private void btnBekraftaReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseforskottMouseClicked
         UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
-        String Mail = DatabasTest.getMail(Integer.parseInt(id));
+        String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
+        String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
         Epost.Epost nyEpost = new Epost.Epost();
         nyEpost.skickaEpostAnstalld(Mail, "reseförskott");
     }//GEN-LAST:event_btnBekraftaReseforskottMouseClicked
 
     private void btnBekraftaReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseutlaggMouseClicked
         UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
+        String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
+        String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
+        Epost.Epost nyEpost = new Epost.Epost();
+        nyEpost.skickaEpostAnstalld(Mail, "reseutlägg");
     }//GEN-LAST:event_btnBekraftaReseutlaggMouseClicked
 
     private void btnTaBortBekraftelseReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseforskottMouseClicked
@@ -2304,7 +2309,7 @@ public class Meny extends javax.swing.JFrame {
     private void btnTaBortBekraftelseReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseutlaggMouseClicked
         UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
     }//GEN-LAST:event_btnTaBortBekraftelseReseutlaggMouseClicked
-
+    
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         int selectedColumnIndex = table.getSelectedColumn();
