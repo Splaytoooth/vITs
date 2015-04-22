@@ -46,9 +46,9 @@ public class aktUtgifter {
         for (UtgiftExpTabell aktObj : rawUtgifter) {
             if (aktObj.Typ.equals("Bjuden på frukost") || aktObj.Typ.equals("Bjuden på lunch") || aktObj.Typ.equals("Bjuden på middag")) {
                 intBjuden++;
-            } else if (aktObj.equals("Egen bil") || aktObj.equals("Tjänstebil med diesel") || aktObj.equals("Tjänstemedel annat drivmedel")) {
+            } else if (aktObj.Typ.equals("Egen bil") || aktObj.Typ.equals("Tjänstebil med diesel") || aktObj.Typ.equals("Tjänstemedel annat drivmedel")) {
                 intBil++;
-            } else if (aktObj.equals("Boende med kvitto") || aktObj.equals("Boende utan kvitto")) {
+            } else if (aktObj.Typ.equals("Boende med kvitto") || aktObj.Typ.equals("Boende utan kvitto")) {
                 intBoende++;
             } else {
                 intAnnat++;
