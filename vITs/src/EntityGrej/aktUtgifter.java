@@ -37,6 +37,7 @@ public class aktUtgifter {
     }
 
     public void newAktUtgifter(List<UtgiftExpTabell[]> utgifter, vITs.Traktamente trakt, String startDatum, int dagar) {
+        if(sparaGamlaUtgifter != utgifter.get(0) || this.traktamente != trakt || !this.startDatum.equals(startDatum) || this.dagar != dagar)
         beraknadeUtgifter.clear();
         rawUtgifter = utgifter.get(0);
         this.traktamente = trakt;

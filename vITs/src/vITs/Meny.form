@@ -433,6 +433,10 @@
                                               <Component id="btnSparaUtkast" min="-2" pref="163" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
+                                              <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="tfTotSumma" min="-2" pref="92" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                                               <Component id="btnRemove" min="-2" pref="155" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="btnRedigera" min="-2" pref="91" max="-2" attributes="0"/>
@@ -506,7 +510,7 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                                       <Component id="dpFran1" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace pref="58" max="32767" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
                                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                                   </Group>
@@ -515,7 +519,7 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="cbAntDagar" min="-2" pref="46" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="btnKvitto" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="cbValutaR" min="-2" pref="112" max="-2" attributes="0"/>
@@ -584,7 +588,7 @@
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="cbAntDagar" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnKvitto" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                               </Group>
@@ -598,10 +602,6 @@
                                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                  <Component id="btnRemove" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
@@ -636,6 +636,16 @@
                                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                           <Component id="btnRegReseförskott" pref="51" max="32767" attributes="0"/>
                                       </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="tfTotSumma" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="btnRemove" min="-2" pref="31" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -673,7 +683,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Kostnad exkl moms"/>
+                    <Property name="text" type="java.lang.String" value="Total kostnad exkl moms"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfKostnadExMoms">
@@ -849,7 +859,7 @@
                     <Property name="text" type="java.lang.String" value="Datum"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnKvitto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ladda upp kvittoblid"/>
                   </Properties>
@@ -858,7 +868,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Kostnad inkl moms"/>
+                    <Property name="text" type="java.lang.String" value="Total kostnad inkl moms"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbAntDagar">
@@ -902,6 +912,16 @@
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Dagar"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfTotSumma">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel16">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Summan du f&#xe5;r totalt:"/>
                   </Properties>
                 </Component>
               </SubComponents>

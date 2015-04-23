@@ -40,7 +40,7 @@ public class Meny extends javax.swing.JFrame {
         cbAntDagar.setEnabled(false);
         cbValutaR.setEnabled(false);
         tfMil.setEnabled(false);
-        jButton2.setEnabled(false);
+        btnKvitto.setEnabled(false);
         this.setTitle("vITs Utbildning");
         sc = (DefaultTableModel) tblUtgifter.getModel();
         btnSkickaR.setVisible(false);
@@ -110,11 +110,13 @@ public class Meny extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         dpFran1 = new com.toedter.calendar.JDateChooser();
         lblFranDatum = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnKvitto = new javax.swing.JButton();
         tfKostnadInklMoms = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         cbAntDagar = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
+        tfTotSumma = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         pRapporter = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -465,7 +467,7 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Kostnad exkl moms");
+        jLabel6.setText("Total kostnad exkl moms");
 
         tfAnnat.setEnabled(false);
 
@@ -558,13 +560,17 @@ public class Meny extends javax.swing.JFrame {
 
         lblFranDatum.setText("Datum");
 
-        jButton2.setText("Ladda upp kvittoblid");
+        btnKvitto.setText("Ladda upp kvittoblid");
 
-        jLabel15.setText("Kostnad inkl moms");
+        jLabel15.setText("Total kostnad inkl moms");
 
         cbAntDagar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
 
         jLabel13.setText("Dagar");
+
+        tfTotSumma.setEditable(false);
+
+        jLabel16.setText("Summan du får totalt:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -584,6 +590,10 @@ public class Meny extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel16)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(133, 133, 133)
                                     .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnRedigera, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -639,14 +649,14 @@ public class Meny extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addGap(10, 10, 10)
                                             .addComponent(dpFran1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel13)
                                             .addGap(36, 36, 36)))
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(47, 47, 47)
-                                            .addComponent(jButton2))
+                                            .addComponent(btnKvitto))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(cbValutaR, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(35, 35, 35)
@@ -696,7 +706,7 @@ public class Meny extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)
-                            .addComponent(jButton2))
+                            .addComponent(btnKvitto))
                         .addGap(11, 11, 11))
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -706,9 +716,6 @@ public class Meny extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -734,7 +741,14 @@ public class Meny extends javax.swing.JFrame {
                                 .addGap(17, 17, 17)
                                 .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
-                                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)))))
+                                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16))
+                            .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(70, 70, 70))
         );
 
@@ -1887,6 +1901,12 @@ public class Meny extends javax.swing.JFrame {
                 } catch (Exception e) {
                 }
 
+                String valutaNamn = null;
+                try {
+                    valutaNamn = sc.getValueAt(i, 3).toString();
+                } catch (Exception e) {
+                }
+
                 EntityGrej.UtgiftExpTabell aktExp = new EntityGrej.UtgiftExpTabell(
                         sc.getValueAt(i, 0).toString(),
                         kolumn2,
@@ -1895,7 +1915,8 @@ public class Meny extends javax.swing.JFrame {
                         kolumn5,
                         datum,
                         kolumn7,
-                        kolumn8
+                        kolumn8,
+                        valutaNamn
                 );
                 expTabell[i] = aktExp;
                 i++;
@@ -1932,12 +1953,16 @@ public class Meny extends javax.swing.JFrame {
 
     private void raknaTraktamente() {
         try {
-            if (!traktamente.franLand.equals(cbLandFran.getSelectedItem().toString()) && !traktamente.tillLand.equals(cbLandTill.getSelectedItem().toString())) {
+            if (!traktamente.franLand.equals(cbLandFran.getSelectedItem().toString()) || !traktamente.tillLand.equals(cbLandTill.getSelectedItem().toString())) {
                 traktamente = new Traktamente(cbLandFran.getSelectedItem().toString(), cbLandTill.getSelectedItem().toString());
             }
         } catch (Exception e) {
             traktamente = new Traktamente(cbLandFran.getSelectedItem().toString(), cbLandTill.getSelectedItem().toString());
         }
+
+    }
+
+    private void enableOffReseUtlägg() {
 
     }
 
@@ -2035,7 +2060,7 @@ public class Meny extends javax.swing.JFrame {
             cbAntDagar.setEnabled(false);
             cbValutaR.setEnabled(false);
             tfMil.setEnabled(false);
-            jButton2.setEnabled(false);
+            btnKvitto.setEnabled(false);
         }
         if (cbKostnadTyp.getSelectedItem().toString().equals("Egen bil") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil med diesel") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil annat drivmedel")) {
             tfKostnadExMoms.setEnabled(false);
@@ -2044,7 +2069,7 @@ public class Meny extends javax.swing.JFrame {
             cbAntDagar.setEnabled(false);
             cbValutaR.setEnabled(false);
             tfMil.setEnabled(true);
-            jButton2.setEnabled(false);
+            btnKvitto.setEnabled(false);
         }
         if (cbKostnadTyp.getSelectedItem().toString().equals("Annan typ av resa")) {
             tfKostnadExMoms.setEnabled(true);
@@ -2053,7 +2078,7 @@ public class Meny extends javax.swing.JFrame {
             cbAntDagar.setEnabled(false);
             cbValutaR.setEnabled(true);
             tfMil.setEnabled(false);
-            jButton2.setEnabled(true);
+            btnKvitto.setEnabled(true);
         }
 
         if (cbKostnadTyp.getSelectedItem().toString().equals("Boende med kvitto")) {
@@ -2063,7 +2088,7 @@ public class Meny extends javax.swing.JFrame {
             cbAntDagar.setEnabled(true);
             cbValutaR.setEnabled(true);
             tfMil.setEnabled(false);
-            jButton2.setEnabled(true);
+            btnKvitto.setEnabled(true);
         }
 
         if (cbKostnadTyp.getSelectedItem().toString().equals("Boende utan kvitto")) {
@@ -2073,7 +2098,7 @@ public class Meny extends javax.swing.JFrame {
             cbAntDagar.setEnabled(true);
             cbValutaR.setEnabled(false);
             tfMil.setEnabled(false);
-            jButton2.setEnabled(false);
+            btnKvitto.setEnabled(false);
         }
 
         if (cbKostnadTyp.getSelectedItem().toString().equals("Annat")) {
@@ -2083,7 +2108,7 @@ public class Meny extends javax.swing.JFrame {
             cbAntDagar.setEnabled(false);
             cbValutaR.setEnabled(true);
             tfMil.setEnabled(false);
-            jButton2.setEnabled(true);
+            btnKvitto.setEnabled(true);
             tfAnnat.setEnabled(true);
         } else {
             tfAnnat.setEnabled(false);
@@ -2161,7 +2186,7 @@ public class Meny extends javax.swing.JFrame {
             kolumn7 = cbAntDagar.getSelectedItem().toString();
         }
         String kolumn8 = null;
-        if (this.jButton2.isEnabled()) {
+        if (this.btnKvitto.isEnabled()) {
             kolumn8 = "hej";
         }
 
@@ -2201,22 +2226,27 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSparaUtkastMouseClicked
 
     private void btnGranskaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranskaActionPerformed
-        if (dpFran.getDate() == null && dpTill.getDate() == null) {
+        if (dpFran.getDate() == null || dpTill.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Var god fyll i ett datum för start- och slut- datum för resan");
             return;
         }
-
+        btnSparaUtkast.setVisible(false);
         btnSkickaR.setVisible(true);
         btnGranska.setVisible(false);
         btnRedigera.setVisible(true);
         btnAdd.setVisible(false);
+        tfMil.setEnabled(false);
         tfKostnadExMoms.setEnabled(false);
+        tfKostnadInklMoms.setEnabled(false);
         tfAnnat.setEnabled(false);
         cbKostnadTyp.setEnabled(false);
         cbValutaR.setEnabled(false);
+        cbAntDagar.setEnabled(false);
+        btnKvitto.setEnabled(false);
         btnRemove.setVisible(false);
         cbLandFran.setEnabled(false);
         cbLandTill.setEnabled(false);
+        dpFran1.setEnabled(false);
         dpFran.setEnabled(false);
         dpTill.setEnabled(false);
         btnRegReseförskott.setVisible(false);
@@ -2225,22 +2255,25 @@ public class Meny extends javax.swing.JFrame {
         beraknaTrakt();
 
         sc.setRowCount(0);
+        double totSumma = 0;
         ArrayList<EntityGrej.UtgiftExpTabell> utgifterna = this.berUtgifter.beraknadeUtgifter();
         for (EntityGrej.UtgiftExpTabell utgift : utgifterna) {
             sc.addRow(new Object[]{
                 utgift.Typ, utgift.KostnadExklMoms, utgift.KostnadInklMoms, utgift.KvittoUrl
             });
-
+            totSumma += utgift.KostnadInklMoms;
         }
-
+        this.tfTotSumma.setText(String.valueOf(totSumma));
     }//GEN-LAST:event_btnGranskaActionPerformed
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
+        btnSparaUtkast.setVisible(true);
         btnSkickaR.setVisible(false);
         btnRedigera.setVisible(false);
         btnGranska.setVisible(true);
         btnAdd.setVisible(true);
         tfKostnadExMoms.setEnabled(true);
+        tfKostnadInklMoms.setEnabled(true);
         cbKostnadTyp.setEnabled(true);
         cbValutaR.setEnabled(true);
         btnRemove.setVisible(true);
@@ -2249,14 +2282,23 @@ public class Meny extends javax.swing.JFrame {
         dpFran.setEnabled(true);
         dpTill.setEnabled(true);
         btnRegReseförskott.setVisible(true);
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Annat")) {
-            tfAnnat.setEnabled(true);
-        }
+        cbKostnadTyp.setSelectedIndex(9);
+        tfAnnat.setEnabled(true);
+        this.tfSumma.setText("");
 
-        tblUtgifter.removeAll();
+        sc.setRowCount(0);
         for (EntityGrej.UtgiftExpTabell utg : this.berUtgifter.sparaGamlaUtgifter) {
-            
+            String datum = null;
+            try {
+                f.format(utg.Datum);
+            } catch (Exception e) {
+            }
+            sc.addRow(
+                    new Object[]{utg.Typ, utg.KostnadExklMoms, utg.KostnadInklMoms, utg.Valuta, utg.Mil, datum, utg.nDagar, utg.KvittoUrl}
+            );
+
         }
+        tfTotSumma.setText("");
     }//GEN-LAST:event_btnRedigeraActionPerformed
 
     private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
@@ -2332,7 +2374,7 @@ public class Meny extends javax.swing.JFrame {
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         String ettID = table.getValueAt(selectedRowIndex, 0).toString();
-        
+
         return ettID;
     }
 
@@ -2350,19 +2392,14 @@ public class Meny extends javax.swing.JFrame {
                 String varde3 = myRs.getString("KonsultID");
                 String varde4 = myRs.getString("ReseutläggsID");
                 String varde5 = myRs.getString("Accepterat");
-                
+
                 varde3 = DatabasTest.getNamn(varde3);
-                
-                if(varde5 == null)
-                {
+
+                if (varde5 == null) {
                     varde5 = "ej behandlad";
-                }
-                else if(varde5.equalsIgnoreCase("0"))
-                {
+                } else if (varde5.equalsIgnoreCase("0")) {
                     varde5 = "Nej";
-                }
-                else if(varde5.equalsIgnoreCase("1"))
-                {
+                } else if (varde5.equalsIgnoreCase("1")) {
                     varde5 = "Ja";
                 }
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
@@ -2395,20 +2432,15 @@ public class Meny extends javax.swing.JFrame {
                 String varde5 = myRs.getString("Accepterat");
 
                 varde0 = DatabasTest.getNamn(varde0);
-                
-                if(varde5 == null)
-                {
+
+                if (varde5 == null) {
                     varde5 = "ej behandlad";
-                }
-                else if(varde5.equalsIgnoreCase("0"))
-                {
+                } else if (varde5.equalsIgnoreCase("0")) {
                     varde5 = "Nej";
-                }
-                else if(varde5.equalsIgnoreCase("1"))
-                {
+                } else if (varde5.equalsIgnoreCase("1")) {
                     varde5 = "Ja";
                 }
-                
+
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
                     varde, varde0, varde1, varde2, varde3, varde4, varde5}
@@ -2501,6 +2533,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnBekraftaReseutlagg;
     private javax.swing.JButton btnGranska;
     private javax.swing.JButton btnHamtaLander;
+    private javax.swing.JButton btnKvitto;
     private javax.swing.JButton btnLaggTillAnvandare;
     private javax.swing.JButton btnLaggTillLand;
     private javax.swing.JButton btnLaggTillValuta;
@@ -2536,7 +2569,6 @@ public class Meny extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dpFran1;
     private com.toedter.calendar.JDateChooser dpTill;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JList jL_ansreslista;
     private javax.swing.JList jL_cheffreslista1;
@@ -2547,6 +2579,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2662,6 +2695,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTextField tfLosenord1;
     private javax.swing.JTextField tfMil;
     private javax.swing.JTextField tfSumma;
+    private javax.swing.JTextField tfTotSumma;
     private javax.swing.JTextField tfValutaNamn;
     private javax.swing.JTextField tfVaxelkurs;
     private javax.swing.JTextField tf_ansdatumf;

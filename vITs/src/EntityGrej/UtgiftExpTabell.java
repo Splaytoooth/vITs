@@ -22,9 +22,10 @@ public class UtgiftExpTabell {
     public Date Datum;
     public String nDagar;
     public String KvittoUrl;
+    public String Valuta;
     SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
-    public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, Double valutaKonv, Double mil, Date datum, String nDagar, String kvittoUrl) {
+    public UtgiftExpTabell(String typ, Double kostnadEx, Double kostnadInk, Double valutaKonv, Double mil, Date datum, String nDagar, String kvittoUrl,String valuta) {
         this.Typ = typ;
         this.KostnadInklMoms = kostnadInk;
         this.KostnadExklMoms = kostnadEx;
@@ -33,6 +34,7 @@ public class UtgiftExpTabell {
         this.nDagar = nDagar;
         this.KvittoUrl = kvittoUrl;
         this.valutaKonv = valutaKonv;
+        this.Valuta = valuta;
     }
 
     public UtgiftExpTabell() {
