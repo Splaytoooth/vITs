@@ -2120,19 +2120,10 @@
                                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                               <Component id="btnTaBortBekraftelseReseforskott" min="-2" pref="153" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jScrollPane7" alignment="0" min="-2" pref="591" max="-2" attributes="0"/>
-                                                  <Component id="btnVisaReseforskottChef" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jScrollPane16" min="-2" pref="388" max="-2" attributes="0"/>
-                                                  <Component id="btnVisaMotiveringChef" min="-2" pref="113" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="btnVisaReseforskottChef" min="-2" pref="140" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane7" alignment="0" min="-2" pref="591" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="176" max="32767" attributes="0"/>
+                                      <EmptySpace pref="622" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2140,15 +2131,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btnVisaReseforskottChef" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnVisaMotiveringChef" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="btnVisaReseforskottChef" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jScrollPane16" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane7" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jScrollPane7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="btnBekraftaReseforskott" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -2244,30 +2229,6 @@
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTaBortBekraftelseReseforskottMouseClicked"/>
                               </Events>
                             </Component>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane16">
-                              <AuxValues>
-                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                              </AuxValues>
-
-                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                              <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="taMotiveringChef">
-                                  <Properties>
-                                    <Property name="editable" type="boolean" value="false"/>
-                                    <Property name="columns" type="int" value="20"/>
-                                    <Property name="rows" type="int" value="5"/>
-                                  </Properties>
-                                </Component>
-                              </SubComponents>
-                            </Container>
-                            <Component class="javax.swing.JButton" name="btnVisaMotiveringChef">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Visa motivering"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisaMotiveringChefActionPerformed"/>
-                              </Events>
-                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="jPanel16">
@@ -2301,7 +2262,7 @@
                                               <Component id="btnVisaReseutlaggChef" min="-2" pref="140" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="btnVisaUtgifterChef" min="-2" pref="118" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="493" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="504" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2310,12 +2271,18 @@
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="btnVisaReseutlaggChef" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnVisaUtgifterChef" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Component id="btnVisaUtgifterChef" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnVisaReseutlaggChef" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jScrollPane8" min="-2" max="-2" attributes="0"/>
                                           <Component id="jScrollPane15" min="-2" max="-2" attributes="0"/>
@@ -2537,14 +2504,9 @@
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="btnVisaReseforskott" min="-2" pref="131" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane9" min="-2" pref="594" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane9" min="-2" pref="607" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnVisaMotiveringEgna" min="-2" pref="114" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane17" min="-2" pref="397" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace pref="213" max="32767" attributes="0"/>
+                                      <EmptySpace pref="615" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2552,15 +2514,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btnVisaReseforskott" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnVisaMotiveringEgna" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="btnVisaReseforskott" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jScrollPane17" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane9" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jScrollPane9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace pref="180" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2601,30 +2557,6 @@
                                 </Component>
                               </SubComponents>
                             </Container>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane17">
-                              <AuxValues>
-                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                              </AuxValues>
-
-                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                              <SubComponents>
-                                <Component class="javax.swing.JTextArea" name="taMotiveringEgnaArenden">
-                                  <Properties>
-                                    <Property name="editable" type="boolean" value="false"/>
-                                    <Property name="columns" type="int" value="20"/>
-                                    <Property name="rows" type="int" value="5"/>
-                                  </Properties>
-                                </Component>
-                              </SubComponents>
-                            </Container>
-                            <Component class="javax.swing.JButton" name="btnVisaMotiveringEgna">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="Visa Motivering"/>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisaMotiveringEgnaActionPerformed"/>
-                              </Events>
-                            </Component>
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JPanel" name="jPanel14">

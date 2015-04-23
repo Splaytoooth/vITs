@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import sun.awt.SunToolkit;
 
 /**
  *
@@ -212,9 +211,6 @@ public class Meny extends javax.swing.JFrame {
         tblVisaReseforskottChef = new javax.swing.JTable();
         btnBekraftaReseforskott = new javax.swing.JButton();
         btnTaBortBekraftelseReseforskott = new javax.swing.JButton();
-        jScrollPane16 = new javax.swing.JScrollPane();
-        taMotiveringChef = new javax.swing.JTextArea();
-        btnVisaMotiveringChef = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         btnVisaReseutlaggChef = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -230,9 +226,6 @@ public class Meny extends javax.swing.JFrame {
         btnVisaReseforskott = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         tblReseforskott = new javax.swing.JTable();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        taMotiveringEgnaArenden = new javax.swing.JTextArea();
-        btnVisaMotiveringEgna = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         tblReseutlagg = new javax.swing.JTable();
@@ -1491,18 +1484,6 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
-        taMotiveringChef.setEditable(false);
-        taMotiveringChef.setColumns(20);
-        taMotiveringChef.setRows(5);
-        jScrollPane16.setViewportView(taMotiveringChef);
-
-        btnVisaMotiveringChef.setText("Visa motivering");
-        btnVisaMotiveringChef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaMotiveringChefActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -1514,27 +1495,17 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(btnBekraftaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(btnTaBortBekraftelseReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVisaReseforskottChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVisaMotiveringChef, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(176, Short.MAX_VALUE))
+                    .addComponent(btnVisaReseforskottChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(622, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisaReseforskottChef)
-                    .addComponent(btnVisaMotiveringChef))
+                .addComponent(btnVisaReseforskottChef)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane16)
-                    .addComponent(jScrollPane7))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBekraftaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1643,16 +1614,20 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(btnVisaReseutlaggChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVisaUtgifterChef, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(493, 493, 493))))
+                        .addGap(504, 504, 504))))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVisaReseutlaggChef)
-                    .addComponent(btnVisaUtgifterChef))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btnVisaUtgifterChef)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVisaReseutlaggChef)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1702,18 +1677,6 @@ public class Meny extends javax.swing.JFrame {
         });
         jScrollPane9.setViewportView(tblReseforskott);
 
-        taMotiveringEgnaArenden.setEditable(false);
-        taMotiveringEgnaArenden.setColumns(20);
-        taMotiveringEgnaArenden.setRows(5);
-        jScrollPane17.setViewportView(taMotiveringEgnaArenden);
-
-        btnVisaMotiveringEgna.setText("Visa Motivering");
-        btnVisaMotiveringEgna.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaMotiveringEgnaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -1722,24 +1685,16 @@ public class Meny extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVisaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVisaMotiveringEgna, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(213, Short.MAX_VALUE))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(615, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisaReseforskott)
-                    .addComponent(btnVisaMotiveringEgna))
+                .addComponent(btnVisaReseforskott)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane17)
-                    .addComponent(jScrollPane9))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(180, Short.MAX_VALUE))
         );
 
@@ -2382,109 +2337,45 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaReseforskottChefMouseClicked
 
     private void btnVisaReseutlaggChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseutlaggChefMouseClicked
-       
         fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
     }//GEN-LAST:event_btnVisaReseutlaggChefMouseClicked
 
     private void btnVisaUtgifterChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterChefMouseClicked
-        try{
         fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaReseutlaggChef), tblVisaUtgifterChef);
-        }
-         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
-        }
     }//GEN-LAST:event_btnVisaUtgifterChefMouseClicked
 
     private void btnVisaUtgifterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterMouseClicked
-        try{
         fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblReseutlagg), tblVisaUtgifter);
-        }
-         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
-        }
     }//GEN-LAST:event_btnVisaUtgifterMouseClicked
 
     private void btnBekraftaReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseforskottMouseClicked
-        try{
         UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
         String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
         String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
         Epost.Epost nyEpost = new Epost.Epost();
         nyEpost.skickaEpostAnstalld(Mail, "reseförskott");
         fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
-        }
-         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
-        }
     }//GEN-LAST:event_btnBekraftaReseforskottMouseClicked
 
     private void btnBekraftaReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseutlaggMouseClicked
-        
-        try
-        {
-       
         UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
         String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
         String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
         Epost.Epost nyEpost = new Epost.Epost();
         nyEpost.skickaEpostAnstalld(Mail, "reseutlägg");
         fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
-        }
-        
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
-        }
     }//GEN-LAST:event_btnBekraftaReseutlaggMouseClicked
 
     private void btnTaBortBekraftelseReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseforskottMouseClicked
-        try{
         UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
         fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
-        }
     }//GEN-LAST:event_btnTaBortBekraftelseReseforskottMouseClicked
 
     private void btnTaBortBekraftelseReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseutlaggMouseClicked
-        try{
         UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
         fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
-        }
     }//GEN-LAST:event_btnTaBortBekraftelseReseutlaggMouseClicked
 
-    private void btnVisaMotiveringChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMotiveringChefActionPerformed
-        try{
-        taMotiveringChef.setText("");
-        String motivering = getMotivering(tblVisaReseforskottChef);
-        taMotiveringChef.append(motivering);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
-        }
-    }//GEN-LAST:event_btnVisaMotiveringChefActionPerformed
-
-    private void btnVisaMotiveringEgnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMotiveringEgnaActionPerformed
-        try{
-        taMotiveringEgnaArenden.setText("");
-        String motivering = getMotivering(tblReseforskott);
-        taMotiveringEgnaArenden.append(motivering);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
-        }
-    }//GEN-LAST:event_btnVisaMotiveringEgnaActionPerformed
-
-    public String getMotivering(JTable table) {
-        int selectedRowIndex = table.getSelectedRow();
-        String motivering = table.getValueAt(selectedRowIndex, 1).toString();
-        
-        return motivering;
-    }
-    
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         String ettID = table.getValueAt(selectedRowIndex, 0).toString();
@@ -2664,8 +2555,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnTaBortBekraftelseReseutlagg;
     private javax.swing.JButton btnTaBortLand;
     private javax.swing.JButton btnTaBortValuta;
-    private javax.swing.JButton btnVisaMotiveringChef;
-    private javax.swing.JButton btnVisaMotiveringEgna;
     private javax.swing.JButton btnVisaReseforskott;
     private javax.swing.JButton btnVisaReseforskottChef;
     private javax.swing.JButton btnVisaReseutlagg;
@@ -2728,8 +2617,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JScrollPane jScrollPane16;
-    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2786,8 +2673,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JPanel pReseutlägg;
     private javax.swing.JPanel pStartsida;
     private javax.swing.JTextArea taMotivering;
-    private javax.swing.JTextArea taMotiveringChef;
-    private javax.swing.JTextArea taMotiveringEgnaArenden;
     private javax.swing.JTable tblLander;
     private javax.swing.JTable tblReseforskott;
     private javax.swing.JTable tblReseutlagg;
