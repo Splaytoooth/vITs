@@ -43,7 +43,7 @@ public class UpdateClass {
         }
     }
 
-    public static void insertReseutlägg(EntityGrej.Reseutlägg ru, EntityGrej.Utgifter[] utgifter) {
+    public static void insertReseutlägg(EntityGrej.Reseutlägg ru, EntityGrej.UtgiftExpTabell[] utgifter, int konsultID) {
         try {
             Connection conn = DatabasTest.newConnection();
 
@@ -52,18 +52,18 @@ public class UpdateClass {
             String sql = "Select ID from Reseutlägg\n"
                     + "ORDER BY ID desc\n"
                     + "LIMIT 1";
-            
+
             ResultSet rs = myStmt.executeQuery(sql);
             rs.next();
             int id = Integer.parseInt(rs.getString(1)) + 1;
 
-            sql = "insert into Reseutlägg(ID, StartDatum, SlutDatum, FranLand, TillLand, Accepterat) VALUES(" + id + ", '" + ru.getStartDatum() + "', '" + ru.getSlutDatum() + "', '" + ru.getFranLand() + "', '" + ru.getTillLand() + "', null)";
+            sql = "insert into Reseutlägg(ID, KonsultID, StartDatum, SlutDatum, FranLand, TillLand, Accepterat) VALUES(" + id + ", " + konsultID + ", '" + ru.getStartDatum() + "', '" + ru.getSlutDatum() + "', '" + ru.getFranLand() + "', '" + ru.getTillLand() + "', null)";
 
             myStmt.executeUpdate(sql);
 
-            
-            for(EntityGrej.Utgifter utg : utgifter) {
-                sql = "insert into Utgifter(ReseUtlaggsID, Typ, Summa) VALUES(" + id + ", '" + utg.getTyp() + "', '" + utg.getSumma() + "')";
+            for (EntityGrej.UtgiftExpTabell utg : utgifter) {
+                sql = "INSERT INTO Utgifter(Typ, ReseUtlaggsID, `Summa ink moms`, `Summa exl moms`)VALUES('"
+                        + utg.Typ + "', " + id + ", '" + utg.KostnadInklMoms + "', '" + utg.KostnadExklMoms + "')";
                 myStmt.executeUpdate(sql);
             }
 
@@ -73,13 +73,13 @@ public class UpdateClass {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
+
     public static void accepteraUtbetalning(String Id, String table) {
         try {
             Connection connection = DatabasTest.newConnection();
 
             Statement myStmt = connection.createStatement();
-           
+
             String sql = "update " + table + " set Accepterat = 1 where ID = " + Id;
 
             myStmt.executeUpdate(sql);
@@ -88,13 +88,13 @@ public class UpdateClass {
             JOptionPane.showMessageDialog(null, se);
         }
     }
-    
+
     public static void accepteraInteUtbetalning(String Id, String table) {
         try {
             Connection connection = DatabasTest.newConnection();
 
             Statement myStmt = connection.createStatement();
-           
+
             String sql = "update " + table + " set Accepterat = 0 where ID = " + Id;
 
             myStmt.executeUpdate(sql);

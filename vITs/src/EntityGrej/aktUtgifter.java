@@ -215,7 +215,7 @@ public class aktUtgifter {
         }
 
         for (UtgiftExpTabell utg : Annat) {
-            utg.Typ = "Egen utgift '" + utg.Typ + "'";
+            utg.Typ = "Egen utgift [" + utg.Typ + "]";
             utg.KostnadExklMoms = utg.KostnadExklMoms * utg.valutaKonv;
             utg.KostnadInklMoms = utg.KostnadInklMoms * utg.valutaKonv;
             beraknadeUtgifter.add(utg);

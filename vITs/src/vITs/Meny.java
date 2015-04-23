@@ -2173,17 +2173,19 @@ public class Meny extends javax.swing.JFrame {
             ru.setFranLand(cbLandFran.getSelectedItem().toString());
             ru.setTillLand(cbLandTill.getSelectedItem().toString());
 
-            EntityGrej.Utgifter[] Utgifter = new EntityGrej.Utgifter[tblUtgifter.getRowCount()];
+            EntityGrej.UtgiftExpTabell[] Utgifter = new EntityGrej.UtgiftExpTabell[tblUtgifter.getRowCount()];
             for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
-                EntityGrej.Utgifter utg = new EntityGrej.Utgifter();
-                utg.setTyp(sc.getValueAt(i, 0).toString());
-                utg.setSumma(Integer.parseInt(sc.getValueAt(i, 1).toString()));
+                EntityGrej.UtgiftExpTabell utg = new EntityGrej.UtgiftExpTabell();
+                utg.Typ = (sc.getValueAt(i, 0).toString());
+                utg.KostnadExklMoms = Double.parseDouble(sc.getValueAt(i, 1).toString());
+                utg.KostnadInklMoms = Double.parseDouble(sc.getValueAt(i, 2).toString());
                 Utgifter[i] = utg;
             }
 
-            UpdateClass.insertReseutlägg(ru, Utgifter);
+            UpdateClass.insertReseutlägg(ru, Utgifter, Integer.parseInt(id));
             sc.setRowCount(0);
             tfKostnadExMoms.setText("");
+            this.tfKostnadInklMoms.setText("");
             dpFran.setDate(null);
             dpTill.setDate(null);
             tfAnnat.setText("");
@@ -2191,6 +2193,9 @@ public class Meny extends javax.swing.JFrame {
             String enChefMail = DatabasTest.getChefMail(Integer.parseInt(id));
             Epost.Epost nyEpost = new Epost.Epost();
             nyEpost.skickaEpostChef(enChefMail, "reseutlägg");
+            java.awt.event.ActionEvent evt2 = null;
+            btnRedigeraActionPerformed(evt2);
+            sc.setRowCount(0);
         } catch (Exception e) {
         }
 
