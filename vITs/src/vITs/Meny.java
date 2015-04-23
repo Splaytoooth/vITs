@@ -1898,8 +1898,7 @@ public class Meny extends javax.swing.JFrame {
             }
             expTabeller.add(expTabell);
         }
-        
-        
+
         DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         try {
             String ettDatum = formatter.format(dpFran.getDate());
@@ -2248,6 +2247,11 @@ public class Meny extends javax.swing.JFrame {
         btnRegReseförskott.setVisible(true);
         if (cbKostnadTyp.getSelectedItem().toString().equals("Annat")) {
             tfAnnat.setEnabled(true);
+        }
+
+        tblUtgifter.removeAll();
+        for (EntityGrej.UtgiftExpTabell utg : this.berUtgifter.sparaGamlaUtgifter) {
+            
         }
     }//GEN-LAST:event_btnRedigeraActionPerformed
 
