@@ -2303,6 +2303,7 @@ public class Meny extends javax.swing.JFrame {
         String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
         Epost.Epost nyEpost = new Epost.Epost();
         nyEpost.skickaEpostAnstalld(Mail, "reseförskott");
+        fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
     }//GEN-LAST:event_btnBekraftaReseforskottMouseClicked
 
     private void btnBekraftaReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseutlaggMouseClicked
@@ -2311,14 +2312,17 @@ public class Meny extends javax.swing.JFrame {
         String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
         Epost.Epost nyEpost = new Epost.Epost();
         nyEpost.skickaEpostAnstalld(Mail, "reseutlägg");
+        fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
     }//GEN-LAST:event_btnBekraftaReseutlaggMouseClicked
 
     private void btnTaBortBekraftelseReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseforskottMouseClicked
         UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
+        fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
     }//GEN-LAST:event_btnTaBortBekraftelseReseforskottMouseClicked
 
     private void btnTaBortBekraftelseReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseutlaggMouseClicked
         UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
+        fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
     }//GEN-LAST:event_btnTaBortBekraftelseReseutlaggMouseClicked
 
     public String getIdFromTable(JTable table) {
