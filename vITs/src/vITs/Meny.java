@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -1834,65 +1835,71 @@ public class Meny extends javax.swing.JFrame {
     }
 
     private void beraknaTrakt() {
-        int i = 0;
-        EntityGrej.UtgiftExpTabell[] expTabell = new EntityGrej.UtgiftExpTabell[sc.getRowCount()];
-        while (i < sc.getRowCount()) {
+        List<EntityGrej.UtgiftExpTabell[]> expTabeller = new ArrayList<EntityGrej.UtgiftExpTabell[]>();
+        for (int i2 = 0; i2 < 2; i2++) {
+            int i = 0;
+            EntityGrej.UtgiftExpTabell[] expTabell = new EntityGrej.UtgiftExpTabell[sc.getRowCount()];
+            while (i < sc.getRowCount()) {
 
-            Double kolumn2 = null;
-            try {
-                kolumn2 = Double.parseDouble(sc.getValueAt(i, 1).toString());
-            } catch (Exception e) {
+                Double kolumn2 = null;
+                try {
+                    kolumn2 = Double.parseDouble(sc.getValueAt(i, 1).toString());
+                } catch (Exception e) {
+                }
+
+                Double kolumn3 = null;
+                try {
+                    kolumn3 = Double.parseDouble(sc.getValueAt(i, 2).toString());
+                } catch (Exception e) {
+                }
+
+                Double kolumn4 = null;
+                try {
+                    kolumn4 = traktamente.getKonv(sc.getValueAt(i, 3).toString());
+                } catch (Exception e) {
+                }
+
+                Double kolumn5 = null;
+                try {
+                    kolumn5 = Double.parseDouble(sc.getValueAt(i, 4).toString());
+                } catch (Exception e) {
+                }
+
+                Date datum = null;
+                try {
+                    datum = f.parse(sc.getValueAt(i, 5).toString());
+                } catch (Exception e) {
+                }
+
+                String kolumn7 = null;
+                try {
+                    kolumn7 = sc.getValueAt(i, 6).toString();
+                } catch (Exception e) {
+                }
+
+                String kolumn8 = null;
+                try {
+                    kolumn8 = sc.getValueAt(i, 7).toString();
+                } catch (Exception e) {
+                }
+
+                EntityGrej.UtgiftExpTabell aktExp = new EntityGrej.UtgiftExpTabell(
+                        sc.getValueAt(i, 0).toString(),
+                        kolumn2,
+                        kolumn3,
+                        kolumn4,
+                        kolumn5,
+                        datum,
+                        kolumn7,
+                        kolumn8
+                );
+                expTabell[i] = aktExp;
+                i++;
             }
-
-            Double kolumn3 = null;
-            try {
-                kolumn3 = Double.parseDouble(sc.getValueAt(i, 2).toString());
-            } catch (Exception e) {
-            }
-
-            Double kolumn4 = null;
-            try {
-                kolumn4 = traktamente.getKonv(sc.getValueAt(i, 3).toString());
-            } catch (Exception e) {
-            }
-
-            Double kolumn5 = null;
-            try {
-                kolumn5 = Double.parseDouble(sc.getValueAt(i, 4).toString());
-            } catch (Exception e) {
-            }
-
-            Date datum = null;
-            try {
-                datum = f.parse(sc.getValueAt(i, 5).toString());
-            } catch (Exception e) {
-            }
-
-            String kolumn7 = null;
-            try {
-                kolumn7 = sc.getValueAt(i, 6).toString();
-            } catch (Exception e) {
-            }
-
-            String kolumn8 = null;
-            try {
-                kolumn8 = sc.getValueAt(i, 7).toString();
-            } catch (Exception e) {
-            }
-
-            EntityGrej.UtgiftExpTabell aktExp = new EntityGrej.UtgiftExpTabell(
-                    sc.getValueAt(i, 0).toString(),
-                    kolumn2,
-                    kolumn3,
-                    kolumn4,
-                    kolumn5,
-                    datum,
-                    kolumn7,
-                    kolumn8
-            );
-            expTabell[i] = aktExp;
-            i++;
+            expTabeller.add(expTabell);
         }
+        
+        
         DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         try {
             String ettDatum = formatter.format(dpFran.getDate());
@@ -1913,7 +1920,7 @@ public class Meny extends javax.swing.JFrame {
             }
             int dagar = (int) daysBetween;
 
-            berUtgifter.newAktUtgifter(expTabell, traktamente, f.format(dpFran.getDate()), dagar);
+            berUtgifter.newAktUtgifter(expTabeller, traktamente, f.format(dpFran.getDate()), dagar);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -2309,7 +2316,7 @@ public class Meny extends javax.swing.JFrame {
     private void btnTaBortBekraftelseReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseutlaggMouseClicked
         UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
     }//GEN-LAST:event_btnTaBortBekraftelseReseutlaggMouseClicked
-    
+
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         int selectedColumnIndex = table.getSelectedColumn();
@@ -2382,12 +2389,12 @@ public class Meny extends javax.swing.JFrame {
             }
             while (myRs.next()) {
                 String varde = myRs.getString("ID");
-		String varde1 = myRs.getString("ReseUtlaggsID");
-		String varde2 = myRs.getString("Typ");
-		String varde3 = myRs.getString("Summa ink moms");
-		String varde4 = myRs.getString("Summa exl moms");
-		String varde5 = myRs.getString("KvittoUrl");
-                
+                String varde1 = myRs.getString("ReseUtlaggsID");
+                String varde2 = myRs.getString("Typ");
+                String varde3 = myRs.getString("Summa ink moms");
+                String varde4 = myRs.getString("Summa exl moms");
+                String varde5 = myRs.getString("KvittoUrl");
+
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
                     varde, varde1, varde2, varde3, varde4, varde5}
