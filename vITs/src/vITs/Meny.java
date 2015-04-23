@@ -1436,7 +1436,7 @@ public class Meny extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Motivering", "Summa", "Konsult ID", "Reseutläggs ID", "Accepterat"
+                "ID", "Motivering", "Summa", "Konsult", "Reseutläggs ID", "Accepterat"
             }
         ) {
             Class[] types = new Class [] {
@@ -1481,9 +1481,9 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(btnBekraftaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(btnTaBortBekraftelseReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisaReseforskottChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(713, Short.MAX_VALUE))
+                    .addComponent(btnVisaReseforskottChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(622, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1513,7 +1513,7 @@ public class Meny extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Konsult ID", "Start Datum", "Slut Datum", "Från Land", "Till Land", "Accepterat"
+                "ID", "Konsult", "Start Datum", "Slut Datum", "Från Land", "Till Land", "Accepterat"
             }
         ) {
             Class[] types = new Class [] {
@@ -1584,17 +1584,17 @@ public class Meny extends javax.swing.JFrame {
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
+                        .addGap(34, 34, 34)
                         .addComponent(btnTaBortBekraftelseReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(btnVisaReseutlaggChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1605,18 +1605,22 @@ public class Meny extends javax.swing.JFrame {
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisaReseutlaggChef)
-                    .addComponent(btnVisaUtgifterChef))
-                .addGap(23, 23, 23)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btnVisaUtgifterChef)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVisaReseutlaggChef)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTaBortBekraftelseReseutlagg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTaBortBekraftelseReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
 
@@ -1667,8 +1671,8 @@ public class Meny extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVisaReseforskott, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(681, Short.MAX_VALUE))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(615, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1751,11 +1755,11 @@ public class Meny extends javax.swing.JFrame {
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                    .addComponent(btnVisaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVisaUtgifter, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2346,7 +2350,21 @@ public class Meny extends javax.swing.JFrame {
                 String varde3 = myRs.getString("KonsultID");
                 String varde4 = myRs.getString("ReseutläggsID");
                 String varde5 = myRs.getString("Accepterat");
-
+                
+                varde3 = DatabasTest.getNamn(varde3);
+                
+                if(varde5 == null)
+                {
+                    varde5 = "ej behandlad";
+                }
+                else if(varde5.equalsIgnoreCase("0"))
+                {
+                    varde5 = "Nej";
+                }
+                else if(varde5.equalsIgnoreCase("1"))
+                {
+                    varde5 = "Ja";
+                }
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
                     varde, varde1, varde2, varde3, varde4, varde5}
@@ -2376,6 +2394,21 @@ public class Meny extends javax.swing.JFrame {
                 String varde4 = myRs.getString("TillLand");
                 String varde5 = myRs.getString("Accepterat");
 
+                varde0 = DatabasTest.getNamn(varde0);
+                
+                if(varde5 == null)
+                {
+                    varde5 = "ej behandlad";
+                }
+                else if(varde5.equalsIgnoreCase("0"))
+                {
+                    varde5 = "Nej";
+                }
+                else if(varde5.equalsIgnoreCase("1"))
+                {
+                    varde5 = "Ja";
+                }
+                
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
                     varde, varde0, varde1, varde2, varde3, varde4, varde5}
