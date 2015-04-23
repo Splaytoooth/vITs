@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class aktUtgifter {
 
     private UtgiftExpTabell[] rawUtgifter;
-    private UtgiftExpTabell[] sparaGamlaUtgifter;
+    public UtgiftExpTabell[] sparaGamlaUtgifter;
     private ArrayList<UtgiftExpTabell> beraknadeUtgifter = new ArrayList<UtgiftExpTabell>();
     private vITs.Traktamente traktamente;
     private String startDatum;
@@ -36,12 +36,12 @@ public class aktUtgifter {
         return beraknadeUtgifter;
     }
 
-    public void newAktUtgifter(UtgiftExpTabell[][] utgifter, vITs.Traktamente trakt, String startDatum, int dagar) {
+    public void newAktUtgifter(List<UtgiftExpTabell[]> utgifter, vITs.Traktamente trakt, String startDatum, int dagar) {
         beraknadeUtgifter.clear();
-        rawUtgifter = utgifter[0];
+        rawUtgifter = utgifter.get(0);
         this.traktamente = trakt;
         this.dagar = dagar;
-        sparaGamlaUtgifter = utgifter[1];
+        sparaGamlaUtgifter = utgifter.get(1);
 
         int intBjuden = 0;
         int intBil = 0;
