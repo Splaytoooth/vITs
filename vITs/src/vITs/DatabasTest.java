@@ -31,6 +31,31 @@ public class DatabasTest {
             return;
         }
     }
+    
+    public static String getNamn(String id)
+    {
+        String namn = "";
+        try {
+            Connection connection = DatabasTest.newConnection();
+
+            Statement myStmt = connection.createStatement();
+
+            ResultSet myRs = myStmt.executeQuery("select Fornamn, Efternamn from Konsulter where ID = " + id);
+
+            myRs.next();
+            
+            String fornamn = myRs.getString("Fornamn");
+            String efternamn = myRs.getString("Efternamn");
+            namn = fornamn + " " + efternamn;
+            
+          
+            
+        } catch (SQLException e) {
+            System.out.print("Det blev fel");
+            e.printStackTrace();
+        }
+        return namn;
+    }
 
     public static Connection newConnection() {
         try {

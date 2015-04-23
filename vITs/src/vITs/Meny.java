@@ -2331,9 +2331,9 @@ public class Meny extends javax.swing.JFrame {
 
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
-        int selectedColumnIndex = table.getSelectedColumn();
-        String ettId = (String) table.getModel().getValueAt(selectedRowIndex, selectedColumnIndex);
-        return ettId;
+        String ettID = table.getValueAt(selectedRowIndex, 0).toString();
+        
+        return ettID;
     }
 
     public void fillReseforskottTable(String query, JTable table) {
