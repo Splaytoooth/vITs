@@ -1,5 +1,9 @@
 package vITs;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sun.awt.SunToolkit;
@@ -41,7 +46,7 @@ public class Meny extends javax.swing.JFrame {
         cbAntDagar.setEnabled(false);
         cbValutaR.setEnabled(false);
         tfMil.setEnabled(false);
-        btnKvitto.setEnabled(false);
+        picChooser.setEnabled(false);
         this.setTitle("vITs Utbildning");
         sc = (DefaultTableModel) tblUtgifter.getModel();
         btnSkickaR.setVisible(false);
@@ -82,7 +87,6 @@ public class Meny extends javax.swing.JFrame {
         btnSkicka = new javax.swing.JButton();
         pReseutlägg = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         cbKostnadTyp = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         tfKostnadExMoms = new javax.swing.JTextField();
@@ -111,13 +115,14 @@ public class Meny extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         dpFran1 = new com.toedter.calendar.JDateChooser();
         lblFranDatum = new javax.swing.JLabel();
-        btnKvitto = new javax.swing.JButton();
+        picChooser = new javax.swing.JButton();
         tfKostnadInklMoms = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         cbAntDagar = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         tfTotSumma = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        tfFiles = new javax.swing.JTextField();
         pRapporter = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
@@ -465,8 +470,6 @@ public class Meny extends javax.swing.JFrame {
 
         pReseutlägg.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setText("Typ av kostnad:");
-
         cbKostnadTyp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bjuden på frukost", "Bjuden på lunch", "Bjuden på middag", "Egen bil", "Tjänstebil med diesel", "Tjänstebil annat drivmedel", "Annan typ av resa", "Boende med kvitto", "Boende utan kvitto", "Annat" }));
         cbKostnadTyp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -535,6 +538,7 @@ public class Meny extends javax.swing.JFrame {
 
         jLabel12.setText("Valuta");
 
+        btnAdd.setBackground(new java.awt.Color(204, 204, 255));
         btnAdd.setText("Lägg till");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,6 +546,7 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
+        btnRemove.setBackground(new java.awt.Color(255, 153, 153));
         btnRemove.setText("Ta bort markerad utgift");
         btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,7 +572,12 @@ public class Meny extends javax.swing.JFrame {
 
         lblFranDatum.setText("Datum");
 
-        btnKvitto.setText("Ladda upp kvittoblid");
+        picChooser.setText("Ladda upp kvittobild");
+        picChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                picChooserActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Total kostnad inkl moms");
 
@@ -576,6 +586,11 @@ public class Meny extends javax.swing.JFrame {
         jLabel13.setText("Dagar");
 
         tfTotSumma.setEditable(false);
+        tfTotSumma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTotSummaActionPerformed(evt);
+            }
+        });
 
         jLabel16.setText("Summan du får totalt:");
 
@@ -583,180 +598,166 @@ public class Meny extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnAdd)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(101, 101, 101)
-                                    .addComponent(btnRegReseförskott)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel16)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(133, 133, 133)
-                                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnRedigera, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel9))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(37, 37, 37)
-                                            .addComponent(cbLandFran, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(35, 35, 35))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(dpFran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel10))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(23, 23, 23)
-                                            .addComponent(cbLandTill, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel11)
-                                            .addGap(18, 18, 18)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(cbKostnadTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(tfAnnat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(54, 54, 54)
-                                                    .addComponent(lblFranDatum)))))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(jLabel12)
-                                            .addGap(35, 35, 35))
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel15)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(tfKostnadInklMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(tfKostnadExMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addComponent(dpFran1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel13)
-                                            .addGap(36, 36, 36)))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(47, 47, 47)
-                                            .addComponent(btnKvitto))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(cbValutaR, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(35, 35, 35)
-                                            .addComponent(jLabel14)
-                                            .addGap(37, 37, 37)
-                                            .addComponent(tfMil, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnSkickaR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGranska, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(7, 7, 7))))
-                .addGap(0, 205, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbLandFran, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpFran, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbLandTill, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblFranDatum)
+                                .addGap(61, 61, 61)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfAnnat, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dpFran1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14)
+                                .addGap(79, 79, 79)
+                                .addComponent(tfMil, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbKostnadTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel15))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfKostnadInklMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfKostnadExMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbValutaR, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(picChooser)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegReseförskott)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnGranska, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnRedigera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSkickaR, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(28, 28, 28)))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tfKostnadExMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(cbKostnadTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbValutaR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(tfKostnadInklMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)
+                        .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAnnat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(tfMil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(cbValutaR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel12)
-                                .addComponent(jLabel14)
-                                .addComponent(cbKostnadTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(dpFran1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(15, 15, 15)
+                                    .addComponent(lblFranDatum))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel14))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(tfMil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(picChooser))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(tfKostnadExMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(tfKostnadInklMoms, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfAnnat, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dpFran1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFranDatum)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbAntDagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13)
-                            .addComponent(btnKvitto))
-                        .addGap(11, 11, 11))
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGranska, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRedigera, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSkickaR, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cbLandFran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8)
-                                .addComponent(cbLandTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel7))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbLandTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(dpFran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel16))
-                            .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(70, 70, 70))
+                            .addComponent(jLabel10)
+                            .addComponent(dpTill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpFran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel16)
+                        .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGranska, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRedigera, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSkickaR, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSparaUtkast, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout pReseutläggLayout = new javax.swing.GroupLayout(pReseutlägg);
@@ -2100,166 +2101,6 @@ public class Meny extends javax.swing.JFrame {
         pRedigeraAnvandare.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
 
-    private void cbKostnadTypItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbKostnadTypItemStateChanged
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Bjuden på frukost") || cbKostnadTyp.getSelectedItem().toString().equals("Bjuden på lunch") || cbKostnadTyp.getSelectedItem().toString().equals("Bjuden på middag")) {
-            tfKostnadExMoms.setEnabled(false);
-            tfKostnadInklMoms.setEnabled(false);
-            dpFran1.setEnabled(true);
-            cbAntDagar.setEnabled(false);
-            cbValutaR.setEnabled(false);
-            tfMil.setEnabled(false);
-            btnKvitto.setEnabled(false);
-        }
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Egen bil") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil med diesel") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil annat drivmedel")) {
-            tfKostnadExMoms.setEnabled(false);
-            tfKostnadInklMoms.setEnabled(false);
-            dpFran1.setEnabled(false);
-            cbAntDagar.setEnabled(false);
-            cbValutaR.setEnabled(false);
-            tfMil.setEnabled(true);
-            btnKvitto.setEnabled(false);
-        }
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Annan typ av resa")) {
-            tfKostnadExMoms.setEnabled(true);
-            tfKostnadInklMoms.setEnabled(true);
-            dpFran1.setEnabled(false);
-            cbAntDagar.setEnabled(false);
-            cbValutaR.setEnabled(true);
-            tfMil.setEnabled(false);
-            btnKvitto.setEnabled(true);
-        }
-
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Boende med kvitto")) {
-            tfKostnadExMoms.setEnabled(true);
-            tfKostnadInklMoms.setEnabled(true);
-            dpFran1.setEnabled(false);
-            cbAntDagar.setEnabled(true);
-            cbValutaR.setEnabled(true);
-            tfMil.setEnabled(false);
-            btnKvitto.setEnabled(true);
-        }
-
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Boende utan kvitto")) {
-            tfKostnadExMoms.setEnabled(false);
-            tfKostnadInklMoms.setEnabled(false);
-            dpFran1.setEnabled(false);
-            cbAntDagar.setEnabled(true);
-            cbValutaR.setEnabled(false);
-            tfMil.setEnabled(false);
-            btnKvitto.setEnabled(false);
-        }
-
-        if (cbKostnadTyp.getSelectedItem().toString().equals("Annat")) {
-            tfKostnadExMoms.setEnabled(true);
-            tfKostnadInklMoms.setEnabled(true);
-            dpFran1.setEnabled(false);
-            cbAntDagar.setEnabled(false);
-            cbValutaR.setEnabled(true);
-            tfMil.setEnabled(false);
-            btnKvitto.setEnabled(true);
-            tfAnnat.setEnabled(true);
-        } else {
-            tfAnnat.setEnabled(false);
-        }
-    }//GEN-LAST:event_cbKostnadTypItemStateChanged
-
-    private void btnSkickaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaRActionPerformed
-        if (this.id == null) {
-            JOptionPane.showMessageDialog(null, "Var god logga innan du skickar in ditt ärende!");
-            return;
-        }
-
-        try {
-            EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
-            ru.setStartDatum(dpFran.getDate());
-            ru.setSlutDatum(dpTill.getDate());
-            ru.setFranLand(cbLandFran.getSelectedItem().toString());
-            ru.setTillLand(cbLandTill.getSelectedItem().toString());
-
-            EntityGrej.UtgiftExpTabell[] Utgifter = new EntityGrej.UtgiftExpTabell[tblUtgifter.getRowCount()];
-            for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
-                EntityGrej.UtgiftExpTabell utg = new EntityGrej.UtgiftExpTabell();
-                utg.Typ = (sc.getValueAt(i, 0).toString());
-                utg.KostnadExklMoms = Double.parseDouble(sc.getValueAt(i, 1).toString());
-                utg.KostnadInklMoms = Double.parseDouble(sc.getValueAt(i, 2).toString());
-                Utgifter[i] = utg;
-            }
-
-            UpdateClass.insertReseutlägg(ru, Utgifter, Integer.parseInt(id));
-            sc.setRowCount(0);
-            tfKostnadExMoms.setText("");
-            this.tfKostnadInklMoms.setText("");
-            dpFran.setDate(null);
-            dpTill.setDate(null);
-            tfAnnat.setText("");
-
-            String enChefMail = DatabasTest.getChefMail(Integer.parseInt(id));
-            Epost.Epost nyEpost = new Epost.Epost();
-            nyEpost.skickaEpostChef(enChefMail, "reseutlägg");
-            java.awt.event.ActionEvent evt2 = null;
-            btnRedigeraActionPerformed(evt2);
-            sc.setRowCount(0);
-        } catch (Exception e) {
-        }
-
-    }//GEN-LAST:event_btnSkickaRActionPerformed
-
-    private void cbValutaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValutaRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbValutaRActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String kostnadsTyp = cbKostnadTyp.getSelectedItem().toString();
-        if (kostnadsTyp.equals("Annat")) {
-            kostnadsTyp = tfAnnat.getText();
-        }
-
-        String kolumn2 = null;
-        if (tfKostnadExMoms.isEnabled()) {
-            kolumn2 = tfKostnadExMoms.getText();
-        }
-        String kolumn3 = null;
-        if (tfKostnadInklMoms.isEnabled()) {
-            kolumn3 = tfKostnadInklMoms.getText();
-        }
-        String kolumn4 = null;
-        if (cbValutaR.isEnabled()) {
-            kolumn4 = cbValutaR.getSelectedItem().toString();
-        }
-        String kolumn5 = null;
-        if (tfMil.isEnabled()) {
-            kolumn5 = tfMil.getText();
-        }
-        String kolumn6 = null;
-        if (dpFran1.isEnabled()) {
-            kolumn6 = f.format(dpFran1.getDate());
-        }
-        String kolumn7 = null;
-        if (cbAntDagar.isEnabled()) {
-            kolumn7 = cbAntDagar.getSelectedItem().toString();
-        }
-        String kolumn8 = null;
-        if (this.btnKvitto.isEnabled()) {
-            kolumn8 = "hej";
-        }
-
-        sc.addRow(new Object[]{
-            kostnadsTyp,
-            kolumn2,
-            kolumn3,
-            kolumn4,
-            kolumn5,
-            kolumn6,
-            kolumn7,
-            kolumn8
-        });
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        int valdRad = tblUtgifter.getSelectedRow();
-        sc.removeRow(valdRad);
-    }//GEN-LAST:event_btnRemoveActionPerformed
-
     private void tf_cheffdatumtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_cheffdatumtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_cheffdatumtActionPerformed
@@ -2267,92 +2108,6 @@ public class Meny extends javax.swing.JFrame {
     private void tf_ansdatumtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ansdatumtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ansdatumtActionPerformed
-
-    private void btnSparaUtkastMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaUtkastMouseClicked
-        EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
-        ru.setStartDatum(dpFran.getDate());
-        ru.setSlutDatum(dpTill.getDate());
-        ru.setFranLand(cbLandFran.getSelectedItem().toString());
-        ru.setTillLand(cbLandTill.getSelectedItem().toString());
-        String utgifter = hamtaUtgifter();
-        ru.sparaIUtkast(utgifter);
-    }//GEN-LAST:event_btnSparaUtkastMouseClicked
-
-    private void btnGranskaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranskaActionPerformed
-        if (dpFran.getDate() == null || dpTill.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "Var god fyll i ett datum för start- och slut- datum för resan");
-            return;
-        }
-        btnSparaUtkast.setVisible(false);
-        btnSkickaR.setVisible(true);
-        btnGranska.setVisible(false);
-        btnRedigera.setVisible(true);
-        btnAdd.setVisible(false);
-        tfMil.setEnabled(false);
-        tfKostnadExMoms.setEnabled(false);
-        tfKostnadInklMoms.setEnabled(false);
-        tfAnnat.setEnabled(false);
-        cbKostnadTyp.setEnabled(false);
-        cbValutaR.setEnabled(false);
-        cbAntDagar.setEnabled(false);
-        btnKvitto.setEnabled(false);
-        btnRemove.setVisible(false);
-        cbLandFran.setEnabled(false);
-        cbLandTill.setEnabled(false);
-        dpFran1.setEnabled(false);
-        dpFran.setEnabled(false);
-        dpTill.setEnabled(false);
-        btnRegReseförskott.setVisible(false);
-
-        raknaTraktamente();
-        beraknaTrakt();
-
-        sc.setRowCount(0);
-        double totSumma = 0;
-        ArrayList<EntityGrej.UtgiftExpTabell> utgifterna = this.berUtgifter.beraknadeUtgifter();
-        for (EntityGrej.UtgiftExpTabell utgift : utgifterna) {
-            sc.addRow(new Object[]{
-                utgift.Typ, utgift.KostnadExklMoms, utgift.KostnadInklMoms, utgift.KvittoUrl
-            });
-            totSumma += utgift.KostnadInklMoms;
-        }
-        this.tfTotSumma.setText(String.valueOf(totSumma));
-    }//GEN-LAST:event_btnGranskaActionPerformed
-
-    private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
-        btnSparaUtkast.setVisible(true);
-        btnSkickaR.setVisible(false);
-        btnRedigera.setVisible(false);
-        btnGranska.setVisible(true);
-        btnAdd.setVisible(true);
-        tfKostnadExMoms.setEnabled(true);
-        tfKostnadInklMoms.setEnabled(true);
-        cbKostnadTyp.setEnabled(true);
-        cbValutaR.setEnabled(true);
-        btnRemove.setVisible(true);
-        cbLandFran.setEnabled(true);
-        cbLandTill.setEnabled(true);
-        dpFran.setEnabled(true);
-        dpTill.setEnabled(true);
-        btnRegReseförskott.setVisible(true);
-        cbKostnadTyp.setSelectedIndex(9);
-        tfAnnat.setEnabled(true);
-        this.tfSumma.setText("");
-
-        sc.setRowCount(0);
-        for (EntityGrej.UtgiftExpTabell utg : this.berUtgifter.sparaGamlaUtgifter) {
-            String datum = null;
-            try {
-                f.format(utg.wDatum);
-            } catch (Exception e) {
-            }
-            sc.addRow(
-                    new Object[]{utg.Typ, utg.KostnadExklMoms, utg.KostnadInklMoms, utg.Valuta, utg.Mil, datum, utg.nDagar, utg.KvittoUrl}
-            );
-
-        }
-        tfTotSumma.setText("");
-    }//GEN-LAST:event_btnRedigeraActionPerformed
 
     private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
         if (tpMeny2.getSelectedIndex() == 0) {
@@ -2470,6 +2225,286 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
         }
     }//GEN-LAST:event_btnVisaMotiveringEgnaActionPerformed
+
+    private void tfTotSummaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTotSummaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTotSummaActionPerformed
+
+    private void picChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_picChooserActionPerformed
+        String filnamn = null;
+
+        JFileChooser imageChooser = new JFileChooser();
+
+        imageChooser.showOpenDialog(null);
+        File filbunke = imageChooser.getSelectedFile();
+        filnamn = filbunke.getAbsolutePath();
+        tfFiles.setText(filnamn);
+
+        try {
+
+            File image = new File(filnamn);
+            FileInputStream ultraSuperInserter = new FileInputStream(image);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] byteInsert = new byte[4096];
+            for (int readStuff; (readStuff = ultraSuperInserter.read(byteInsert)) != -1;) {
+                baos.write(byteInsert, 0, readStuff);
+            }
+
+            receiptImg = baos.toByteArray();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_picChooserActionPerformed
+
+    private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
+        btnSparaUtkast.setVisible(true);
+        btnSkickaR.setVisible(false);
+        btnRedigera.setVisible(false);
+        btnGranska.setVisible(true);
+        btnAdd.setVisible(true);
+        tfKostnadExMoms.setEnabled(true);
+        tfKostnadInklMoms.setEnabled(true);
+        cbKostnadTyp.setEnabled(true);
+        cbValutaR.setEnabled(true);
+        btnRemove.setVisible(true);
+        cbLandFran.setEnabled(true);
+        cbLandTill.setEnabled(true);
+        dpFran.setEnabled(true);
+        dpTill.setEnabled(true);
+        btnRegReseförskott.setVisible(true);
+        cbKostnadTyp.setSelectedIndex(9);
+        tfAnnat.setEnabled(true);
+        this.tfSumma.setText("");
+
+        sc.setRowCount(0);
+        for (EntityGrej.UtgiftExpTabell utg : this.berUtgifter.sparaGamlaUtgifter) {
+            String datum = null;
+            try {
+                f.format(utg.Datum);
+            } catch (Exception e) {
+            }
+            sc.addRow(
+                    new Object[]{utg.Typ, utg.KostnadExklMoms, utg.KostnadInklMoms, utg.Valuta, utg.Mil, datum, utg.nDagar, utg.KvittoUrl}
+            );
+
+        }
+        tfTotSumma.setText("");
+    }//GEN-LAST:event_btnRedigeraActionPerformed
+
+    private void btnGranskaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranskaActionPerformed
+        if (dpFran.getDate() == null || dpTill.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Var god fyll i ett datum för start- och slut- datum för resan");
+            return;
+        }
+        btnSparaUtkast.setVisible(false);
+        btnSkickaR.setVisible(true);
+        btnGranska.setVisible(false);
+        btnRedigera.setVisible(true);
+        btnAdd.setVisible(false);
+        tfMil.setEnabled(false);
+        tfKostnadExMoms.setEnabled(false);
+        tfKostnadInklMoms.setEnabled(false);
+        tfAnnat.setEnabled(false);
+        cbKostnadTyp.setEnabled(false);
+        cbValutaR.setEnabled(false);
+        cbAntDagar.setEnabled(false);
+        picChooser.setEnabled(false);
+        btnRemove.setVisible(false);
+        cbLandFran.setEnabled(false);
+        cbLandTill.setEnabled(false);
+        dpFran1.setEnabled(false);
+        dpFran.setEnabled(false);
+        dpTill.setEnabled(false);
+        btnRegReseförskott.setVisible(false);
+
+        raknaTraktamente();
+        beraknaTrakt();
+
+        sc.setRowCount(0);
+        double totSumma = 0;
+        ArrayList<EntityGrej.UtgiftExpTabell> utgifterna = this.berUtgifter.beraknadeUtgifter();
+        for (EntityGrej.UtgiftExpTabell utgift : utgifterna) {
+            sc.addRow(new Object[]{
+                utgift.Typ, utgift.KostnadExklMoms, utgift.KostnadInklMoms, utgift.KvittoUrl
+            });
+            totSumma += utgift.KostnadInklMoms;
+        }
+        this.tfTotSumma.setText(String.valueOf(totSumma));
+    }//GEN-LAST:event_btnGranskaActionPerformed
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        int valdRad = tblUtgifter.getSelectedRow();
+        sc.removeRow(valdRad);
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        String kostnadsTyp = cbKostnadTyp.getSelectedItem().toString();
+        if (kostnadsTyp.equals("Annat")) {
+            kostnadsTyp = tfAnnat.getText();
+        }
+
+        String kolumn2 = null;
+        if (tfKostnadExMoms.isEnabled()) {
+            kolumn2 = tfKostnadExMoms.getText();
+        }
+        String kolumn3 = null;
+        if (tfKostnadInklMoms.isEnabled()) {
+            kolumn3 = tfKostnadInklMoms.getText();
+        }
+        String kolumn4 = null;
+        if (cbValutaR.isEnabled()) {
+            kolumn4 = cbValutaR.getSelectedItem().toString();
+        }
+        String kolumn5 = null;
+        if (tfMil.isEnabled()) {
+            kolumn5 = tfMil.getText();
+        }
+        String kolumn6 = null;
+        if (dpFran1.isEnabled()) {
+            kolumn6 = f.format(dpFran1.getDate());
+        }
+        String kolumn7 = null;
+        if (cbAntDagar.isEnabled()) {
+            kolumn7 = cbAntDagar.getSelectedItem().toString();
+        }
+        String kolumn8 = null;
+        if (this.picChooser.isEnabled()) {
+            kolumn8 = tfFiles.getText();
+        }
+
+        sc.addRow(new Object[]{
+            kostnadsTyp,
+            kolumn2,
+            kolumn3,
+            kolumn4,
+            kolumn5,
+            kolumn6,
+            kolumn7,
+            kolumn8
+        });
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void cbValutaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValutaRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbValutaRActionPerformed
+
+    private void btnSkickaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaRActionPerformed
+        if (this.id == null) {
+            JOptionPane.showMessageDialog(null, "Var god logga innan du skickar in ditt ärende!");
+            return;
+        }
+
+        try {
+            EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
+            ru.setStartDatum(dpFran.getDate());
+            ru.setSlutDatum(dpTill.getDate());
+            ru.setFranLand(cbLandFran.getSelectedItem().toString());
+            ru.setTillLand(cbLandTill.getSelectedItem().toString());
+
+            EntityGrej.UtgiftExpTabell[] Utgifter = new EntityGrej.UtgiftExpTabell[tblUtgifter.getRowCount()];
+            for (int i = 0; i < tblUtgifter.getRowCount(); i++) {
+                EntityGrej.UtgiftExpTabell utg = new EntityGrej.UtgiftExpTabell();
+                utg.Typ = (sc.getValueAt(i, 0).toString());
+                utg.KostnadExklMoms = Double.parseDouble(sc.getValueAt(i, 1).toString());
+                utg.KostnadInklMoms = Double.parseDouble(sc.getValueAt(i, 2).toString());
+                try {
+                    utg.KvittoUrl = sc.getValueAt(i, 3).toString();
+                } catch (Exception e) {
+                }
+                Utgifter[i] = utg;
+            }
+
+            UpdateClass.insertReseutlägg(ru, Utgifter, Integer.parseInt(id));
+            sc.setRowCount(0);
+            tfKostnadExMoms.setText("");
+            this.tfKostnadInklMoms.setText("");
+            dpFran.setDate(null);
+            dpTill.setDate(null);
+            tfAnnat.setText("");
+
+            String enChefMail = DatabasTest.getChefMail(Integer.parseInt(id));
+            Epost.Epost nyEpost = new Epost.Epost();
+            nyEpost.skickaEpostChef(enChefMail, "reseutlägg");
+            java.awt.event.ActionEvent evt2 = null;
+            btnRedigeraActionPerformed(evt2);
+            sc.setRowCount(0);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnSkickaRActionPerformed
+
+    private void btnSparaUtkastMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSparaUtkastMouseClicked
+        EntityGrej.Reseutlägg ru = new EntityGrej.Reseutlägg();
+        ru.setStartDatum(dpFran.getDate());
+        ru.setSlutDatum(dpTill.getDate());
+        ru.setFranLand(cbLandFran.getSelectedItem().toString());
+        ru.setTillLand(cbLandTill.getSelectedItem().toString());
+        String utgifter = hamtaUtgifter();
+        ru.sparaIUtkast(utgifter);
+    }//GEN-LAST:event_btnSparaUtkastMouseClicked
+
+    private void cbKostnadTypItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbKostnadTypItemStateChanged
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Bjuden på frukost") || cbKostnadTyp.getSelectedItem().toString().equals("Bjuden på lunch") || cbKostnadTyp.getSelectedItem().toString().equals("Bjuden på middag")) {
+            tfKostnadExMoms.setEnabled(false);
+            tfKostnadInklMoms.setEnabled(false);
+            dpFran1.setEnabled(true);
+            cbAntDagar.setEnabled(false);
+            cbValutaR.setEnabled(false);
+            tfMil.setEnabled(false);
+            picChooser.setEnabled(false);
+        }
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Egen bil") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil med diesel") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil annat drivmedel")) {
+            tfKostnadExMoms.setEnabled(false);
+            tfKostnadInklMoms.setEnabled(false);
+            dpFran1.setEnabled(false);
+            cbAntDagar.setEnabled(false);
+            cbValutaR.setEnabled(false);
+            tfMil.setEnabled(true);
+            picChooser.setEnabled(false);
+        }
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Annan typ av resa")) {
+            tfKostnadExMoms.setEnabled(true);
+            tfKostnadInklMoms.setEnabled(true);
+            dpFran1.setEnabled(false);
+            cbAntDagar.setEnabled(false);
+            cbValutaR.setEnabled(true);
+            tfMil.setEnabled(false);
+            picChooser.setEnabled(true);
+        }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Boende med kvitto")) {
+            tfKostnadExMoms.setEnabled(true);
+            tfKostnadInklMoms.setEnabled(true);
+            dpFran1.setEnabled(false);
+            cbAntDagar.setEnabled(true);
+            cbValutaR.setEnabled(true);
+            tfMil.setEnabled(false);
+            picChooser.setEnabled(true);
+        }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Boende utan kvitto")) {
+            tfKostnadExMoms.setEnabled(false);
+            tfKostnadInklMoms.setEnabled(false);
+            dpFran1.setEnabled(false);
+            cbAntDagar.setEnabled(true);
+            cbValutaR.setEnabled(false);
+            tfMil.setEnabled(false);
+            picChooser.setEnabled(false);
+        }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Annat")) {
+            tfKostnadExMoms.setEnabled(true);
+            tfKostnadInklMoms.setEnabled(true);
+            dpFran1.setEnabled(false);
+            cbAntDagar.setEnabled(false);
+            cbValutaR.setEnabled(true);
+            tfMil.setEnabled(false);
+            picChooser.setEnabled(true);
+            tfAnnat.setEnabled(true);
+        } else {
+            tfAnnat.setEnabled(false);
+        }
+    }//GEN-LAST:event_cbKostnadTypItemStateChanged
 
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
@@ -2640,7 +2675,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnBekraftaReseutlagg;
     private javax.swing.JButton btnGranska;
     private javax.swing.JButton btnHamtaLander;
-    private javax.swing.JButton btnKvitto;
     private javax.swing.JButton btnLaggTillAnvandare;
     private javax.swing.JButton btnLaggTillLand;
     private javax.swing.JButton btnLaggTillValuta;
@@ -2693,7 +2727,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2778,6 +2811,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JPanel pReseforskott;
     private javax.swing.JPanel pReseutlägg;
     private javax.swing.JPanel pStartsida;
+    private javax.swing.JButton picChooser;
     private javax.swing.JTextArea taMotivering;
     private javax.swing.JTextArea taMotiveringChef;
     private javax.swing.JTextArea taMotiveringEgnaArenden;
@@ -2798,6 +2832,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTextField tfEfternamn1;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEmail1;
+    private javax.swing.JTextField tfFiles;
     private javax.swing.JTextField tfFornamn;
     private javax.swing.JTextField tfFornamn1;
     private javax.swing.JTextField tfKostnadExMoms;
@@ -2818,4 +2853,9 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tpMeny;
     private javax.swing.JTabbedPane tpMeny2;
     // End of variables declaration//GEN-END:variables
+
+    byte[] receiptImg = null;
+    int s = 0;
+    PreparedStatement pst = null;
+
 }

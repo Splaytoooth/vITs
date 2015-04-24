@@ -5,6 +5,9 @@
  */
 package vITs;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -15,7 +18,9 @@ import javax.swing.JOptionPane;
 public class UpdateClass {
 
     public static void main(String[] argv) {
+
         try {
+
             Connection connection = DatabasTest.newConnection();
 
             Statement myStmt = connection.createStatement();
@@ -44,6 +49,11 @@ public class UpdateClass {
     }
 
     public static void insertReseutlägg(EntityGrej.Reseutlägg ru, EntityGrej.UtgiftExpTabell[] utgifter, int konsultID) {
+
+        byte[] receiptImg = null;
+        int s = 0;
+        PreparedStatement pst = null;
+
         try {
             Connection conn = DatabasTest.newConnection();
 
@@ -62,9 +72,31 @@ public class UpdateClass {
             myStmt.executeUpdate(sql);
 
             for (EntityGrej.UtgiftExpTabell utg : utgifter) {
+                String kvittoGrej = utg.KvittoUrl;
+
                 sql = "INSERT INTO Utgifter(Typ, ReseUtlaggsID, `Summa ink moms`, `Summa exl moms`)VALUES('"
                         + utg.Typ + "', " + id + ", '" + utg.KostnadInklMoms + "', '" + utg.KostnadExklMoms + "')";
                 myStmt.executeUpdate(sql);
+                try {
+
+                    File image = new File(kvittoGrej);
+                    FileInputStream ultraSuperInserter = new FileInputStream(image);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    byte[] byteInsert = new byte[4096];
+                    for (int readStuff; (readStuff = ultraSuperInserter.read(byteInsert)) != -1;) {
+                        baos.write(byteInsert, 0, readStuff);
+                    }
+
+                    receiptImg = baos.toByteArray();
+
+                    sql = "UPDATE Utgifter SET KvittoBild = ? WHERE ID=(SELECT MAX(ID) FROM Utgifter)";
+
+                    pst = conn.prepareStatement(sql);
+                    pst.setBytes(1, receiptImg);
+                    pst.execute();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
             }
 
             JOptionPane.showMessageDialog(null, "Ärende skickat!");
@@ -103,4 +135,5 @@ public class UpdateClass {
             JOptionPane.showMessageDialog(null, se);
         }
     }
+
 }
