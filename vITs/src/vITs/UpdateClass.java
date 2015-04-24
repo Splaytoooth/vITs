@@ -88,14 +88,16 @@ public class UpdateClass {
                     }
 
                     receiptImg = baos.toByteArray();
+                    sql = "Select MAX(ID) FROM Utgifter";
+                    ResultSet nRS = myStmt.executeQuery(sql);
+                    nRS.next();
 
-                    sql = "UPDATE Utgifter SET KvittoBild = ? WHERE ID=(SELECT MAX(ID) FROM Utgifter)";
+                    sql = "UPDATE Utgifter SET KvittoBild = ? WHERE ID=" + nRS.getString(1);
 
                     pst = conn.prepareStatement(sql);
                     pst.setBytes(1, receiptImg);
                     pst.execute();
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e);
                 }
             }
 
