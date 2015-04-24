@@ -2343,7 +2343,7 @@ public class Meny extends javax.swing.JFrame {
         for (EntityGrej.UtgiftExpTabell utg : this.berUtgifter.sparaGamlaUtgifter) {
             String datum = null;
             try {
-                f.format(utg.Datum);
+                f.format(utg.wDatum);
             } catch (Exception e) {
             }
             sc.addRow(
