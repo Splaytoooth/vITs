@@ -1880,6 +1880,9 @@ public class Meny extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void hej() {
+    }
+
     private void getValutor() {
         scValutor.setRowCount(0);
         ResultSet valutor = Valutor.HamtaValutor();
@@ -2382,98 +2385,88 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisaReseforskottChefMouseClicked
 
     private void btnVisaReseutlaggChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaReseutlaggChefMouseClicked
-       
+
         fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
     }//GEN-LAST:event_btnVisaReseutlaggChefMouseClicked
 
     private void btnVisaUtgifterChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterChefMouseClicked
-        try{
-        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaReseutlaggChef), tblVisaUtgifterChef);
-        }
-         catch(Exception e){
+        try {
+            fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblVisaReseutlaggChef), tblVisaUtgifterChef);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
         }
     }//GEN-LAST:event_btnVisaUtgifterChefMouseClicked
 
     private void btnVisaUtgifterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaUtgifterMouseClicked
-        try{
-        fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblReseutlagg), tblVisaUtgifter);
-        }
-         catch(Exception e){
+        try {
+            fillUtgifter("select * from Utgifter where Utgifter.ReseUtlaggsID = " + getIdFromTable(tblReseutlagg), tblVisaUtgifter);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
         }
     }//GEN-LAST:event_btnVisaUtgifterMouseClicked
 
     private void btnBekraftaReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseforskottMouseClicked
-        try{
-        UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
-        String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
-        String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
-        Epost.Epost nyEpost = new Epost.Epost();
-        nyEpost.skickaEpostAnstalld(Mail, "reseförskott");
-        fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
-        }
-         catch(Exception e){
+        try {
+            UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
+            String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
+            String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
+            Epost.Epost nyEpost = new Epost.Epost();
+            nyEpost.skickaEpostAnstalld(Mail, "reseförskott");
+            fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
         }
     }//GEN-LAST:event_btnBekraftaReseforskottMouseClicked
 
     private void btnBekraftaReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaReseutlaggMouseClicked
-        
-        try
-        {
-       
-        UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
-        String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
-        String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
-        Epost.Epost nyEpost = new Epost.Epost();
-        nyEpost.skickaEpostAnstalld(Mail, "reseutlägg");
-        fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
-        }
-        
-        catch(Exception e){
+
+        try {
+
+            UpdateClass.accepteraUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
+            String ettId = DatabasTest.getKonsultIdFromArende(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
+            String Mail = DatabasTest.getMail(Integer.parseInt(ettId));
+            Epost.Epost nyEpost = new Epost.Epost();
+            nyEpost.skickaEpostAnstalld(Mail, "reseutlägg");
+            fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
         }
     }//GEN-LAST:event_btnBekraftaReseutlaggMouseClicked
 
     private void btnTaBortBekraftelseReseforskottMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseforskottMouseClicked
-        try{
-        UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
-        fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
-        }
-        catch(Exception e){
+        try {
+            UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseforskottChef), "Reseförskott");
+            fillReseforskottTable("select * from Reseförskott join Konsulter on Reseförskott.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseforskottChef);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
         }
     }//GEN-LAST:event_btnTaBortBekraftelseReseforskottMouseClicked
 
     private void btnTaBortBekraftelseReseutlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortBekraftelseReseutlaggMouseClicked
-        try{
-        UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
-        fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
-        }
-        catch(Exception e){
+        try {
+            UpdateClass.accepteraInteUtbetalning(getIdFromTable(tblVisaReseutlaggChef), "Reseutlägg");
+            fillReseutlaggTable("select * from Reseutlägg join Konsulter on Reseutlägg.KonsultID = Konsulter.ID where Konsulter.ChefID = " + id, tblVisaReseutlaggChef);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseutlägg först.");
         }
     }//GEN-LAST:event_btnTaBortBekraftelseReseutlaggMouseClicked
 
     private void btnVisaMotiveringChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMotiveringChefActionPerformed
-        try{
-        taMotiveringChef.setText("");
-        String motivering = getMotivering(tblVisaReseforskottChef);
-        taMotiveringChef.append(motivering);
-        }
-        catch(Exception e){
+        try {
+            taMotiveringChef.setText("");
+            String motivering = getMotivering(tblVisaReseforskottChef);
+            taMotiveringChef.append(motivering);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
         }
     }//GEN-LAST:event_btnVisaMotiveringChefActionPerformed
 
     private void btnVisaMotiveringEgnaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaMotiveringEgnaActionPerformed
-        try{
-        taMotiveringEgnaArenden.setText("");
-        String motivering = getMotivering(tblReseforskott);
-        taMotiveringEgnaArenden.append(motivering);
-        }
-        catch(Exception e){
+        try {
+            taMotiveringEgnaArenden.setText("");
+            String motivering = getMotivering(tblReseforskott);
+            taMotiveringEgnaArenden.append(motivering);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Välj ett reseförskott först.");
         }
     }//GEN-LAST:event_btnVisaMotiveringEgnaActionPerformed
@@ -2481,10 +2474,10 @@ public class Meny extends javax.swing.JFrame {
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         String motivering = table.getValueAt(selectedRowIndex, 1).toString();
-        
+
         return motivering;
     }
-    
+
     public String getIdFromTable(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         String ettID = table.getValueAt(selectedRowIndex, 0).toString();
