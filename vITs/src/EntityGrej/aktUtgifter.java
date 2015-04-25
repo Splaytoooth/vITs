@@ -94,8 +94,8 @@ public class aktUtgifter {
         }
 
         for (UtgiftExpTabell aktObj : avbrott) {
-            aktObj.Typ = aktObj.Typ + " den " + aktObj.Datum;
-            if ((aktObj.Datum).equals(startDatum)) {
+            aktObj.Typ = aktObj.Typ + " den " + f.format(aktObj.Datum);
+            if ((f.format(aktObj.Datum)).equals(startDatum)) {
                 aktObj.KostnadExklMoms = this.traktamente.franLandNormalBelopp * -1;
                 aktObj.Typ += " första dagen fortfarande i " + this.traktamente.franLand;
             } else {

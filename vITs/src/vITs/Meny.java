@@ -599,6 +599,8 @@ public class Meny extends javax.swing.JFrame {
 
         jLabel16.setText("Summan du får totalt:");
 
+        tfFiles.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -2286,7 +2288,7 @@ public class Meny extends javax.swing.JFrame {
         for (EntityGrej.UtgiftExpTabell utg : this.berUtgifter.sparaGamlaUtgifter) {
             String datum = null;
             try {
-                f.format(utg.Datum);
+                datum = f.format(utg.Datum);
             } catch (Exception e) {
             }
             sc.addRow(
@@ -2314,7 +2316,7 @@ public class Meny extends javax.swing.JFrame {
         cbKostnadTyp.setEnabled(false);
         cbValutaR.setEnabled(false);
         cbAntDagar.setEnabled(false);
-        picChooser.setEnabled(false);
+        picChooser.setEnabled(true);
         btnRemove.setVisible(false);
         cbLandFran.setEnabled(false);
         cbLandTill.setEnabled(false);
