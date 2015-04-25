@@ -5,21 +5,24 @@
  */
 package vITs;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author 93stealb
  */
-public class Valutor {
+public class Lander {
 
-    public static ResultSet HamtaValutor() {
+    public static ResultSet getLander() {
         Connection conn = DatabasTest.newConnection();
         try {
             Statement myStmt = conn.createStatement();
 
-            String sql = "Select * from Valutor";
+            String sql = "Select * from Lander";
 
             return myStmt.executeQuery(sql);
 
@@ -29,12 +32,12 @@ public class Valutor {
         }
     }
 
-    public static void nyValuta(String namn, double kurs) {
+    public static void nyLand(String namn, double normalBelopp) {
         Connection conn = DatabasTest.newConnection();
         try {
             Statement myStmt = conn.createStatement();
 
-            String sql = "Insert into Valutor values('" + namn + "', " + kurs + ")";
+            String sql = "Insert into Lander values('" + namn + "', " + normalBelopp + ")";
 
             myStmt.executeUpdate(sql);
 
@@ -43,25 +46,25 @@ public class Valutor {
         }
     }
 
-    public static void removeValuta(String namn) {
+    public static void removeLand(String namn) {
         Connection conn = DatabasTest.newConnection();
         try {
             Statement myStmt = conn.createStatement();
 
-            String sql = "Delete from Valutor where Valuta = '" + namn + "'";
+            String sql = "Delete from Lander where Land = '" + namn + "'";
 
             myStmt.executeUpdate(sql);
         } catch (Exception e) {
         }
     }
-
-    public static void updateValuta(String valutaNamn, double valKonv) {
+    
+     public static void updateLand(String valutaNamn, double valKonv) {
         try {
             Connection connection = DatabasTest.newConnection();
 
             Statement myStmt = connection.createStatement();
 
-            String sql = "update Valutor set Kronor = " + valKonv + " where Valuta='" + valutaNamn + "'";
+            String sql = "update Lander set Maxbelopp = " + valKonv + " where Land='" + valutaNamn + "'";
 
             myStmt.executeUpdate(sql);
         } catch (SQLException se) {

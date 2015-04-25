@@ -1470,16 +1470,17 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                           <Component id="lblValuta" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="tfValutaNamn" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="tfVaxelkurs" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnLaggTillValuta" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="tfNyKonv" min="-2" max="-2" attributes="0"/>
@@ -1603,34 +1604,43 @@
                                   <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnTaBortLand" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                                       <Component id="btnLaggTillLand" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
-                                      <Component id="tfLand" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="tfNyLand" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                                       <Component id="lblLand" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfLand1" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="tfNormalbelopp" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                                       <Component id="lblLand1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnTaBortLand" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="tfNyttNormalbelopp" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <Component id="btnLaggTillLand1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblLand2" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="354" max="32767" attributes="0"/>
+                                  <EmptySpace pref="325" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="btnTaBortLand" min="-2" pref="36" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                                           <Component id="lblLand" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfLand" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfNyLand" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="lblLand1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfLand1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfNormalbelopp" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnLaggTillLand" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="lblLand2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfNyttNormalbelopp" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnLaggTillLand1" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                          <Component id="btnTaBortLand" min="-2" pref="36" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1668,20 +1678,41 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ta bort land"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortLandActionPerformed"/>
+                          </Events>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tfLand">
+                        <Component class="javax.swing.JTextField" name="tfNyLand">
                         </Component>
                         <Component class="javax.swing.JButton" name="btnLaggTillLand">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="L&#xe4;gg till land"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaggTillLandActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblLand1">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Normalbelopp"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="tfLand1">
+                        <Component class="javax.swing.JTextField" name="tfNormalbelopp">
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="tfNyttNormalbelopp">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblLand2">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Nytt normalbelopp"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btnLaggTillLand1">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="&#xc4;ndra markerat normalbelopp"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaggTillLand1ActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

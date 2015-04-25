@@ -29,6 +29,7 @@ public class Meny extends javax.swing.JFrame {
     private boolean chef;
     DefaultTableModel sc;
     DefaultTableModel scValutor;
+    DefaultTableModel scLander;
     Traktamente traktamente;
     EntityGrej.aktUtgifter berUtgifter = new EntityGrej.aktUtgifter();
     SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,6 +53,7 @@ public class Meny extends javax.swing.JFrame {
         btnSkickaR.setVisible(false);
         btnRedigera.setVisible(false);
         scValutor = (DefaultTableModel) tblValutor.getModel();
+        scLander = (DefaultTableModel) tblLander.getModel();
     }
 
     /**
@@ -177,10 +179,13 @@ public class Meny extends javax.swing.JFrame {
         tblLander = new javax.swing.JTable();
         lblLand = new javax.swing.JLabel();
         btnTaBortLand = new javax.swing.JButton();
-        tfLand = new javax.swing.JTextField();
+        tfNyLand = new javax.swing.JTextField();
         btnLaggTillLand = new javax.swing.JButton();
         lblLand1 = new javax.swing.JLabel();
-        tfLand1 = new javax.swing.JTextField();
+        tfNormalbelopp = new javax.swing.JTextField();
+        tfNyttNormalbelopp = new javax.swing.JTextField();
+        lblLand2 = new javax.swing.JLabel();
+        btnLaggTillLand1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         pLaggTillAnvandrare = new javax.swing.JPanel();
         tfAnvandarnamn = new javax.swing.JTextField();
@@ -1111,16 +1116,17 @@ public class Meny extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pHanteraValutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pHanteraValutorLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
                         .addComponent(lblValuta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfValutaNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfVaxelkurs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLaggTillValuta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
+                        .addGap(94, 94, 94)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfNyKonv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1172,10 +1178,29 @@ public class Meny extends javax.swing.JFrame {
         lblLand.setText("Land");
 
         btnTaBortLand.setText("Ta bort land");
+        btnTaBortLand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortLandActionPerformed(evt);
+            }
+        });
 
         btnLaggTillLand.setText("Lägg till land");
+        btnLaggTillLand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillLandActionPerformed(evt);
+            }
+        });
 
         lblLand1.setText("Normalbelopp");
+
+        lblLand2.setText("Nytt normalbelopp");
+
+        btnLaggTillLand1.setText("Ändra markerat normalbelopp");
+        btnLaggTillLand1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillLand1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pHanteraValutor1Layout = new javax.swing.GroupLayout(pHanteraValutor1);
         pHanteraValutor1.setLayout(pHanteraValutor1Layout);
@@ -1185,31 +1210,40 @@ public class Meny extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTaBortLand, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLaggTillLand, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfLand, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNyLand, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLand)
-                    .addComponent(tfLand1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLand1))
-                .addContainerGap(354, Short.MAX_VALUE))
+                    .addComponent(tfNormalbelopp, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLand1)
+                    .addComponent(btnTaBortLand, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNyttNormalbelopp, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLaggTillLand1)
+                    .addComponent(lblLand2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
         pHanteraValutor1Layout.setVerticalGroup(
             pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pHanteraValutor1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pHanteraValutor1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pHanteraValutor1Layout.createSequentialGroup()
-                        .addComponent(btnTaBortLand, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
                         .addComponent(lblLand)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNyLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblLand1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfLand1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNormalbelopp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLaggTillLand, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLaggTillLand, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLand2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNyttNormalbelopp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLaggTillLand1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(btnTaBortLand, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(112, Short.MAX_VALUE))
         );
@@ -2114,6 +2148,7 @@ public class Meny extends javax.swing.JFrame {
 
         if (tpMeny.getSelectedIndex() == 2) {
             getValutor();
+            getLander();
         }
     }//GEN-LAST:event_tpMenyStateChanged
 
@@ -2142,9 +2177,28 @@ public class Meny extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_ansdatumtActionPerformed
 
-    private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
-        if (tpMeny2.getSelectedIndex() == 0) {
+    private void getLander() {
+        scLander.setRowCount(0);
+        ResultSet lander = Lander.getLander();
+        this.cbLandFran.removeAllItems();
+        this.cbLandTill.removeAllItems();
 
+        try {
+            while (lander.next()) {
+                this.cbLandFran.addItem(lander.getString(1));
+                this.cbLandTill.addItem(lander.getString(1));
+                scLander.addRow(
+                        new Object[]{
+                            lander.getString(1), lander.getString(2)
+                        });
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    private void tpMeny2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMeny2StateChanged
+        if (tpMeny2.getSelectedIndex() == 1) {
+            getLander();
         }
     }//GEN-LAST:event_tpMeny2StateChanged
 
@@ -2558,15 +2612,78 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Var god ange EN valuta i listan att uppdatera");
             return;
         }
+        if (this.tfNyKonv.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Var god ange en valuta-sek ratio");
+            return;
+        }
         double valutaKonv = 0;
         String valutaNamn = null;
         try {
-            valutaKonv = Double.parseDouble(this.scValutor.getValueAt(tblValutor.getSelectedRow(), 1).toString());
+            valutaKonv = Double.parseDouble(this.tfNyKonv.getText());
             valutaNamn = this.scValutor.getValueAt(tblValutor.getSelectedRow(), 0).toString();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Var god ange en resonlig valuta-sek ratio");
         }
+        if (valutaKonv < 10000000 && valutaKonv > 0) {
+            Valutor.updateValuta(valutaNamn, valutaKonv);
+            getValutor();
+        } else {
+            JOptionPane.showMessageDialog(null, "Var god ange en resonlig valuta-sek ratio");
+        }
+
     }//GEN-LAST:event_btnUppdateraValutaActionPerformed
+
+    private void btnLaggTillLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillLandActionPerformed
+        String land = tfNyLand.getText();
+        double normalBelopp = 0;
+
+        if (land.length() > 100 || land.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett land");
+            return;
+        }
+        try {
+            normalBelopp = Double.parseDouble(this.tfNormalbelopp.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett lämpligt normalbelopp");
+            return;
+        }
+
+        Lander.nyLand(land, normalBelopp);
+        getLander();
+    }//GEN-LAST:event_btnLaggTillLandActionPerformed
+
+    private void btnTaBortLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortLandActionPerformed
+        int valdRad = tblLander.getSelectedRow();
+        String landNamn = scLander.getValueAt(valdRad, 0).toString();
+        Lander.removeLand(landNamn);
+        getLander();
+    }//GEN-LAST:event_btnTaBortLandActionPerformed
+
+    private void btnLaggTillLand1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillLand1ActionPerformed
+        if (tblLander.getSelectedRowCount() != 1) {
+            JOptionPane.showMessageDialog(null, "Var god ange ETT land i listan att uppdatera");
+            return;
+        }
+        if (this.tfNyttNormalbelopp.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett normalelopp");
+            return;
+        }
+        double normalBelopp = 0;
+        String land = null;
+        try {
+            normalBelopp = Double.parseDouble(this.tfNyttNormalbelopp.getText());
+            land = this.scLander.getValueAt(tblLander.getSelectedRow(), 0).toString();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett resonligt normalbelopp");
+        }
+        if (normalBelopp < 10000000 && normalBelopp > 0) {
+            Lander.updateLand(land, normalBelopp);
+            getLander();
+        } else {
+            JOptionPane.showMessageDialog(null, "Var god ange ett resonligt normalbelopp");
+        }
+
+    }//GEN-LAST:event_btnLaggTillLand1ActionPerformed
 
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
@@ -2738,6 +2855,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnGranska;
     private javax.swing.JButton btnLaggTillAnvandare;
     private javax.swing.JButton btnLaggTillLand;
+    private javax.swing.JButton btnLaggTillLand1;
     private javax.swing.JButton btnLaggTillValuta;
     private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnLoggain;
@@ -2859,6 +2977,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JLabel lblFranDatum;
     private javax.swing.JLabel lblLand;
     private javax.swing.JLabel lblLand1;
+    private javax.swing.JLabel lblLand2;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblLosenord1;
@@ -2901,13 +3020,14 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTextField tfFornamn1;
     private javax.swing.JTextField tfKostnadExMoms;
     private javax.swing.JTextField tfKostnadInklMoms;
-    private javax.swing.JTextField tfLand;
-    private javax.swing.JTextField tfLand1;
     private javax.swing.JPasswordField tfLosen;
     private javax.swing.JTextField tfLosenord;
     private javax.swing.JTextField tfLosenord1;
     private javax.swing.JTextField tfMil;
+    private javax.swing.JTextField tfNormalbelopp;
     private javax.swing.JTextField tfNyKonv;
+    private javax.swing.JTextField tfNyLand;
+    private javax.swing.JTextField tfNyttNormalbelopp;
     private javax.swing.JTextField tfSumma;
     private javax.swing.JTextField tfTotSumma;
     private javax.swing.JTextField tfValutaNamn;
