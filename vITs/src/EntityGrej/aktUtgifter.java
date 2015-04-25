@@ -73,6 +73,7 @@ public class aktUtgifter {
         intAnnat = 0;
         intBjuden = 0;
         intBoende = 0;
+        intAvbrott = 0;
         for (UtgiftExpTabell aktObj : rawUtgifter) {
             if (aktObj.Typ.equals("Bjuden på frukost") || aktObj.Typ.equals("Bjuden på lunch") || aktObj.Typ.equals("Bjuden på middag")) {
                 bjuden[intBjuden] = aktObj;
@@ -84,11 +85,25 @@ public class aktUtgifter {
                 boende[intBoende] = aktObj;
                 intBoende++;
             } else if (aktObj.Typ.equals("Avbrott i resan")) {
-                
+                avbrott[intAvbrott] = aktObj;
+                intAvbrott++;
             } else {
                 Annat[intAnnat] = aktObj;
                 intAnnat++;
             }
+        }
+
+        for (UtgiftExpTabell aktObj : avbrott) {
+            aktObj.Typ = aktObj.Typ + " den " + aktObj.Datum;
+            if ((aktObj.Datum).equals(startDatum)) {
+                aktObj.KostnadExklMoms = this.traktamente.franLandNormalBelopp * -1;
+                aktObj.Typ += " första dagen fortfarande i " + this.traktamente.franLand;
+            } else {
+                aktObj.KostnadExklMoms = this.traktamente.tillLandNormalBelopp * -1;
+            }
+            aktObj.KostnadInklMoms = aktObj.KostnadExklMoms;
+
+            this.beraknadeUtgifter.add(aktObj);
         }
 
         Map<String, List<UtgiftExpTabell>> sortBjud = new HashMap<String, List<UtgiftExpTabell>>();

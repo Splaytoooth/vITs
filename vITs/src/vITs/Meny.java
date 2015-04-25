@@ -470,10 +470,15 @@ public class Meny extends javax.swing.JFrame {
 
         pReseutlägg.setBackground(new java.awt.Color(255, 255, 255));
 
-        cbKostnadTyp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bjuden på frukost", "Bjuden på lunch", "Bjuden på middag", "Egen bil", "Tjänstebil med diesel", "Tjänstebil annat drivmedel", "Annan typ av resa", "Boende med kvitto", "Boende utan kvitto", "Annat" }));
+        cbKostnadTyp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bjuden på frukost", "Bjuden på lunch", "Bjuden på middag", "Egen bil", "Tjänstebil med diesel", "Tjänstebil annat drivmedel", "Annan typ av resa", "Boende med kvitto", "Boende utan kvitto", "Annat", "Avbrott i resan" }));
         cbKostnadTyp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbKostnadTypItemStateChanged(evt);
+            }
+        });
+        cbKostnadTyp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKostnadTypActionPerformed(evt);
             }
         });
 
@@ -2504,7 +2509,21 @@ public class Meny extends javax.swing.JFrame {
         } else {
             tfAnnat.setEnabled(false);
         }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Avbrott i resan")) {
+            tfKostnadExMoms.setEnabled(false);
+            tfKostnadInklMoms.setEnabled(false);
+            dpFran1.setEnabled(true);
+            cbAntDagar.setEnabled(false);
+            cbValutaR.setEnabled(false);
+            tfMil.setEnabled(false);
+            picChooser.setEnabled(false);
+        }
     }//GEN-LAST:event_cbKostnadTypItemStateChanged
+
+    private void cbKostnadTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKostnadTypActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbKostnadTypActionPerformed
 
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();

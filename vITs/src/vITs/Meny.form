@@ -636,7 +636,7 @@
                 <Component class="javax.swing.JComboBox" name="cbKostnadTyp">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="10">
+                      <StringArray count="11">
                         <StringItem index="0" value="Bjuden p&#xe5; frukost"/>
                         <StringItem index="1" value="Bjuden p&#xe5; lunch"/>
                         <StringItem index="2" value="Bjuden p&#xe5; middag"/>
@@ -647,11 +647,13 @@
                         <StringItem index="7" value="Boende med kvitto"/>
                         <StringItem index="8" value="Boende utan kvitto"/>
                         <StringItem index="9" value="Annat"/>
+                        <StringItem index="10" value="Avbrott i resan"/>
                       </StringArray>
                     </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbKostnadTypItemStateChanged"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbKostnadTypActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
