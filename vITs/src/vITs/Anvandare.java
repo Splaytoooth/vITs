@@ -1,6 +1,7 @@
 package vITs;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -23,6 +24,36 @@ public class Anvandare {
             JOptionPane.showMessageDialog(null, "Något gick fel, var god försök igen");
         }
 
+    }
+
+    public static ResultSet hamtaAnstallda(int id) {
+
+        Connection conn = DatabasTest.newConnection();
+
+        try {
+            Statement myStmt = conn.createStatement();
+            String sql = "select * from Konsulter where ChefID=" + id;
+
+            return myStmt.executeQuery(sql);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel, var god försök igen");
+            return null;
+        }
+    }
+
+    public static void raderaAnvandare(int id) {
+         Connection conn = DatabasTest.newConnection();
+
+        try {
+            Statement myStmt = conn.createStatement();
+            String sql = "Delete from Konsulter where id="+ id;
+
+            myStmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel, var god försök igen");
+        }
     }
 
 }

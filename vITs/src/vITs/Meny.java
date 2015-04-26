@@ -30,6 +30,7 @@ public class Meny extends javax.swing.JFrame {
     DefaultTableModel sc;
     DefaultTableModel scValutor;
     DefaultTableModel scLander;
+    DefaultTableModel scAnstallda;
     Traktamente traktamente;
     EntityGrej.aktUtgifter berUtgifter = new EntityGrej.aktUtgifter();
     SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,6 +55,7 @@ public class Meny extends javax.swing.JFrame {
         btnRedigera.setVisible(false);
         scValutor = (DefaultTableModel) tblValutor.getModel();
         scLander = (DefaultTableModel) tblLander.getModel();
+        scAnstallda = (DefaultTableModel) tblAnstallda.getModel();
     }
 
     /**
@@ -202,7 +204,7 @@ public class Meny extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblAnstallda = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         pRedigeraAnvandare = new javax.swing.JPanel();
         tfAnvandarnamn1 = new javax.swing.JTextField();
@@ -1368,24 +1370,39 @@ public class Meny extends javax.swing.JFrame {
         tpMeny2.addTab("Lägg till användare ", jPanel8);
 
         jButton1.setText("Ta bort användare");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblAnstallda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Förnamn", "Efternamn", "E-mail"
             }
-        ));
-        jScrollPane4.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tblAnstallda);
 
         jButton4.setText("Redigera användare");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -2086,6 +2103,28 @@ public class Meny extends javax.swing.JFrame {
 
     }
 
+    private void fyllAnstallda() {
+        ResultSet anstalldaRS = Anvandare.hamtaAnstallda(Integer.parseInt(id));
+
+        scAnstallda.setRowCount(0);
+        try {
+
+            while (anstalldaRS.next()) {
+                scAnstallda.addRow(
+                        new Object[]{
+                            anstalldaRS.getString(1), anstalldaRS.getString(5), anstalldaRS.getString(6), anstalldaRS.getString(2)
+                        }
+                );
+                
+
+            }
+
+        } catch (Exception fel) {
+            JOptionPane.showMessageDialog(null, fel);
+        }
+    }
+
+
     private void btnSkickaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkickaMouseClicked
 
     }//GEN-LAST:event_btnSkickaMouseClicked
@@ -2205,6 +2244,10 @@ public class Meny extends javax.swing.JFrame {
         if (tpMeny2.getSelectedIndex() == 1) {
             getLander();
         }
+        if(tpMeny2.getSelectedIndex() == 3){
+            fyllAnstallda();
+        }                                    
+    
     }//GEN-LAST:event_tpMeny2StateChanged
 
     private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
@@ -2692,20 +2735,32 @@ public class Meny extends javax.swing.JFrame {
 
     private void btnLaggTillAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnvandareActionPerformed
         String anvandarnamn = this.tfAnvandarnamn.getText();
-        String losenord= this.tfLosenord.getText();
-        String fornamn= this.tfFornamn.getText();
-        String efternamn= this.tfEfternamn.getText();
+        String losenord = this.tfLosenord.getText();
+        String fornamn = this.tfFornamn.getText();
+        String efternamn = this.tfEfternamn.getText();
         String email = this.tfEmail.getText();
-        
+
         Anvandare.nyAnvandare(anvandarnamn, losenord, fornamn, efternamn, email, Integer.parseInt(id));
         tfAnvandarnamn.setText("");
         tfLosenord.setText("");
         this.tfFornamn.setText("");
         this.tfEfternamn.setText("");
         this.tfEmail.setText("");
-      
+
         JOptionPane.showMessageDialog(null, "Ny användaren tillagd");
     }//GEN-LAST:event_btnLaggTillAnvandareActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int markerad = tblAnstallda.getSelectedRow();
+        String idRad = tblAnstallda.getValueAt(markerad, 0).toString();
+        Anvandare.raderaAnvandare(Integer.parseInt(idRad));
+        JOptionPane.showMessageDialog(null, "Person raderad från databasem");
+        fyllAnstallda();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
@@ -2971,7 +3026,6 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton jb_anshämta;
     private javax.swing.JButton jb_cheffhämta;
     private javax.swing.JTable jt_anstabell;
@@ -3020,6 +3074,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTextArea taMotivering;
     private javax.swing.JTextArea taMotiveringChef;
     private javax.swing.JTextArea taMotiveringEgnaArenden;
+    private javax.swing.JTable tblAnstallda;
     private javax.swing.JTable tblLander;
     private javax.swing.JTable tblReseforskott;
     private javax.swing.JTable tblReseutlagg;
