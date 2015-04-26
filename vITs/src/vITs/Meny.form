@@ -1733,7 +1733,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                               <Component id="pLaggTillAnvandrare" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="769" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1872,6 +1872,9 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="L&#xe4;gg till anv&#xe4;ndare"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaggTillAnvandareActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

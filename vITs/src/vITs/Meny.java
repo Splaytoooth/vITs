@@ -1278,6 +1278,11 @@ public class Meny extends javax.swing.JFrame {
         lblEpost.setText("E-post");
 
         btnLaggTillAnvandare.setText("Lägg till användare");
+        btnLaggTillAnvandare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillAnvandareActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pLaggTillAnvandrareLayout = new javax.swing.GroupLayout(pLaggTillAnvandrare);
         pLaggTillAnvandrare.setLayout(pLaggTillAnvandrareLayout);
@@ -1350,7 +1355,7 @@ public class Meny extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(pLaggTillAnvandrare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(769, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2684,6 +2689,23 @@ public class Meny extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnLaggTillLand1ActionPerformed
+
+    private void btnLaggTillAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnvandareActionPerformed
+        String anvandarnamn = this.tfAnvandarnamn.getText();
+        String losenord= this.tfLosenord.getText();
+        String fornamn= this.tfFornamn.getText();
+        String efternamn= this.tfEfternamn.getText();
+        String email = this.tfEmail.getText();
+        
+        Anvandare.nyAnvandare(anvandarnamn, losenord, fornamn, efternamn, email, Integer.parseInt(id));
+        tfAnvandarnamn.setText("");
+        tfLosenord.setText("");
+        this.tfFornamn.setText("");
+        this.tfEfternamn.setText("");
+        this.tfEmail.setText("");
+      
+        JOptionPane.showMessageDialog(null, "Ny användaren tillagd");
+    }//GEN-LAST:event_btnLaggTillAnvandareActionPerformed
 
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
