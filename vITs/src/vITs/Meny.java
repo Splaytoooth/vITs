@@ -1,5 +1,6 @@
 package vITs;
 
+import Validering.Valid;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +17,9 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import sun.awt.SunToolkit;
 
 /**
@@ -55,7 +59,20 @@ public class Meny extends javax.swing.JFrame {
         btnRedigera.setVisible(false);
         scValutor = (DefaultTableModel) tblValutor.getModel();
         scLander = (DefaultTableModel) tblLander.getModel();
+        Date date = new Date();
+        this.dpFran.setMaxSelectableDate(date);
+        this.dpTill.setMaxSelectableDate(date);
+        this.dpFran1.setMaxSelectableDate(date);
+        Long mittDate = Long.parseLong("1135296000000");
+        Date date2 = new Date();
+        date2.setTime(mittDate);
+        this.dpFran.setMinSelectableDate(date2);
+        this.dpTill.setMinSelectableDate(date2);
+
+        this.dpFran1.setMinSelectableDate(date2);
+        this.dpFran1.setMaxSelectableDate(date2);
         scAnstallda = (DefaultTableModel) tblAnstallda.getModel();
+
     }
 
     /**
@@ -372,7 +389,7 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(pLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(335, Short.MAX_VALUE))
         );
 
         tpMeny.addTab("Startsida", pStartsida);
@@ -570,6 +587,18 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
+        dpTill.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dpTillPropertyChange(evt);
+            }
+        });
+
+        dpFran.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dpFranPropertyChange(evt);
+            }
+        });
+
         btnGranska.setText("Granska");
         btnGranska.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -597,7 +626,7 @@ public class Meny extends javax.swing.JFrame {
 
         jLabel15.setText("Total kostnad inkl moms");
 
-        cbAntDagar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
+        cbAntDagar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
 
         jLabel13.setText("Dagar");
 
@@ -766,7 +795,7 @@ public class Meny extends javax.swing.JFrame {
                         .addComponent(jLabel16)
                         .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
-                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(btnRegReseförskott, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGranska, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -880,7 +909,7 @@ public class Meny extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                         .addComponent(jb_cheffhämta)
                         .addGap(31, 31, 31))
                     .addGroup(jPanel11Layout.createSequentialGroup()
@@ -988,7 +1017,7 @@ public class Meny extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                         .addComponent(jb_anshämta)
                         .addGap(31, 31, 31))
                     .addGroup(jPanel12Layout.createSequentialGroup()
@@ -1154,7 +1183,7 @@ public class Meny extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(pHanteraValutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         tpMeny2.addTab("Valuta", jPanel6);
@@ -1264,7 +1293,7 @@ public class Meny extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(pHanteraValutor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         tpMeny2.addTab("Länder", jPanel7);
@@ -1829,7 +1858,7 @@ public class Meny extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane17)
                     .addComponent(jScrollPane9))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reseförskott", jPanel13);
@@ -1924,7 +1953,7 @@ public class Meny extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Reseutlägg", jPanel14);
@@ -2061,6 +2090,11 @@ public class Meny extends javax.swing.JFrame {
             expTabeller.add(expTabell);
         }
 
+        int dagarMellan = dagarEmellan();
+        berUtgifter.newAktUtgifter(expTabeller, traktamente, f.format(dpFran.getDate()), dagarMellan);
+    }
+
+    private int dagarEmellan() {
         DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
         try {
             String ettDatum = formatter.format(dpFran.getDate());
@@ -2079,13 +2113,11 @@ public class Meny extends javax.swing.JFrame {
                 cDate.add(Calendar.DAY_OF_MONTH, 1);
                 daysBetween++;
             }
-            int dagar = (int) daysBetween;
+            return (int) daysBetween;
 
-            berUtgifter.newAktUtgifter(expTabeller, traktamente, f.format(dpFran.getDate()), dagar);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            return -1;
         }
-
     }
 
     private void raknaTraktamente() {
@@ -2096,7 +2128,6 @@ public class Meny extends javax.swing.JFrame {
         } catch (Exception e) {
             traktamente = new Traktamente(cbLandFran.getSelectedItem().toString(), cbLandTill.getSelectedItem().toString());
         }
-
     }
 
     private void enableOffReseUtlägg() {
@@ -2115,7 +2146,6 @@ public class Meny extends javax.swing.JFrame {
                             anstalldaRS.getString(1), anstalldaRS.getString(5), anstalldaRS.getString(6), anstalldaRS.getString(2)
                         }
                 );
-                
 
             }
 
@@ -2151,6 +2181,7 @@ public class Meny extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Fel lösenord och/eller användarman!");
         }
+
     }//GEN-LAST:event_btnLoggainActionPerformed
 
     private void btnSkickaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaActionPerformed
@@ -2244,10 +2275,10 @@ public class Meny extends javax.swing.JFrame {
         if (tpMeny2.getSelectedIndex() == 1) {
             getLander();
         }
-        if(tpMeny2.getSelectedIndex() == 3){
+        if (tpMeny2.getSelectedIndex() == 3) {
             fyllAnstallda();
-        }                                    
-    
+        }
+
     }//GEN-LAST:event_tpMeny2StateChanged
 
     private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
@@ -2393,6 +2424,16 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_picChooserActionPerformed
 
     private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
+
+        JTableHeader th = tblUtgifter.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+        TableColumn tc = tcm.getColumn(3);
+        tc.setHeaderValue("Valuta");
+        th.repaint();
+
+        sc.setColumnCount(8);
+
+        
         btnSparaUtkast.setVisible(true);
         btnSkickaR.setVisible(false);
         btnRedigera.setVisible(false);
@@ -2428,10 +2469,24 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRedigeraActionPerformed
 
     private void btnGranskaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGranskaActionPerformed
+
         if (dpFran.getDate() == null || dpTill.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Var god fyll i ett datum för start- och slut- datum för resan");
             return;
         }
+
+        if (dagarEmellan() < 1 || dagarEmellan() > 31) {
+            JOptionPane.showMessageDialog(null, "De valda datumen måste vara mellan 0 och 31 dagar");
+            return;
+        }
+        JTableHeader th = tblUtgifter.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+        tcm.removeColumn(tcm.getColumn(6));
+        tcm.removeColumn(tcm.getColumn(5));
+        tcm.removeColumn(tcm.getColumn(4));
+        tcm.removeColumn(tcm.getColumn(3));
+        th.repaint();
+
         btnSparaUtkast.setVisible(false);
         btnSkickaR.setVisible(true);
         btnGranska.setVisible(false);
@@ -2474,6 +2529,97 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Egen bil") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil med diesel") || cbKostnadTyp.getSelectedItem().toString().equals("Tjänstebil annat drivmedel")) {
+            if (!Valid.onlyDouble(tfMil) || Valid.noTextOrToMuch(tfMil)) {
+                return;
+            }
+            if (Double.parseDouble(tfMil.getText()) < 0.1 || Double.parseDouble(tfMil.getText()) > 1000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett positivt antal mil som även är lägre än 1000");
+                return;
+            }
+        }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Annan typ av resa")) {
+            if (!Valid.onlyDouble(tfKostnadExMoms) || Valid.noTextOrToMuch(tfKostnadExMoms)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad exklusive moms");
+                return;
+            }
+            if (Double.parseDouble(tfKostnadExMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadExMoms.getText()) > 500000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostnad ex moms som även är lägre än 500000");
+                return;
+            }
+            if (!Valid.onlyDouble(tfKostnadInklMoms) || Valid.noTextOrToMuch(tfKostnadInklMoms)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad inklusive moms");
+                return;
+            }
+            if (Double.parseDouble(tfKostnadInklMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadInklMoms.getText()) > 500000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostand inklusive moms som även är lägre än 500 000");
+                return;
+            }
+            if (Double.parseDouble(tfKostnadInklMoms.getText()) < Double.parseDouble(tfKostnadExMoms.getText())) {
+                JOptionPane.showMessageDialog(null, "Kostnad inklusive moms måste vara högre än kostnad exklusive moms");
+                return;
+            }
+        }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Boende med kvitto")) {
+
+            if (Double.parseDouble(tfKostnadExMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadExMoms.getText()) > 500000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostnad ex moms som även är lägre än 500000");
+                return;
+            }
+
+            if (Double.parseDouble(tfKostnadInklMoms.getText()) < Double.parseDouble(tfKostnadExMoms.getText())) {
+                JOptionPane.showMessageDialog(null, "Kostnad inklusive moms måste vara högre än kostnad exklusive moms");
+                return;
+            }
+            if (!this.tfFiles.getText().endsWith("png")) {
+                JOptionPane.showMessageDialog(null, "Var god ladda upp en bild av typ png");
+                return;
+            }
+            if (Double.parseDouble(tfKostnadExMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadExMoms.getText()) > 500000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostnad ex moms som även är lägre än 500000");
+                return;
+            }
+
+            if (!Valid.onlyDouble(this.tfKostnadExMoms) || Valid.noTextOrToMuch(this.tfKostnadExMoms)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad exklusive moms");
+                return;
+            }
+            if (!Valid.onlyDouble(tfKostnadInklMoms) || Valid.noTextOrToMuch(tfKostnadInklMoms)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad inklusive moms");
+                return;
+            }
+            if (Double.parseDouble(tfKostnadInklMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadInklMoms.getText()) > 500000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostand inklusive moms som även är lägre än 500 000");
+                return;
+            }
+        }
+
+        if (cbKostnadTyp.getSelectedItem().toString().equals("Annat")) {
+            if (!Valid.onlyDouble(this.tfKostnadExMoms) || Valid.noTextOrToMuch(this.tfKostnadExMoms)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad exklusive moms");
+                return;
+            }
+            if (Double.parseDouble(tfKostnadInklMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadInklMoms.getText()) > 500000) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostand inklusive moms som även är lägre än 500 000");
+                return;
+            }
+            if (!Valid.onlyDouble(this.tfKostnadInklMoms) || Valid.noTextOrToMuch(this.tfKostnadInklMoms)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad inklusive moms");
+                return;
+            }
+            if (Valid.noTextOrToMuch(this.tfAnnat) || !(this.tfAnnat.getText().length() < 100)) {
+                JOptionPane.showMessageDialog(null, "Var god skriv in ett namn på utgifts-typen");
+                return;
+            }
+            tfFiles.getText();
+            if (!this.tfFiles.getText().endsWith("png")) {
+                JOptionPane.showMessageDialog(null, "Var god ladda upp en bild av typ png");
+                return;
+            }
+        }
+
         String kostnadsTyp = cbKostnadTyp.getSelectedItem().toString();
         if (kostnadsTyp.equals("Annat")) {
             kostnadsTyp = tfAnnat.getText();
@@ -2481,11 +2627,11 @@ public class Meny extends javax.swing.JFrame {
 
         String kolumn2 = null;
         if (tfKostnadExMoms.isEnabled()) {
-            kolumn2 = tfKostnadExMoms.getText();
+            kolumn2 = Double.toString(round(Double.parseDouble(tfKostnadExMoms.getText().trim()), 4));
         }
         String kolumn3 = null;
         if (tfKostnadInklMoms.isEnabled()) {
-            kolumn3 = tfKostnadInklMoms.getText();
+            kolumn3 = Double.toString(round(Double.parseDouble(tfKostnadInklMoms.getText().trim()), 4));
         }
         String kolumn4 = null;
         if (cbValutaR.isEnabled()) {
@@ -2493,7 +2639,8 @@ public class Meny extends javax.swing.JFrame {
         }
         String kolumn5 = null;
         if (tfMil.isEnabled()) {
-            kolumn5 = tfMil.getText();
+            kolumn5 = Double.toString(round(Double.parseDouble(tfMil.getText().trim()), 2));
+
         }
         String kolumn6 = null;
         if (dpFran1.isEnabled()) {
@@ -2505,7 +2652,7 @@ public class Meny extends javax.swing.JFrame {
         }
         String kolumn8 = null;
         if (this.picChooser.isEnabled()) {
-            kolumn8 = tfFiles.getText();
+            kolumn8 = tfFiles.getText().trim();
         }
 
         sc.addRow(new Object[]{
@@ -2518,11 +2665,24 @@ public class Meny extends javax.swing.JFrame {
             kolumn7,
             kolumn8
         });
+
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void cbValutaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValutaRActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbValutaRActionPerformed
+
+    public static double round(double value, int places) {
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 
     private void btnSkickaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaRActionPerformed
         if (this.id == null) {
@@ -2762,6 +2922,26 @@ public class Meny extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void dpFranPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dpFranPropertyChange
+        dpFran1.setMinSelectableDate(dpFran.getDate());
+        if (this.dagarEmellan() > 0) {
+            this.cbAntDagar.removeAllItems();
+            for (int i = 0; i < this.dagarEmellan(); i++) {
+                this.cbAntDagar.addItem(i + 1);
+            }
+        }
+    }//GEN-LAST:event_dpFranPropertyChange
+
+    private void dpTillPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dpTillPropertyChange
+        dpFran1.setMaxSelectableDate(dpTill.getDate());
+        if (this.dagarEmellan() > 0) {
+            this.cbAntDagar.removeAllItems();
+            for (int i = 0; i < this.dagarEmellan(); i++) {
+                this.cbAntDagar.addItem(i + 1);
+            }
+        }
+    }//GEN-LAST:event_dpTillPropertyChange
+
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         String motivering = table.getValueAt(selectedRowIndex, 1).toString();
@@ -2904,6 +3084,7 @@ public class Meny extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
