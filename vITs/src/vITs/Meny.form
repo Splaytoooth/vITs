@@ -1860,8 +1860,8 @@
                 <Container class="javax.swing.JPanel" name="jPanel5">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Hantera anv&#xe4;ndare">
-                        <Property name="tabTitle" type="java.lang.String" value="Hantera anv&#xe4;ndare"/>
+                      <JTabbedPaneConstraints tabName="Ta bort anv&#xe4;ndare">
+                        <Property name="tabTitle" type="java.lang.String" value="Ta bort anv&#xe4;ndare"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1871,18 +1871,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pRedigeraAnvandare" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jScrollPane4" min="-2" pref="462" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jButton1" max="32767" attributes="0"/>
-                                          <Component id="jButton4" pref="140" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="462" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="140" max="-2" attributes="0"/>
+                              <EmptySpace pref="568" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1892,15 +1884,9 @@
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jScrollPane4" min="-2" pref="211" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jButton1" min="-2" pref="33" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="jButton4" min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jButton1" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="pRedigeraAnvandare" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace pref="459" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1931,143 +1917,6 @@
                                 <Column editable="false" title="E-mail" type="java.lang.Object"/>
                               </Table>
                             </Property>
-                          </Properties>
-                        </Component>
-                      </SubComponents>
-                    </Container>
-                    <Component class="javax.swing.JButton" name="jButton4">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Redigera anv&#xe4;ndare"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton4MouseClicked"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Container class="javax.swing.JPanel" name="pRedigeraAnvandare">
-
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="tfAnvandarnamn1" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                                                      <Component id="lblAnvandarnamn1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="tfLosenord1" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                                                      <Component id="lblLosenord1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="tfFornamn1" min="-2" pref="154" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="tfEfternamn1" min="-2" pref="154" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblFornamn1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lblEfternamn1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblEpost1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="tfEmail1" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="208" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                  <Component id="btnSpara" min="-2" pref="303" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblAnvandarnamn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblLosenord1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tfAnvandarnamn1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                      <Component id="tfLosenord1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblFornamn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblEfternamn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tfFornamn1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="tfEfternamn1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                  <Component id="lblEpost1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="tfEmail1" min="-2" pref="39" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="btnSpara" min="-2" pref="78" max="-2" attributes="0"/>
-                                  <EmptySpace pref="39" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                      </Layout>
-                      <SubComponents>
-                        <Component class="javax.swing.JTextField" name="tfAnvandarnamn1">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblAnvandarnamn1">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Anv&#xe4;ndarnamn"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="tfLosenord1">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblLosenord1">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="tfFornamn1">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblFornamn1">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="F&#xf6;rnamn"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="tfEfternamn1">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblEfternamn1">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Efternamn"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="tfEmail1">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblEpost1">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="E-post"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="btnSpara">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Spara"/>
                           </Properties>
                         </Component>
                       </SubComponents>
