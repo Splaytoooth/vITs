@@ -58,6 +58,8 @@ public class Meny extends javax.swing.JFrame {
         btnRedigera.setVisible(false);
         scValutor = (DefaultTableModel) tblValutor.getModel();
         scLander = (DefaultTableModel) tblLander.getModel();
+        btnRegReseförskott.setEnabled(false);
+        btnSparaUtkast.setEnabled(false);
         Date date = new Date();
         this.dpFran.setMaxSelectableDate(date);
         this.dpTill.setMaxSelectableDate(date);
@@ -489,9 +491,8 @@ public class Meny extends javax.swing.JFrame {
 
         pReseutlägg.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 204, 153));
 
-        tblUtgifter.setBackground(new java.awt.Color(204, 204, 255));
         tblUtgifter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         tblUtgifter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -571,7 +572,7 @@ public class Meny extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("Summan du får totalt:");
 
-        jPanel17.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel7.setText("Från land:");
 
@@ -647,7 +648,7 @@ public class Meny extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        jPanel18.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setText("Typ av aktivitet");
 
@@ -666,11 +667,6 @@ public class Meny extends javax.swing.JFrame {
         jLabel6.setText("Total kostnad exkl moms");
 
         cbValutaR.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sek" }));
-        cbValutaR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbValutaRActionPerformed(evt);
-            }
-        });
 
         cbAntDagar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1" }));
 
@@ -824,8 +820,7 @@ public class Meny extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(tfTotSumma, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68)
-                                .addComponent(btnRegReseförskott)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btnRegReseförskott)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(122, 122, 122)
@@ -2418,6 +2413,7 @@ public class Meny extends javax.swing.JFrame {
         cbLandTill.setEnabled(true);
         dpFran.setEnabled(true);
         dpTill.setEnabled(true);
+        picChooser.setEnabled(true);
         btnRegReseförskott.setVisible(true);
         cbKostnadTyp.setSelectedIndex(9);
         tfAnnat.setEnabled(true);
@@ -2469,7 +2465,7 @@ public class Meny extends javax.swing.JFrame {
         cbKostnadTyp.setEnabled(false);
         cbValutaR.setEnabled(false);
         cbAntDagar.setEnabled(false);
-        picChooser.setEnabled(true);
+        picChooser.setEnabled(false);
         btnRemove.setVisible(false);
         cbLandFran.setEnabled(false);
         cbLandTill.setEnabled(false);
@@ -2516,8 +2512,12 @@ public class Meny extends javax.swing.JFrame {
             }
             if (Double.parseDouble(tfKostnadExMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadExMoms.getText()) > 500000) {
                 JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostnad ex moms som även är lägre än 500000");
-                return;
+                return;   
             }
+            if (!this.tfFiles.getText().endsWith("png")) {
+                JOptionPane.showMessageDialog(null, "Var god ladda upp en bild av typ png");
+                return;
+            }    
             if (!Valid.onlyDouble(tfKostnadInklMoms) || Valid.noTextOrToMuch(tfKostnadInklMoms)) {
                 JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad inklusive moms");
                 return;
@@ -2638,10 +2638,6 @@ public class Meny extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void cbValutaRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValutaRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbValutaRActionPerformed
 
     public static double round(double value, int places) {
         if (places < 0) {
