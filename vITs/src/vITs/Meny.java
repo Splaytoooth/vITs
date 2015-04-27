@@ -45,7 +45,6 @@ public class Meny extends javax.swing.JFrame {
     public Meny() {
         initComponents();
         this.btnLoggaUt.setVisible(false);
-        pRedigeraAnvandare.setVisible(false);
         tfKostnadExMoms.setEnabled(false);
         tfKostnadInklMoms.setEnabled(false);
         dpFran1.setEnabled(true);
