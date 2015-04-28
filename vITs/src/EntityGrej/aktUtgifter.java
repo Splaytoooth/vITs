@@ -230,7 +230,7 @@ public class aktUtgifter {
                 this.beraknadeUtgifter.add(utg);
             } else if (utg.Typ.equals(("Boende utan kvitto"))) {
                 utg.Typ = utg.nDagar + "dagar på hotell utan kvitto";
-                utg.KostnadExklMoms = Integer.parseInt(utg.nDagar) * traktamente.tillLandNormalBelopp;
+                utg.KostnadExklMoms = Integer.parseInt(utg.nDagar) * traktamente.tillLandNormalBelopp * 0.5;
                 utg.KostnadInklMoms = utg.KostnadExklMoms;
                 this.beraknadeUtgifter.add(utg);
             }

@@ -2247,6 +2247,13 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_tpMeny2StateChanged
 
     private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
+        if (Valid.onlyText(tfValutaNamn)) {
+            JOptionPane.showMessageDialog(null, "Valutanamnet får ej innehålla tecken eller symboler");
+        }
+        if (!Valid.onlyDouble(tfVaxelkurs) || Valid.noTextOrToMuch(tfVaxelkurs) || Integer.parseInt(tfVaxelkurs.getText()) < 0 || Integer.parseInt(tfVaxelkurs.getText()) > 1000000) {
+            JOptionPane.showMessageDialog(null, "Var god ange en rimlig växelkurs");
+        }
+
         Valutor.nyValuta(tfValutaNamn.getText(), Double.parseDouble(tfVaxelkurs.getText()));
         getValutor();
     }//GEN-LAST:event_btnLaggTillValutaActionPerformed
@@ -2398,7 +2405,6 @@ public class Meny extends javax.swing.JFrame {
 
         sc.setColumnCount(8);
 
-        
         btnSparaUtkast.setVisible(true);
         btnSkickaR.setVisible(false);
         btnRedigera.setVisible(false);
@@ -2512,12 +2518,12 @@ public class Meny extends javax.swing.JFrame {
             }
             if (Double.parseDouble(tfKostnadExMoms.getText()) < 0.1 || Double.parseDouble(tfKostnadExMoms.getText()) > 500000) {
                 JOptionPane.showMessageDialog(null, "Var god skriv in en positiv kostnad ex moms som även är lägre än 500000");
-                return;   
+                return;
             }
             if (!this.tfFiles.getText().endsWith("png")) {
                 JOptionPane.showMessageDialog(null, "Var god ladda upp en bild av typ png");
                 return;
-            }    
+            }
             if (!Valid.onlyDouble(tfKostnadInklMoms) || Valid.noTextOrToMuch(tfKostnadInklMoms)) {
                 JOptionPane.showMessageDialog(null, "Var god skriv in ett värde på kostnad inklusive moms");
                 return;

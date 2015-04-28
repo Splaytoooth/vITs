@@ -30,7 +30,7 @@ public class Valid {
 
     // metoden kollar så att inmatningsfält ej inkluderar några siffror eller andra symboler utöver bokstäver i det latinska alfabetet 
     static public boolean onlyText(JTextField tf) {
-        if (!tf.getText().matches("[^0-9]+")) {  // hanterar siffrorna 0-9, bindestreck, samt whitespace, och via + flera återkommande sådana element
+        if (!tf.getText().matches("[a-zåäöA-ZÅÄÖ]+")) {  // hanterar siffrorna 0-9, bindestreck, samt whitespace, och via + flera återkommande sådana element
             JOptionPane.showMessageDialog(null, "Fältet stödjer ej siffror ");
             tf.requestFocus();
             return true;
