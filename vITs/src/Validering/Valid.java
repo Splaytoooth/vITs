@@ -38,6 +38,16 @@ public class Valid {
             return false;
         }
     }
+    
+    static public boolean noNumbersS(JTextField tf) {
+        if(!tf.getText().matches("\\D*")) { 
+            JOptionPane.showMessageDialog(null, "Fältet stödjer ej siffror ");
+            tf.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // metoden kollar om ett inmatningsfält enbart innehåller siffror och bindestreck
     static public boolean onlyNumbers(JTextField tf) {

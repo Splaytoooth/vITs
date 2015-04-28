@@ -2882,8 +2882,7 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraValutaActionPerformed
 
     private void btnLaggTillLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillLandActionPerformed
-        if (Valid.onlyText(tfNyLand)) {
-            JOptionPane.showMessageDialog(null, "Namnet får ej innehålla tecken eller symboler");
+        if (Valid.noNumbersS(tfNyLand)) {
             return;
         }
         if (!Valid.onlyDouble(this.tfNormalbelopp) || Valid.noTextOrToMuch(tfNormalbelopp)) {
