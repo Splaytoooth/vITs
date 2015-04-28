@@ -1,6 +1,7 @@
 package Validering;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -38,10 +39,30 @@ public class Valid {
             return false;
         }
     }
-    
+
     static public boolean noNumbersS(JTextField tf) {
-        if(!tf.getText().matches("\\D*")) { 
+        if (!tf.getText().matches("\\D*")) {
             JOptionPane.showMessageDialog(null, "Fältet stödjer ej siffror ");
+            tf.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean textToLittleOrToMuchNamn(JTextField tf) {
+        if (tf.getText().length() < 2 || tf.getText().length() > 20) {
+            JOptionPane.showMessageDialog(null, "Fältet måste innehålla mellan 2 och 20 tecken");
+            tf.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean textToLittleOrToMuch(JTextField tf) {
+        if (tf.getText().length() < 3 || tf.getText().length() > 20) {
+            JOptionPane.showMessageDialog(null, "Fältet måste innehålla mellan 5 och 20 tecken");
             tf.requestFocus();
             return true;
         } else {
@@ -51,8 +72,8 @@ public class Valid {
 
     // metoden kollar om ett inmatningsfält enbart innehåller siffror och bindestreck
     static public boolean onlyNumbers(JTextField tf) {
-        if (!tf.getText().matches("[\\s[0-9-]]+")) {  // hanterar siffrorna 0-9, bindestreck, samt whitespace, och via + flera återkommande sådana element
-            JOptionPane.showMessageDialog(null, "Fältet stödjer enbart siffror ");
+        if (!tf.getText().trim().matches("[\\s[0-9-]]+")) {  // hanterar siffrorna 0-9, bindestreck, samt whitespace, och via + flera återkommande sådana element
+            JOptionPane.showMessageDialog(null, "Var god mata in siffror");
             tf.requestFocus();
             return true;
         } else {
@@ -66,7 +87,6 @@ public class Valid {
             JOptionPane.showMessageDialog(null, "Samtliga fält måste vara ifyllda");
             if (tf.getText().length() > 250) {
                 JOptionPane.showMessageDialog(null, "Fältet får inte innehålla mer än 255 tecken");
-                return false;
             }
             return true;
         } else {
@@ -87,7 +107,7 @@ public class Valid {
 
     // metoden kollar om innehållet i en textarea är tomt
     static public boolean noTextInArea(JTextArea ta) {
-        if (ta.getText().length() == 0) {
+        if (ta.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Samtliga fält måste vara ifyllda");
             return true;
         } else {
@@ -147,6 +167,38 @@ public class Valid {
             return true;
         } else {
             return false;
+        }
+    }
+
+    // metod för att kontrollera att ett fält ej har mer än 255 symboler
+    static public boolean checkMaxLengthPf(JPasswordField pf) {
+        if (pf.getText().length() > 255) {
+            JOptionPane.showMessageDialog(null, "Du får max använda 255 symboler i detta fält");
+            pf.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static public boolean password(JTextField tf) {
+        if (!tf.getText().matches("^(?=.*\\d)(?=.*[a-zåäö])(?=.*[A-ZÅÄÖ]).{4,20}$")) {
+            JOptionPane.showMessageDialog(null, "Lösenordet måste innehålla ett stort tecken, ett litet och vara mellan 4 till 20 bokstäver långt");
+            tf.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    // metoden kollar om innehållet i ett lösenordsfältfält är tomt
+    static public boolean noPasswordText(JPasswordField tf) {
+        if (tf.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Samtliga fält måste vara ifyllda");
+            return true;
+        } else {
+            return false;
+
         }
     }
 

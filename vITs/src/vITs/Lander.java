@@ -42,7 +42,7 @@ public class Lander {
             myStmt.executeUpdate(sql);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Det landet finns redan registrerat");
         }
     }
 

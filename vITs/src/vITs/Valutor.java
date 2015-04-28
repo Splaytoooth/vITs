@@ -39,7 +39,7 @@ public class Valutor {
             myStmt.executeUpdate(sql);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Denna valuta finns redan registrerad");
         }
     }
 
