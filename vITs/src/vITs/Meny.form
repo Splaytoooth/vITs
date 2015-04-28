@@ -2190,12 +2190,12 @@
                                               </Group>
                                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jScrollPane16" min="-2" pref="388" max="-2" attributes="0"/>
                                                   <Component id="btnVisaMotiveringChef" min="-2" pref="113" max="-2" attributes="0"/>
+                                                  <Component id="jScrollPane16" min="-2" pref="513" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace pref="176" max="32767" attributes="0"/>
+                                      <EmptySpace pref="51" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>

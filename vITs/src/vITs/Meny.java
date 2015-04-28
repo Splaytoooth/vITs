@@ -1627,9 +1627,9 @@ public class Meny extends javax.swing.JFrame {
                             .addComponent(btnVisaReseforskottChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVisaMotiveringChef, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(176, Short.MAX_VALUE))
+                            .addComponent(btnVisaMotiveringChef, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2194,16 +2194,13 @@ public class Meny extends javax.swing.JFrame {
     private void btnSkickaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaActionPerformed
 
         if (Valid.noTextInArea(taMotivering)) {
-            //JOptionPane.showMessageDialog(null, "Du måste skriva in motivering");//
             return;
         }
-        if (taMotivering.getText().length() > 255) {
-            JOptionPane.showMessageDialog(null, "Fältet får inte vara längre än 250 bokstäver");
+        if (Valid.checkMaxLengthTa(taMotivering)) {
             return;
         }
 
         if (Valid.onlyNumbers(tfSumma)) {
-            //JOptionPane.showMessageDialog(null, "Du måste ange summa");//
             return;
         }
 
