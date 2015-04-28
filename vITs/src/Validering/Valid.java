@@ -180,6 +180,18 @@ public class Valid {
             return false;
         }
     }
+    
+        // metod för att kontrollera att ett fält ej har mer än 3999 symboler
+    static public boolean checkMaxLengthTa (JTextArea ta){
+        if (ta.getText().length() > 3999) {
+            JOptionPane.showMessageDialog(null, "Du får max använda 4000 symboler i detta fält");
+            ta.requestFocus();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     static public boolean password(JTextField tf) {
         if (!tf.getText().matches("^(?=.*\\d)(?=.*[a-zåäö])(?=.*[A-ZÅÄÖ]).{4,20}$")) {
