@@ -269,7 +269,7 @@ public class Meny extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tpMeny.setBackground(new java.awt.Color(255, 255, 255));
+        tpMeny.setBackground(new java.awt.Color(255, 204, 153));
         tpMeny.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 tpMenyStateChanged(evt);
@@ -387,6 +387,8 @@ public class Meny extends javax.swing.JFrame {
         tpMeny.addTab("Startsida", pStartsida);
 
         pReseforskott.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 153));
 
         jLabel1.setText("Summa");
 
@@ -1140,6 +1142,10 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
+        jPanel6.setBackground(new java.awt.Color(255, 204, 153));
+
+        pHanteraValutor.setBackground(new java.awt.Color(255, 255, 255));
+
         tblValutor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1253,6 +1259,10 @@ public class Meny extends javax.swing.JFrame {
 
         tpMeny2.addTab("Valuta", jPanel6);
 
+        jPanel7.setBackground(new java.awt.Color(255, 204, 153));
+
+        pHanteraValutor1.setBackground(new java.awt.Color(255, 255, 255));
+
         tblLander.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1363,6 +1373,10 @@ public class Meny extends javax.swing.JFrame {
 
         tpMeny2.addTab("Länder", jPanel7);
 
+        jPanel8.setBackground(new java.awt.Color(255, 204, 153));
+
+        pLaggTillAnvandrare.setBackground(new java.awt.Color(255, 255, 255));
+
         lblAnvandarnamn.setText("Användarnamn");
 
         lblLosenord.setText("Lösenord");
@@ -1463,6 +1477,8 @@ public class Meny extends javax.swing.JFrame {
 
         tpMeny2.addTab("Lägg till användare ", jPanel8);
 
+        jPanel5.setBackground(new java.awt.Color(255, 204, 153));
+
         jButton1.setText("Ta bort användare");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1527,7 +1543,14 @@ public class Meny extends javax.swing.JFrame {
 
         tpMeny.addTab("Admin", pAdmin);
 
+        jTabbedPane2.setBackground(new java.awt.Color(255, 204, 153));
+
+        jPanel9.setBackground(new java.awt.Color(255, 204, 153));
         jPanel9.setLayout(null);
+
+        jTabbedPane4.setBackground(new java.awt.Color(255, 204, 153));
+
+        jPanel15.setBackground(new java.awt.Color(255, 204, 153));
 
         btnVisaReseforskottChef.setText("Visa reseförskott ");
         btnVisaReseforskottChef.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1627,6 +1650,8 @@ public class Meny extends javax.swing.JFrame {
         );
 
         jTabbedPane4.addTab("Reseförskott", jPanel15);
+
+        jPanel16.setBackground(new java.awt.Color(255, 204, 153));
 
         btnVisaReseutlaggChef.setText("Visa reseutlägg");
         btnVisaReseutlaggChef.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1754,6 +1779,10 @@ public class Meny extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Chef ärenden", jPanel9);
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 204, 153));
+
+        jPanel13.setBackground(new java.awt.Color(255, 204, 153));
+
         btnVisaReseforskott.setText("Visa reseförskott");
         btnVisaReseforskott.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1828,6 +1857,8 @@ public class Meny extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Reseförskott", jPanel13);
+
+        jPanel14.setBackground(new java.awt.Color(255, 204, 153));
 
         tblReseutlagg.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2130,6 +2161,16 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLosenActionPerformed
 
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
+        if (Valid.noTextOrToMuch(this.tfAnvnamn)) {
+            return;
+        }
+        if (Valid.noPasswordText(tfLosen)) {
+            return;
+        }
+        if (Valid.checkMaxLengthPf(tfLosen)) {
+            return;
+        }
+
         Inlogg loggin = new Inlogg();
         String id = loggin.login(tfAnvnamn.getText(), tfLosen.getText());
         if (id != null) {
@@ -2151,26 +2192,21 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoggainActionPerformed
 
     private void btnSkickaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaActionPerformed
-       
-        if(Valid.noTextInArea(taMotivering)){
-           //JOptionPane.showMessageDialog(null, "Du måste skriva in motivering");//
+
+        if (Valid.noTextInArea(taMotivering)) {
+            //JOptionPane.showMessageDialog(null, "Du måste skriva in motivering");//
             return;
         }
-        if(taMotivering.getText().length() > 255){
-           JOptionPane.showMessageDialog(null, "Fältet får inte vara längre än 250 bokstäver");
-           return;
+        if (taMotivering.getText().length() > 255) {
+            JOptionPane.showMessageDialog(null, "Fältet får inte vara längre än 250 bokstäver");
+            return;
         }
-        
-        if(Valid.onlyNumbers(tfSumma)){ 
+
+        if (Valid.onlyNumbers(tfSumma)) {
             //JOptionPane.showMessageDialog(null, "Du måste ange summa");//
             return;
         }
-        
-        
-        
-        
-        
-        
+
         if (this.id == null) {
             JOptionPane.showMessageDialog(null, "Var god logga innan du skickar in ditt ärende!");
             return;
@@ -2192,6 +2228,11 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_tpMenyMouseClicked
 
     private void tpMenyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMenyStateChanged
+        if(tpMeny.getSelectedIndex() == 3){
+            tpMeny.setSelectedIndex(0);
+        JOptionPane.showMessageDialog(null, "Funktionalitet inte implementerad ännu");
+        }
+        
         if (tpMeny.getSelectedIndex() == 4 && chef == false) {
             tpMeny.setSelectedIndex(0);
             JOptionPane.showMessageDialog(null, "Du saknar behörighet för den här fliken!");
@@ -2523,7 +2564,7 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Var god ange EN utgift i listan att radera");
             return;
         }
-        
+
         sc.removeRow(tblUtgifter.getSelectedRow());
     }//GEN-LAST:event_btnRemoveActionPerformed
 
@@ -2631,12 +2672,15 @@ public class Meny extends javax.swing.JFrame {
         if (kostnadsTyp.equals("Bjuden på frukost") || kostnadsTyp.equals("Bjuden på lunch") || kostnadsTyp.equals("Bjuden på middag") || kostnadsTyp.equals("Avbrott i resan")) {
             int y = 0;
             while (y < sc.getRowCount()) {
-                String typ = sc.getValueAt(y, 0).toString();
-                String datum = sc.getValueAt(y, 5).toString();
+                try {
+                    String typ = sc.getValueAt(y, 0).toString();
+                    String datum = sc.getValueAt(y, 5).toString();
 
-                if (typ.equals(kostnadsTyp) && datum.equals(f.format(this.dpFran1.getDate()))) {
-                    JOptionPane.showMessageDialog(null, "En utgift av den här typen existerar redan på det här datumet");
-                    return;
+                    if (typ.equals(kostnadsTyp) && datum.equals(f.format(this.dpFran1.getDate()))) {
+                        JOptionPane.showMessageDialog(null, "En utgift av den här typen existerar redan på det här datumet");
+                        return;
+                    }
+                } catch (Exception e) {
                 }
 
                 y++;
@@ -2847,7 +2891,7 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_cbKostnadTypActionPerformed
 
     private void btnUppdateraValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraValutaActionPerformed
-                if (!Valid.onlyDouble(tfVaxelkurs) || Valid.noTextOrToMuch(tfVaxelkurs)) {
+        if (!Valid.onlyDouble(tfVaxelkurs) || Valid.noTextOrToMuch(tfVaxelkurs)) {
             return;
         }
 
@@ -2855,7 +2899,7 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Var god ange en rimlig växelkurs");
             return;
         }
-        
+
         if (tblValutor.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(null, "Var god ange EN valuta i listan att uppdatera");
             return;
@@ -2893,8 +2937,7 @@ public class Meny extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Var god ange ett rimligt normalbelopp");
             return;
         }
-        
-        
+
         String land = tfNyLand.getText();
         double normalBelopp = 0;
 
@@ -2947,20 +2990,40 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLaggTillLand1ActionPerformed
 
     private void btnLaggTillAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillAnvandareActionPerformed
+        if (Valid.textToLittleOrToMuch(this.tfAnvandarnamn)) {
+            return;
+        }
+        if (Valid.password(tfLosenord)) {
+            return;
+        }
+
+        if (Valid.onlyText(tfFornamn) || Valid.textToLittleOrToMuchNamn(tfFornamn)) {
+            return;
+        }
+
+        if (Valid.onlyText(tfEfternamn) || Valid.textToLittleOrToMuchNamn(tfFornamn)) {
+            return;
+        }
+
+        if (Valid.emailIncludesAtAndDot(tfEmail)) {
+            return;
+        }
+
         String anvandarnamn = this.tfAnvandarnamn.getText();
         String losenord = this.tfLosenord.getText();
         String fornamn = this.tfFornamn.getText();
         String efternamn = this.tfEfternamn.getText();
         String email = this.tfEmail.getText();
 
-        Anvandare.nyAnvandare(anvandarnamn, losenord, fornamn, efternamn, email, Integer.parseInt(id));
-        tfAnvandarnamn.setText("");
-        tfLosenord.setText("");
-        this.tfFornamn.setText("");
-        this.tfEfternamn.setText("");
-        this.tfEmail.setText("");
+            if(Anvandare.nyAnvandare(anvandarnamn, losenord, fornamn, efternamn, email, Integer.parseInt(id)) == true){
+            tfAnvandarnamn.setText("");
+            tfLosenord.setText("");
+            this.tfFornamn.setText("");
+            this.tfEfternamn.setText("");
+            this.tfEmail.setText("");
+        JOptionPane.showMessageDialog(null, "Ny användare tillagd");
+        }
 
-        JOptionPane.showMessageDialog(null, "Ny användaren tillagd");
     }//GEN-LAST:event_btnLaggTillAnvandareActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
