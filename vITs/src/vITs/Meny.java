@@ -2249,9 +2249,15 @@ public class Meny extends javax.swing.JFrame {
     private void btnLaggTillValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillValutaActionPerformed
         if (Valid.onlyText(tfValutaNamn)) {
             JOptionPane.showMessageDialog(null, "Valutanamnet får ej innehålla tecken eller symboler");
+            return;
         }
-        if (!Valid.onlyDouble(tfVaxelkurs) || Valid.noTextOrToMuch(tfVaxelkurs) || Integer.parseInt(tfVaxelkurs.getText()) < 0 || Integer.parseInt(tfVaxelkurs.getText()) > 1000000) {
+        if (!Valid.onlyDouble(tfVaxelkurs) || Valid.noTextOrToMuch(tfVaxelkurs)) {
+            return;
+        }
+
+        if (Integer.parseInt(tfVaxelkurs.getText()) < 0 || Integer.parseInt(tfVaxelkurs.getText()) > 1000000) {
             JOptionPane.showMessageDialog(null, "Var god ange en rimlig växelkurs");
+            return;
         }
 
         Valutor.nyValuta(tfValutaNamn.getText(), Double.parseDouble(tfVaxelkurs.getText()));
@@ -2599,6 +2605,38 @@ public class Meny extends javax.swing.JFrame {
         String kostnadsTyp = cbKostnadTyp.getSelectedItem().toString();
         if (kostnadsTyp.equals("Annat")) {
             kostnadsTyp = tfAnnat.getText();
+        }
+
+        if (kostnadsTyp.equals("Bjuden på frukost") || kostnadsTyp.equals("Bjuden på lunch") || kostnadsTyp.equals("Bjuden på middag") || kostnadsTyp.equals("Avbrott i resan")) {
+            int y = 0;
+            while (y < sc.getRowCount()) {
+                String typ = sc.getValueAt(y, 0).toString();
+                String datum = sc.getValueAt(y, 5).toString();
+
+                if (typ.equals(kostnadsTyp) && datum.equals(f.format(this.dpFran1.getDate()))) {
+                    JOptionPane.showMessageDialog(null, "En utgift av den här typen existerar redan på det här datumet");
+                    return;
+                }
+
+                y++;
+            }
+        }
+
+        if (kostnadsTyp.equals("Boende med kvitto") || kostnadsTyp.equals("Boende utan kvitto")) {
+            int dagar = this.dagarEmellan();
+            int y = 0;
+            int nDagar = 0;
+            while (y < sc.getRowCount()) {
+                try {
+                    nDagar += Integer.parseInt(sc.getValueAt(y, 6).toString());
+                } catch (Exception e) {
+                }
+                if (nDagar >= dagar) {
+                    JOptionPane.showMessageDialog(null, "Du har redan registrerat flera dagars boende än max dagar på din resa");
+                    return;
+                }
+                y++;
+            }
         }
 
         String kolumn2 = null;
