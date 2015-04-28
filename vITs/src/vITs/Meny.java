@@ -2502,8 +2502,12 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGranskaActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        int valdRad = tblUtgifter.getSelectedRow();
-        sc.removeRow(valdRad);
+        if (tblUtgifter.getSelectedRowCount() != 1) {
+            JOptionPane.showMessageDialog(null, "Var god ange EN utgift i listan att radera");
+            return;
+        }
+        
+        sc.removeRow(tblUtgifter.getSelectedRow());
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -2826,6 +2830,15 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_cbKostnadTypActionPerformed
 
     private void btnUppdateraValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraValutaActionPerformed
+                if (!Valid.onlyDouble(tfVaxelkurs) || Valid.noTextOrToMuch(tfVaxelkurs)) {
+            return;
+        }
+
+        if (Integer.parseInt(tfVaxelkurs.getText()) < 0 || Integer.parseInt(tfVaxelkurs.getText()) > 1000000) {
+            JOptionPane.showMessageDialog(null, "Var god ange en rimlig växelkurs");
+            return;
+        }
+        
         if (tblValutor.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(null, "Var god ange EN valuta i listan att uppdatera");
             return;
@@ -2852,6 +2865,20 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUppdateraValutaActionPerformed
 
     private void btnLaggTillLandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillLandActionPerformed
+        if (Valid.onlyText(tfNyLand)) {
+            JOptionPane.showMessageDialog(null, "Namnet får ej innehålla tecken eller symboler");
+            return;
+        }
+        if (!Valid.onlyDouble(this.tfNormalbelopp) || Valid.noTextOrToMuch(tfNormalbelopp)) {
+            return;
+        }
+
+        if (Double.parseDouble(tfNormalbelopp.getText()) < 0 || Double.parseDouble(tfNormalbelopp.getText()) > 1000000) {
+            JOptionPane.showMessageDialog(null, "Var god ange ett rimligt normalbelopp");
+            return;
+        }
+        
+        
         String land = tfNyLand.getText();
         double normalBelopp = 0;
 
