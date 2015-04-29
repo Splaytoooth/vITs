@@ -3207,7 +3207,7 @@ public class Meny extends javax.swing.JFrame {
                 String varde2 = myRs.getString("Typ");
                 String varde3 = myRs.getString("Summa ink moms");
                 String varde4 = myRs.getString("Summa exl moms");
-                String varde5 = myRs.getString("KvittoUrl");
+                String varde5 = myRs.getString("KvittoBild");
 
                 DefaultTableModel sk = (DefaultTableModel) table.getModel();
                 sk.addRow(new Object[]{
