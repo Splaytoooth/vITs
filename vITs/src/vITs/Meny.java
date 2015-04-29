@@ -1,19 +1,24 @@
 package vITs;
 
 import Validering.Valid;
+import java.awt.Image;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -249,6 +254,7 @@ public class Meny extends javax.swing.JFrame {
         tblVisaUtgifterChef = new javax.swing.JTable();
         btnVisaUtgifterChef = new javax.swing.JButton();
         btnTaBortBekraftelseReseutlagg = new javax.swing.JButton();
+        btnVisaKvitto = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel13 = new javax.swing.JPanel();
@@ -1731,6 +1737,13 @@ public class Meny extends javax.swing.JFrame {
             }
         });
 
+        btnVisaKvitto.setText("Visa kvitto");
+        btnVisaKvitto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaKvittoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
@@ -1739,20 +1752,22 @@ public class Meny extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnTaBortBekraftelseReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                        .addComponent(btnVisaReseutlaggChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVisaUtgifterChef, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(493, 493, 493))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(btnVisaReseutlaggChef, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnTaBortBekraftelseReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVisaUtgifterChef, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(493, 493, 493))))
+                        .addComponent(btnVisaKvitto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1765,11 +1780,12 @@ public class Meny extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(83, 83, 83)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTaBortBekraftelseReseutlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addComponent(btnBekraftaReseutlagg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVisaKvitto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Reseutlägg", jPanel16);
@@ -3055,6 +3071,40 @@ public class Meny extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfSummaActionPerformed
 
+    private void btnVisaKvittoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaKvittoActionPerformed
+       
+        
+         try {
+            
+            Connection connection = DriverManager.getConnection("jdbc:mysql://resadb.cnjxqasdqhys.us-west-2.rds.amazonaws.com:3306/resaDB", "resaDB", "resaDB1234");
+
+            Statement myStmt = connection.createStatement();
+            
+            String sql = "select bild from BildTest where BildID = " +getIdFromTable(this.tblVisaUtgifterChef);
+           
+            ResultSet myRes = myStmt.executeQuery(sql);
+            ImageIcon imc = null;
+            if (myRes.next()) {                                 // Fyller byte array med bytes från DB
+                byte[] dataImage = myRes.getBytes("bild");      // Kolumnnamnet för bilden anges här
+                imc = new ImageIcon (dataImage);                // Skapar ett nytt ikonobjekt som består utav bytearrayen 
+                
+                //Scaling: anpassar storleken på bilden
+                Image imgStore = imc.getImage();                                          // Skapar ett nytt bildobjekt som hämtar bildikonen 
+                imgStore = imgStore.getScaledInstance(200, 200, Image.SCALE_SMOOTH);      // Justerar storleken på det nya bildobjektet efter width och height
+                imc = new ImageIcon(imgStore);                                            // stoppar in den justerade bilden i det gamla ImageIcon-objektet som nu har anpassats   
+                
+                pictureForm pf = new pictureForm(imc);
+                pf.setVisible(true);
+                // Den anpassade bilden stoppas in i en jLabel
+                
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+    }//GEN-LAST:event_btnVisaKvittoActionPerformed
+
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();
         String motivering = table.getValueAt(selectedRowIndex, 1).toString();
@@ -3241,6 +3291,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JButton btnTaBortLand;
     private javax.swing.JButton btnTaBortValuta;
     private javax.swing.JButton btnUppdateraValuta;
+    private javax.swing.JButton btnVisaKvitto;
     private javax.swing.JButton btnVisaMotiveringChef;
     private javax.swing.JButton btnVisaMotiveringEgna;
     private javax.swing.JButton btnVisaReseforskott;
@@ -3401,7 +3452,7 @@ public class Meny extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tpMeny;
     private javax.swing.JTabbedPane tpMeny2;
     // End of variables declaration//GEN-END:variables
-
+    private ImageIcon imc = null;
     byte[] receiptImg = null;
     int s = 0;
     PreparedStatement pst = null;

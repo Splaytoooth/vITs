@@ -2354,22 +2354,24 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="btnBekraftaReseutlagg" min="-2" pref="142" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                              <Component id="btnTaBortBekraftelseReseutlagg" min="-2" pref="151" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="btnVisaReseutlaggChef" min="-2" pref="140" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="btnVisaUtgifterChef" min="-2" pref="118" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="493" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jScrollPane8" pref="606" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jScrollPane8" pref="604" max="32767" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jScrollPane15" min="-2" pref="589" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="btnVisaReseutlaggChef" min="-2" pref="140" max="-2" attributes="0"/>
+                                              <Component id="btnBekraftaReseutlagg" min="-2" pref="142" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                              <Component id="btnTaBortBekraftelseReseutlagg" min="-2" pref="151" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="btnVisaUtgifterChef" min="-2" pref="118" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="493" max="-2" attributes="0"/>
+                                              <Component id="btnVisaKvitto" min="-2" pref="130" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -2388,12 +2390,13 @@
                                           <Component id="jScrollPane8" min="-2" max="-2" attributes="0"/>
                                           <Component id="jScrollPane15" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="btnTaBortBekraftelseReseutlagg" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                           <Component id="btnBekraftaReseutlagg" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnVisaKvitto" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                                      <EmptySpace pref="49" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2555,6 +2558,14 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTaBortBekraftelseReseutlaggMouseClicked"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="btnVisaKvitto">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Visa kvitto"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisaKvittoActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>

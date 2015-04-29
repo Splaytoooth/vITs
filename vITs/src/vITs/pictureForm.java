@@ -1,10 +1,10 @@
+package vITs;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package picselectertester;
-
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -24,7 +24,9 @@ public class pictureForm extends javax.swing.JFrame {
     /**
      * Creates new form pictureForm
      */
-    public pictureForm() {
+    public pictureForm(ImageIcon imc) {
+        lblPictureStorage.setIcon(imc);
+
         initComponents();
     }
 
@@ -54,15 +56,15 @@ public class pictureForm extends javax.swing.JFrame {
             dpPictureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dpPictureLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPictureStorage, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(lblPictureStorage, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                .addContainerGap())
         );
         dpPictureLayout.setVerticalGroup(
             dpPictureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dpPictureLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPictureStorage, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(lblPictureStorage, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         dpPicture.setLayer(lblPictureStorage, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -80,78 +82,43 @@ public class pictureForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
+                        .addGap(163, 163, 163)
                         .addComponent(btnVisaBild))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(44, 44, 44)
                         .addComponent(dpPicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(dpPicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(btnVisaBild)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Image ScaledImage (Image img , int bredd, int höjd){
-        BufferedImage resizedImage = new BufferedImage (bredd, höjd, BufferedImage.TYPE_INT_RGB);   // innehåller den anpassade bilden
-        
-        Graphics2D g = resizedImage.createGraphics ();
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g.drawImage(img, 0, 0, bredd, höjd, null);
-        g.dispose();
-        
-        return resizedImage;
-    }
-    
-    
     private void btnVisaBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaBildActionPerformed
-        try {
-            
-            Connection connection = DriverManager.getConnection("jdbc:mysql://resadb.cnjxqasdqhys.us-west-2.rds.amazonaws.com:3306/resaDB", "resaDB", "resaDB1234");
 
-            Statement myStmt = connection.createStatement();
-            
-            String sql = "select bild from BildTest where BildID = 5";
-           
-            ResultSet myRes = myStmt.executeQuery(sql);
-
-            if (myRes.next()) {                                 // Fyller byte array med bytes från DB
-                byte[] dataImage = myRes.getBytes("bild");      // Kolumnnamnet för bilden anges här
-                imc = new ImageIcon (dataImage);                // Skapar ett nytt ikonobjekt som består utav bytearrayen 
-                
-                //Scaling: anpassar storleken på bilden
-                Image imgStore = imc.getImage();                                          // Skapar ett nytt bildobjekt som hämtar bildikonen 
-                imgStore = imgStore.getScaledInstance(200, 200, Image.SCALE_SMOOTH);      // Justerar storleken på det nya bildobjektet efter width och height
-                imc = new ImageIcon(imgStore);                                            // stoppar in den justerade bilden i det gamla ImageIcon-objektet som nu har anpassats   
-                
-                // Den anpassade bilden stoppas in i en jLabel
-                lblPictureStorage.setIcon(imc); // bilden lagras i labeln lblPictureStorage
-                
-                
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            
-        }
     }//GEN-LAST:event_btnVisaBildActionPerformed
 
     /**
@@ -183,8 +150,7 @@ public class pictureForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new pictureForm().setVisible(true);
+            public void run() {;
             }
         });
     }
@@ -196,8 +162,6 @@ public class pictureForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblPictureStorage;
     // End of variables declaration//GEN-END:variables
 
-
-private ImageIcon imc = null;
+    private ImageIcon imc = null;
 
 }
-
