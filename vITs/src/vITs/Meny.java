@@ -1729,6 +1729,11 @@ public class Meny extends javax.swing.JFrame {
                 btnVisaUtgifterChefMouseClicked(evt);
             }
         });
+        btnVisaUtgifterChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisaUtgifterChefActionPerformed(evt);
+            }
+        });
 
         btnTaBortBekraftelseReseutlagg.setText("Ta bort bekräftelse");
         btnTaBortBekraftelseReseutlagg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2241,11 +2246,11 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_tpMenyMouseClicked
 
     private void tpMenyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tpMenyStateChanged
-        if(tpMeny.getSelectedIndex() == 3){
+        if (tpMeny.getSelectedIndex() == 3) {
             tpMeny.setSelectedIndex(0);
-        JOptionPane.showMessageDialog(null, "Funktionalitet inte implementerad ännu");
+            JOptionPane.showMessageDialog(null, "Funktionalitet inte implementerad ännu");
         }
-        
+
         if (tpMeny.getSelectedIndex() == 4 && chef == false) {
             tpMeny.setSelectedIndex(0);
             JOptionPane.showMessageDialog(null, "Du saknar behörighet för den här fliken!");
@@ -3028,13 +3033,13 @@ public class Meny extends javax.swing.JFrame {
         String efternamn = this.tfEfternamn.getText();
         String email = this.tfEmail.getText();
 
-            if(Anvandare.nyAnvandare(anvandarnamn, losenord, fornamn, efternamn, email, Integer.parseInt(id)) == true){
+        if (Anvandare.nyAnvandare(anvandarnamn, losenord, fornamn, efternamn, email, Integer.parseInt(id)) == true) {
             tfAnvandarnamn.setText("");
             tfLosenord.setText("");
             this.tfFornamn.setText("");
             this.tfEfternamn.setText("");
             this.tfEmail.setText("");
-        JOptionPane.showMessageDialog(null, "Ny användare tillagd");
+            JOptionPane.showMessageDialog(null, "Ny användare tillagd");
         }
 
     }//GEN-LAST:event_btnLaggTillAnvandareActionPerformed
@@ -3072,38 +3077,43 @@ public class Meny extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSummaActionPerformed
 
     private void btnVisaKvittoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaKvittoActionPerformed
-       
-        
-         try {
-            
-            Connection connection = DriverManager.getConnection("jdbc:mysql://resadb.cnjxqasdqhys.us-west-2.rds.amazonaws.com:3306/resaDB", "resaDB", "resaDB1234");
+
+        try {
+
+            Connection connection = DatabasTest.newConnection();
 
             Statement myStmt = connection.createStatement();
-            
-            String sql = "select bild from BildTest where BildID = " +getIdFromTable(this.tblVisaUtgifterChef);
-           
+
+            String sql = "select KvittoBild from Utgifter where ID = " + getIdFromTable(tblVisaUtgifterChef);
+
             ResultSet myRes = myStmt.executeQuery(sql);
             ImageIcon imc = null;
             if (myRes.next()) {                                 // Fyller byte array med bytes från DB
-                byte[] dataImage = myRes.getBytes("bild");      // Kolumnnamnet för bilden anges här
-                imc = new ImageIcon (dataImage);                // Skapar ett nytt ikonobjekt som består utav bytearrayen 
-                
+                byte[] dataImage = myRes.getBytes("KvittoBild");      // Kolumnnamnet för bilden anges här
+                imc = new ImageIcon(dataImage);                // Skapar ett nytt ikonobjekt som består utav bytearrayen 
+
                 //Scaling: anpassar storleken på bilden
-                Image imgStore = imc.getImage();                                          // Skapar ett nytt bildobjekt som hämtar bildikonen 
-                imgStore = imgStore.getScaledInstance(200, 200, Image.SCALE_SMOOTH);      // Justerar storleken på det nya bildobjektet efter width och height
+                Image imgStore = imc.getImage();// Skapar ett nytt bildobjekt som hämtar bildikonen 
+                imgStore = imgStore.getScaledInstance(700, 600, Image.SCALE_SMOOTH);      // Justerar storleken på det nya bildobjektet efter width och height
                 imc = new ImageIcon(imgStore);                                            // stoppar in den justerade bilden i det gamla ImageIcon-objektet som nu har anpassats   
-                
-                pictureForm pf = new pictureForm(imc);
+
+                pictureForm pf = new pictureForm();
                 pf.setVisible(true);
+                pf.setBild(imc);
                 // Den anpassade bilden stoppas in i en jLabel
-                
-                
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingen bild hittades");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            
+
         }
     }//GEN-LAST:event_btnVisaKvittoActionPerformed
+
+    private void btnVisaUtgifterChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaUtgifterChefActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVisaUtgifterChefActionPerformed
 
     public String getMotivering(JTable table) {
         int selectedRowIndex = table.getSelectedRow();

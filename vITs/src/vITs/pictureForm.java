@@ -24,10 +24,13 @@ public class pictureForm extends javax.swing.JFrame {
     /**
      * Creates new form pictureForm
      */
-    public pictureForm(ImageIcon imc) {
-        lblPictureStorage.setIcon(imc);
+    public pictureForm() {
 
         initComponents();
+    }
+
+    public void setBild(ImageIcon imc) {
+        lblPictureStorage.setIcon(imc);
     }
 
     /**
@@ -42,7 +45,6 @@ public class pictureForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         dpPicture = new javax.swing.JDesktopPane();
         lblPictureStorage = new javax.swing.JLabel();
-        btnVisaBild = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,25 +70,13 @@ public class pictureForm extends javax.swing.JFrame {
         );
         dpPicture.setLayer(lblPictureStorage, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        btnVisaBild.setText("Visa bild");
-        btnVisaBild.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisaBildActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(btnVisaBild))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(dpPicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addComponent(dpPicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -94,9 +84,7 @@ public class pictureForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(dpPicture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnVisaBild)
-                .addGap(55, 55, 55))
+                .addGap(104, 104, 104))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,10 +104,6 @@ public class pictureForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnVisaBildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaBildActionPerformed
-
-    }//GEN-LAST:event_btnVisaBildActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,13 +134,13 @@ public class pictureForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {;
+            public void run() {
+                new pictureForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVisaBild;
     private javax.swing.JDesktopPane dpPicture;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblPictureStorage;
